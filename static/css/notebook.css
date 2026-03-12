@@ -1,0 +1,893 @@
+/* Tailwind mobile-only utilities */
+@media (max-width: 767px) {
+    /* Hero Section (primeira seção) mobile usando Tailwind */
+    #home.hero {
+        @apply py-16 mt-20;
+    }
+
+    #home .container {
+        @apply px-4 max-w-full;
+    }
+
+    #home .hero-content {
+        @apply flex flex-col items-center gap-8 text-center;
+    }
+
+    #home .hero-text {
+        @apply order-1 w-full text-center;
+    }
+
+    #home .hero-text h1 {
+        @apply text-3xl leading-tight mb-4 text-center px-4;
+    }
+
+    #home .hero-text p {
+        @apply text-lg leading-relaxed mb-8 text-center px-4;
+    }
+
+    #home .hero-buttons {
+        @apply flex flex-col items-center gap-4 w-full;
+    }
+
+    #home .hero-buttons .btn {
+        @apply w-auto max-w-xs px-8 py-4 m-0;
+    }
+
+    #home .hero-image {
+        @apply order-2 w-full flex justify-center mt-4;
+    }
+
+    #home .hero-placeholder {
+        @apply max-w-xs w-full;
+    }
+
+    #home .hero-placeholder svg {
+        @apply w-full max-w-xs h-auto;
+    }
+
+    /* Centralizar texto "Conectamos" no mobile */
+    .lg\\:hidden p.text-white.text-base.mb-6 {
+        text-align: center !important;
+    }
+
+    .lg\\:hidden .text-white {
+        text-align: center !important;
+    }
+
+    .lg-notebook-title {
+        font-size: 1.875rem !important; /* 30px */
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+        text-align: center !important;
+    }
+
+    .lg-notebook-position {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin-top: 2rem !important;
+    }
+
+    .text-6xl, .xl\\:text-7xl {
+        font-size: 2.25rem !important; /* 36px */
+        line-height: 1.2 !important;
+        margin-top: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes para o header em mobile */
+    .pp {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* Cards responsivos para mobile */
+    #como-funciona .lg\:w-\[424px\],
+    #por-que-escolher .lg\:w-\[424px\] {
+        margin: 0 auto 2rem auto;
+        height: 16rem;
+        padding-bottom: 1.500rem;
+    }
+
+    /* Grid ajustado para mobile */
+    #como-funciona .grid.lg\\:grid-cols-3,
+    #por-que-escolher .grid.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Benefícios em mobile */
+    .benefios {
+        margin-left: 0 !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Título ajustado para mobile */
+    .titulo {
+        margin-top: 0 !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Estrelas hero em mobile */
+    .estrelas-hero {
+        margin-top: 1rem !important;
+        margin-left: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes gerais para mobile */
+    .container, .mx-auto {
+        padding-right: 1rem;
+    }
+
+    /* Textos menores em mobile */
+    .text-lg {
+        font-size: 1rem !important;
+    }
+
+    .text-xl {
+        font-size: 1.625rem !important;
+    }
+
+    /* Botões responsivos em mobile */
+    .btn, button {  
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* Imagens responsivas */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Header específico para mobile */
+    header {
+        padding: 0.500rem !important;
+    }
+
+    /* Navegação mobile */
+    nav {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 380px) {
+    /* Hero Section (primeira seção) mobile usando Tailwind */
+    #home.hero {
+        @apply py-16 mt-20;
+    }
+
+    #home .container {
+        @apply px-4 max-w-full;
+    }
+
+    #home .hero-content {
+        @apply flex flex-col items-center gap-8 text-center;
+    }
+
+    #home .hero-text {
+        @apply order-1 w-full text-center;
+    }
+
+    #home .hero-text h1 {
+        @apply text-3xl leading-tight mb-4 text-center px-4;
+    }
+
+    #home .hero-text p {
+        @apply text-lg leading-relaxed mb-8 text-center px-4;
+    }
+
+    #home .hero-buttons {
+        @apply flex flex-col items-center gap-4 w-full;
+    }
+
+    #home .hero-buttons .btn {
+        @apply w-auto max-w-xs px-8 py-4 m-0;
+    }
+
+    #home .hero-image {
+        @apply order-2 w-full flex justify-center mt-4;
+    }
+
+    #home .hero-placeholder {
+        @apply max-w-xs w-full;
+    }
+
+    #home .hero-placeholder svg {
+        @apply w-full max-w-xs h-auto;
+    }
+
+    /* Centralizar texto "Conectamos" no mobile */
+    .lg\\:hidden p.text-white.text-base.mb-6 {
+        text-align: center !important;
+    }
+
+    .lg\\:hidden .text-white {
+        text-align: center !important;
+    }
+
+    .lg-notebook-title {
+        font-size: 1.875rem !important; /* 30px */
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+        text-align: center !important;
+    }
+
+    .lg-notebook-position {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin-top: 2rem !important;
+    }
+
+    .text-6xl, .xl\\:text-7xl {
+        font-size: 2.25rem !important; /* 36px */
+        line-height: 1.2 !important;
+        margin-top: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes para o header em mobile */
+    .pp {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* Cards responsivos para mobile */
+    #como-funciona .lg\:w-\[424px\],
+    #por-que-escolher .lg\:w-\[424px\] {
+        width: 310px !important;
+        max-width: 424px !important;
+        margin: 0 auto 2rem auto;
+        height: 16rem;
+        padding-bottom: 1.500rem;
+    }
+
+    /* Grid ajustado para mobile */
+    #como-funciona .grid.lg\\:grid-cols-3,
+    #por-que-escolher .grid.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Benefícios em mobile */
+    .benefios {
+        margin-left: 0 !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Título ajustado para mobile */
+    .titulo {
+        margin-top: 0 !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Estrelas hero em mobile */
+    .estrelas-hero {
+        margin-top: 1rem !important;
+        margin-left: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes gerais para mobile */
+    .container, .mx-auto {
+        padding-right: 1rem;
+    }
+
+    /* Textos menores em mobile */
+    .text-lg {
+        font-size: 1rem !important;
+    }
+
+    .text-xl {
+        font-size: 1.625rem !important;
+    }
+
+    /* Botões responsivos em mobile */
+    .btn, button {  
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* Imagens responsivas */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Header específico para mobile */
+    header {
+        padding: 0.500rem !important;
+    }
+
+    /* Navegação mobile */
+    nav {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+}
+
+@media (max-width: 300px) {
+    /* Hero Section (primeira seção) mobile usando Tailwind */
+    #home.hero {
+        @apply py-16 mt-20;
+    }
+
+    #home .container {
+        @apply px-4 max-w-full;
+    }
+
+    #home .hero-content {
+        @apply flex flex-col items-center gap-8 text-center;
+    }
+
+    #home .hero-text {
+        @apply order-1 w-full text-center;
+    }
+
+    #home .hero-text h1 {
+        @apply text-3xl leading-tight mb-4 text-center px-4;
+    }
+
+    #home .hero-text p {
+        @apply text-lg leading-relaxed mb-8 text-center px-4;
+    }
+
+    #home .hero-buttons {
+        @apply flex flex-col items-center gap-4 w-full;
+    }
+
+    #home .hero-buttons .btn {
+        @apply w-auto max-w-xs px-8 py-4 m-0;
+    }
+
+    #home .hero-image {
+        @apply order-2 w-full flex justify-center mt-4;
+    }
+
+    #home .hero-placeholder {
+        @apply max-w-xs w-full;
+    }
+
+    #home .hero-placeholder svg {
+        @apply w-full max-w-xs h-auto;
+    }
+
+    /* Centralizar texto "Conectamos" no mobile */
+    .lg\\:hidden p.text-white.text-base.mb-6 {
+        text-align: center !important;
+    }
+
+    .lg\\:hidden .text-white {
+        text-align: center !important;
+    }
+
+    .lg-notebook-title {
+        font-size: 1.875rem !important; /* 30px */
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+        text-align: center !important;
+    }
+
+    .lg-notebook-position {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin-top: 2rem !important;
+    }
+
+    .text-6xl, .xl\\:text-7xl {
+        font-size: 2.25rem !important; /* 36px */
+        line-height: 1.2 !important;
+        margin-top: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes para o header em mobile */
+    .pp {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* Cards responsivos para mobile */
+    #como-funciona .lg\:w-\[424px\],
+    #por-que-escolher .lg\:w-\[424px\] {
+        width: 311px !important;
+        max-width: 424px !important;
+        margin: 0 auto 2rem auto;
+        height: 16rem;
+        padding-bottom: 1.500rem;
+    }
+
+    /* Grid ajustado para mobile */
+    #como-funciona .grid.lg\\:grid-cols-3,
+    #por-que-escolher .grid.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Benefícios em mobile */
+    .benefios {
+        margin-left: 0 !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Título ajustado para mobile */
+    .titulo {
+        margin-top: 0 !important;
+        font-size: 1.5rem !important;
+        text-align: center !important;
+        padding: 0 1rem !important;
+    }
+
+    /* Estrelas hero em mobile */
+    .estrelas-hero {
+        margin-top: 1rem !important;
+        margin-left: 0 !important;
+        text-align: center !important;
+    }
+
+    /* Ajustes gerais para mobile */
+    .container, .mx-auto {
+        padding-right: 1rem;
+    }
+
+    /* Textos menores em mobile */
+    .text-lg {
+        font-size: 1rem !important;
+    }
+
+    .text-xl {
+        font-size: 1.625rem !important;
+    }
+
+    /* Botões responsivos em mobile */
+    .btn, button {  
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* Imagens responsivas */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Header específico para mobile */
+    header {
+        padding: 0.500rem !important;
+    }
+
+    /* Navegação mobile */
+    nav {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+}
+
+
+/* Media queries para tablets */
+@media(max-width: 1023px) {
+    .lg-notebook-title {
+        font-size: 2.25rem !important; /* 36px */
+        line-height: 1.1 !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    .lg-notebook-position {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        max-width: 100% !important;
+        padding: 2rem !important;
+        margin-top: 2rem !important;
+    }
+
+    .text-6xl, .xl\\:text-7xl {
+        font-size: 3rem !important; /* 48px */
+        line-height: 1.1 !important;
+        margin-top: 0 !important;
+        text-align: center !important;
+    }
+
+    .pp {
+        margin-top: -2rem !important;
+        margin-left: -3rem !important;
+    }
+
+    #como-funciona .lg\:w-\[424px\],
+    #por-que-escolher .lg\:w-\[424px\] {
+        width: 350px;
+        max-width: 350px;
+    }
+
+    #como-funciona .grid.lg\\:grid-cols-3,
+    #por-que-escolher .grid.lg\\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem !important;
+    }
+
+    .benefios {
+        margin-left: 0 !important;
+        padding: 0 2rem !important;
+    }
+
+    .titulo {
+        margin-top: -1rem !important;
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 1440px) {
+    .xl .text-6xl {
+        font-size: 3.75rem;
+        line-height: 1;
+        margin-top: -1rem;
+    }
+
+    .pp {
+        margin-top: -4rem;
+        margin-left: -7.20rem;
+    }
+
+    #como-funciona .lg\:w-\[424px\] {
+        width: 351px;
+        max-width: 424px;
+    }
+
+    #por-que-escolher .lg\:w-\[424px\] {
+        width: 363px;
+        max-width: 424px;
+    }
+
+
+}
+
+/* Media query geral para telas maiores que 1024px (notebooks) */
+@media (min-width: 1025px) {
+    .lg\:mt-\[1rem\] {
+        margin-top: -1rem;
+    }
+    
+    .titulo {
+        margin-top: -2rem;
+    }
+
+      .estrelas-hero {
+        margin-top: 1rem;
+        margin-left: 0.500rem;
+    }
+
+
+    .benefios {
+        margin-left: 64rem;
+    }
+
+}
+
+/* Media query específica para resolução 1440px */
+@media only screen and (min-width: 1440px) and (max-width: 1440px) {
+  .lg-notebook-title {
+    font-size: 2.75rem !important;
+    line-height: 1 !important;
+    max-width: 45rem !important;
+  }
+
+  .lg-notebook-position {
+    top: 26.5rem !important;
+    left: 8.4rem !important;
+    max-width: 40rem !important;
+  }
+  
+  .text-6xl.xl\\:text-7xl,
+  .xl\\:text-7xl {
+    font-size: 4rem !important;
+    line-height: 1 !important;
+    margin-top: 1rem !important;
+  }
+    
+  /* Separar cards na seção Por que escolher */
+  section#por-que-escolher .grid-cols-1.lg\\:grid-cols-3 {
+    gap: 4rem !important;
+  }
+  
+  section#por-que-escolher div.lg {
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+  }
+}
+
+/* Media query específica para laptops 1024px exatos */
+@media (min-width: 1024px) and (max-width: 1024px) {
+  /* Sem alterações - mantém layout padrão do Tailwind */
+}
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1536px !important;
+    }
+}
+
+/* Adicionando media query específica para separar 1362px de 1440px */
+@media (min-width: 1400px) and (max-width: 1535px) {
+  .xl\:top-\[3\.2rem\] {
+    top: 4rem !important;
+  }
+  .xl\:max-w-\[34rem\] {
+    max-width: 38rem !important;
+  }
+}
+
+/* Ajustando valores para media query xl (1280px) */
+@media (min-width: 1280px) {
+  .xl\:text-5xl {
+    font-size: 4rem;
+    line-height: 1;
+  }
+  .xl\:max-w-\[34rem\] {
+    max-width: 45rem;
+  }
+  .xl\:top-\[3\.2rem\] {
+    top: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:top-\[5rem\] {
+    top: 5rem;
+  }
+}
+
+/* Media query para notebooks tradicionais (1025px - 1279px) */
+@media (min-width: 1000px) and (max-width: 1439px) {
+  /* Override do container para notebooks - usa max-width: 1024px */
+  .container,
+  div.container,
+  .container.mx-auto,
+  div.container.mx-auto {
+    max-width: 1207px;
+  }
+
+  .benefios {
+    margin-top: -3.500rem;
+    margin-left: 58rem;
+  }
+
+  /* Ajusta o tamanho dos números na seção Como Funciona */
+  #como-funciona .rounded-full {
+    width: 109px !important;
+    height: 109px !important;
+  }
+
+ .pp {
+        margin-top: -5rem !important;
+        margin-left: -8rem !important;
+    }
+
+  .font-size-problema-solucao {
+    font-size: 14px !important;
+  }
+
+  .titles-solucoes {
+    font-size: 18px !important;
+  }
+
+  .titulos-desafios  {
+    font-size: 27px !important;
+  }
+
+
+  .lg-notebook-title {
+    font-size: 2.75rem !important;
+    line-height: 1 !important;
+    max-width: 45rem !important;
+  }
+
+  /* Ajuste de largura dos cards */
+  #como-funciona .lg\:w-\[424px\] {
+    width: 354px !important;   /* antes 372px */
+    max-width: 370px !important;
+    height: 327px;
+  }
+
+  /* Mais espaçamento entre os cards */
+  #como-funciona .grid.lg\:grid-cols-3 {
+    gap: 4rem !important;   /* antes 3rem */
+  }
+
+  /* Ajustar fontes na seção Como Funciona */
+  #como-funciona h3 {
+    font-size: 20px !important;
+  }
+
+  /* Ajustar tamanho do botão */
+  #como-funciona button {
+    padding: 1.5rem 1.75rem !important;
+
+  }
+
+  .comfunciona-button  {
+    font-size: 18px !important;
+  }
+
+  .empresa-pp {
+    font-size: 23px !important;
+  }
+
+  /* Ajustar texto dos cards na seção Empresas que confiam */
+  .empresas-section p {
+    font-size: 16px;
+  }
+
+  /* Ajustar botão na seção Empresas que confiam */
+  .empresas-section button {
+    padding: 1.5rem 1.75rem !important;
+  }
+
+  .button-empresas {
+    font-size: 18px !important;
+  }
+
+  .estrelas-hero img {
+    width: 18px !important;
+  }
+
+  .titulo {
+    margin-top: -2.5625rem !important;
+  }
+  
+  .lg-notebook-position {
+    top: 26.5rem !important;
+    left: 8.4rem !important;
+    max-width: 40rem !important;
+  }
+  
+  .text-6xl.xl\\:text-7xl,
+  .xl\\:text-7xl {
+    font-size: 4rem !important;
+    line-height: 1 !important;
+    margin-top: 1rem !important;
+  }
+  
+  /* Seção 3 - Como Funciona - ajustes para notebook */
+  #como-funciona .grid.lg\\:grid-cols-3 {
+    gap: 3rem !important;
+  }
+  
+  #como-funciona .lg {
+    width: 372px !important;
+  }
+
+  /* Diminuir imagens dos números na seção 3 */
+  #como-funciona .text-6xl,
+  #como-funciona .text-5xl {
+    font-size: 3rem !important;
+  }
+  
+  /* Separar cards na seção Por que escolher para notebooks */
+  #por-que-escolher .grid {
+    gap: 4rem !important;
+  }
+
+  #por-que-escolher .lg,
+  #por-que-escolher div[class*="lg:w-[424px]"] {
+    width: 364px !important;
+    max-width: 364px !important;
+  }
+
+  /* Reduzir textos na seção Por que escolher para notebooks */
+  #por-que-escolher h3 {
+    font-size: 18px !important;
+  }
+  
+  /* Reduzir ícones na seção Por que escolher para notebooks */
+  #por-que-escolher .w-12,
+  #por-que-escolher .w-16,
+  #por-que-escolher .lg\\:w-\\[74px\\] {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+
+}
+
+/* Mover ícone shield para a direita - todas as telas grandes */
+@media (min-width: 1025px) {
+  img[src*="noun-shield"] {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+}
+
+/* Linha azul nos inputs ao receber foco - todo o site */
+input:focus {
+  border: 3px solid #0047AB !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Cor do texto dos inputs - força máxima */
+input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+form input,
+section input,
+div input,
+.text-gray-600,
+input.text-gray-600,
+input.w-full,
+input.px-6,
+input.py-4,
+input.py-5,
+input.rounded-full,
+input.font-dm,
+input.shadow-sm,
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+section form input,
+#contato input,
+#contato form input {
+  color: #5B8FDB !important;
+}
+
+/* Media query para telas maiores (1280px+) */
+@media (min-width: 1280px) {
+  .lg-notebook-title {
+    font-size: 3.600rem !important;
+    line-height: 1 !important;
+    margin-top: -1rem !important;
+  }
+  .lg-notebook-position {
+    top: 29.5rem !important;
+    left: 15rem !important;
+  }
+  
+  .xl\\:text-7xl {
+    font-size: 4.5rem !important;
+    line-height: 1 !important;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .lg-notebook-title {
+    font-size: 3.600rem !important;
+    line-height: 1 !important;
+    margin-top: -1rem !important;
+  }
+
+  .benefios {
+    margin-left: 82rem;
+  }
+  
+  .titulo {
+    margin-top: -1rem !important;
+  }
+}
+
+
+
+.

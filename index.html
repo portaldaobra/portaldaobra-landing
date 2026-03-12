@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal da Obra</title>
+  
+  <!-- Favicon -->
+  
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+  
+  <!-- Google Fonts - DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+             dm: ['"DM Sans"', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'primary': {
+              50: '#C6D6F0',
+              100: '#5B8FDB',
+              500: '#0047AB',
+              800: '#001D4A',
+              900: '#05142C',
+            },
+            'portal': {
+              'white': '#FFFFFF',
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+              'blue-darkest': '#05142C',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS - carregados após Tailwind para garantir especificidade -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/notebook.css">
+    <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PHFRLWGJ');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body class="bg-white font-sans">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHFRLWGJ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Header -->
+  
+
+<!-- Header -->
+<header class="bg-white shadow-sm">
+  <div class="container mx-auto !sm:pl-[0rem] !sm:pr-[3rem] px-6 py-4">
+    <!-- Desktop Layout -->
+    <div class="hidden md:flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class=" md:h-[2rem] h-8">
+      </div>
+      <div class="relative">
+        <a href="#contato" 
+        class="absolute top-1/2 right-0 inline-flex items-center gap-3 text-white text-sm z-50 font-medium shadow-lg transition-colors"
+        style="background: #5B8FDB; padding: 14px 40px; padding-left: 2rem; border-radius: 44px; transform: translateY(-13%);">
+        
+        <div class="flex items-center justify-center w-9 h-9 rounded-lg">
+          <img src="/static/images/icone-empresa.png" 
+              alt="Empresa" 
+              style="width: 1.875rem; height: 2rem;">
+        </div>
+            
+        <!-- Texto em duas linhas fixas -->
+        <div class="text-white font-dm text-xl font-normal tracking-wide leading-tight">
+          Sou Construtora:<br><span class="whitespace-nowrap">Quero fazer parte</span>
+        </div>
+      </a>
+      </div>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="md:hidden flex items-center justify-between px-2 py-1">
+      <!-- Logo with better sizing -->
+      <div class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-8" style="max-width: 98% !important;">
+      </div>
+      
+      <!-- Hamburger menu with better styling -->
+      <button id="menu-toggle" class="text-gray-700 !-mr-[2rem] hover:text-blue-600 focus:outline-none p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" 
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="md:hidden hidden mt-4 flex justify-center">
+      <a href="#contato" 
+      class="inline-flex items-center gap-2 text-white text-sm font-medium shadow-lg transition-colors justify-center"
+      style="background: #5B8FDB; padding: 12px 16px; border-radius: 25px; width: 86%;">
+      
+      <div class="flex items-center justify-center w-6 h-6 rounded">
+        <img src="/static/images/icone-empresa.png" 
+            alt="Empresa" 
+            class="w-4 h-4">
+      </div>
+          
+      <span class="text-white font-dm text-sm font-medium">Construtora: Quero fazer Parte</span>
+    </a>
+    </div>
+  </div>
+</header>
+
+<!-- JavaScript for hamburger menu toggle -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
+
+  
+  <!-- Main Content -->
+  
+
+<!-- Hero Section -->
+<section id='one-sectionhero' class="text-white pt-[2rem] pb-[2rem] sm:py-12 lg:py-16 relative bg-cover bg-center bg-no-repeat xl:min-h-[62vh] sm:min-h-[70vh]" 
+  style="background-image: url('/static/images/section1-2.png');">
+  
+  <div class="container mx-auto px-4 xl:mt-0 !sm:pb-[3rem] md:mt-[2rem] md:px-6">
+
+    <!-- Hero Image + Título -->
+    <div class="relative mb-6">
+      <!-- Tag -->
+      <span class="estrelas-hero lg:absolute xl:-mt-[1rem] md:flex md:justify-center md:text-center -lg:top-[1rem] lg:left-[1.6rem] lg:z-10 flex lg:text-[0.969rem] lg:justify-start text-sm font-normal tracking-wide text-[#C6D6F0] leading-6 lg:leading-7 xl:mb-4 lg:mb-0 animate-fade-in">
+        <img src="/static/images/noun-star.svg" alt="Estrela obra" class="mr-2 w-4 h-4 lg:w-6 lg:h-6">
+        Fornecedores Pré-Qualificados
+      </span>
+
+      <!-- Título Desktop -->
+      <h1
+        class="titulo hidden lg:block absolute top-[5rem] left-4 z-10 text-white font-black  p-4 max-w-[51rem] animate-fade-in-up
+        text-[4.3rem] lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[1.1]">
+        Contratação <span class="text-blue-400">segura</span> <br>e eficiente para obras corporativas
+      </h1>
+
+      <!-- Título Mobile -->
+      <h1 class="lg:hidden text-2xl sm:text-3xl md:text-4xl md:text-center font-semibold leading-tight tracking-tight mb-4 animate-fade-in-up">
+        Contratação <span class="text-blue-400">segura</span> e eficiente para obras corporativas
+      </h1>
+
+      <!-- Imagem -->
+     <img src="/static/images/banner-contrucao.svg" alt="Engenheiro na obra" class="hidden lg:block w-full rounded-2xl animate-fade-in-scale xl:top-[7rem] xl:max-w-none">
+    </div>
+
+    <!-- Refatorando layout para ser mais responsivo -->
+    <!-- Container flexível para descrição/botão e benefícios -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-8 mt-4 md:mt-6 lg:mt-8 xl:-mt-[5rem] 2xl:-mt-[7rem]">
+      
+      <!-- Descrição + Botão -->
+      <div class="flex-1 max-w-2xl md:text-center xl:text-left -mt-[1rem] mx-auto md:mx-0 lg:mx-0">
+        <p class="text-white text-base md:text-lg xl:text-[1.280rem] mb-6 md:ml-[2.1rem] lg:ml-[2.1rem] font-light">
+          Conectamos empresas a fornecedores realmente <br> qualificados, com critério, tecnologia e transparência total.
+        </p>
+        <a href="https://wa.me/5511999034048"
+          class="hover:bg-blue-700 text-white md:ml-[12rem] xl:ml-0 flex items-center xl:justify-center md:justify-start space-x-2 rounded-full w-full md:w-[21.1875rem] h-16 md:h-[5.5rem] bg-[#0047AB] px-4">
+          <img src="/static/images/noun-shield.svg" alt="Shield" class="w-5 h-5 md:w-6 md:h-6">
+          <div class="text-left">
+            <div class="font-dm text-base md:text-xl font-normal tracking-wide">Sou Lojista:</div>
+            <div class="font-dm text-base md:text-xl font-normal ">Quero fazer um orçamento</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Benefícios unificados - responsivos para todas as telas -->
+        <div class="flex flex-col mt-4 lg:items-start lg:justify-start md:items-center lg:mt-0 flex-shrink-0 xl:mr-[3rem] lg:max-w-sm xl:max-w-md lg:ml-[-9rem] 2xl:mr-[9rem]">
+        <div class="flex flex-col space-y-3 sm:space-y-4 px-2 lg:px-0 !sm:mb-[2rem]">
+          <div class="flex items-center">
+            <img src="/static/images/icon-fornecedores.svg" alt="Fornecedores Qualificados" class="w-7 h-7 lg:w-8 lg:h-8 mr-3 lg:mr-4 flex-shrink-0">
+            <span class="text-white font-medium text-sm sm:text-base">Fornecedores Qualificados</span>
+          </div>
+          <div class="flex items-center">
+            <img src="/static/images/icon-tranparencia.svg" alt="Transparência e Compliance" class="w-7 h-7 lg:w-8 lg:h-8 mr-3 lg:mr-4 flex-shrink-0"> 
+            <span class="text-white font-medium text-sm sm:text-base">Transparência e Compliance</span>
+          </div>
+          <div class="flex items-center">
+            <img src="/static/images/icon-agilidade.svg" alt="Agilidade na Tomada de Preços" class="w-7 h-7 lg:w-8 lg:h-8 mr-3 lg:mr-4 flex-shrink-0">
+            <span class="text-white font-medium text-sm sm:text-base">Agilidade na Tomada de Preços</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Transformamos desafios em solução -->
+<section id="solucao" class="bg-[#C6D6F0] py-8 lg:py-16">
+  <div class="container mx-auto px-4 text-center">
+    <!-- Título -->
+    <h2 class="text-center font-dm font-black text-2xl md:text-3xl lg:text-[45px] leading-8 md:leading-10 lg:leading-[60px] text-[#001d4a]">
+      Transformamos desafios em solução
+    </h2>
+    <p class="text-center font-dm font-light text-base md:text-lg lg:text-[23px] leading-6 md:leading-7 lg:leading-[35px] text-[#001d4a] mb-10 lg:mb-12">
+      Entendemos os problemas que você enfrenta e temos a solução perfeita
+    </p>
+
+    <!-- Grid -->
+    <div class="flex flex-col md:justify-center md:items-center lg:flex-row justify-center items-stretch gap-6">
+      
+      <!-- Card Problemas -->
+      <!-- Mantendo design original dos cards, apenas ajustando para mobile -->
+      <div class="card-section-2 bg-white shadow flex flex-col rounded-3xl lg:rounded-[3.125rem] w-full max-w-md lg:max-w-none py-6 px-4 lg:py-8 lg:px-10 animate-fade-in-left hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+        <!-- Ícone -->
+        <!-- removendo container circular duplo, deixando apenas a imagem -->
+        <div class="flex items-center justify-center mb-6 mx-auto">
+          <img src="/static/images/icone-alerta.png" alt="Alerta" class="w-16 md:h-[4rem] sm:w-16 h-12 lg:w-16 lg:h-16">
+        </div>
+        <h3 class="titulos-desafios text-center font-dm font-black text-[#001d4a] text-xl lg:text-[30px] leading-7 lg:leading-[60px] mb-6 tracking-wide">Problemas Comuns</h3>
+        
+        <ul class="space-y-4 text-left">
+          <li class="flex items-start">
+            <!-- aumentando ícones dos itens da lista -->
+            <img src="/static/images/icone-erro.png" alt="Erro" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] text-[#001D4A]">Falta de transparência e compliance</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Contratações sem processos, cheias de riscos e insegurança</span>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <img src="/static/images/icone-erro.png" alt="Erro" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] text-[#001D4A]">Falta de agilidade na tomada de preços</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Orçamentos demorados e processos engessados</span>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <img src="/static/images/icone-erro.png" alt="Erro" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] text-[#001D4A]">Falta de fornecedores qualificados</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Execução comprometida por falta de credibilidade técnica</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card Soluções -->
+      <div class="card-section-2 bg-white shadow flex flex-col rounded-3xl lg:rounded-[3.125rem] w-full max-w-md lg:max-w-none py-6 px-4 lg:py-8 lg:px-10 animate-fade-in-right hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+        <!-- Ícone -->
+        <!-- removendo container circular duplo, deixando apenas a imagem -->
+        <div class="flex items-center justify-center mb-6 mx-auto">
+          <img src="/static/images/icone-lampada.png" alt="Solução" class="w-16 md:h-[4rem] h-12 lg:w-16 lg:h-16">
+        </div>
+        <h3 class="titulos-desafios text-center font-dm font-black text-[#001d4a] text-xl lg:text-[30px] leading-7 lg:leading-[60px] mb-6 tracking-wide">Nossas Soluções</h3>
+        
+        <ul class="space-y-4 text-left">
+          <li class="flex items-start">
+            <img src="/static/images/icone-check.png" alt="Check" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] tracking-wide text-[#001D4A]">Transparência e compliance garantidos</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Processos claros, auditáveis e confiáveis</span>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <img src="/static/images/icone-check.png" alt="Check" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] tracking-wide text-[#001D4A]">Agilidade na tomada de preços</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Orçamentos rápidos, comparáveis e padronizados</span>
+            </div>
+          </li>
+          <li class="flex items-start">
+            <img src="/static/images/icone-check.png" alt="Check" class="mt-1 mr-3 w-5 h-5 lg:w-6 lg:h-6 flex-shrink-0">
+            <div>
+              <span class="titles-solucoes text-left font-dm font-black sm:text-[1.063rem] lg:text-[23px] leading-6 lg:leading-[30px] tracking-wide text-[#001D4A]">Rede de fornecedores qualificados</span><br>
+              <span class="font-size-problema-solucao font-dm font-light sm:text-[0.938rem] lg:text-[20px] leading-5 lg:leading-[30px] tracking-wide text-[#001D4A]">Seleção criteriosa e curadoria especializada</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Como Funciona -->
+<section id="como-funciona" class="py-6 sm:py-8 lg:py-16 white">
+  <div class="container mx-auto px-3 sm:px-4 text-center">
+    <!-- Título -->
+    <!-- Ajustado padding e tamanhos para mobile -->
+    <h2 class="text-center font-dm font-black text-xl sm:text-2xl lg:text-[45px] leading-7 sm:leading-8 lg:leading-[60px] tracking-wider lg:tracking-[0.45px] text-[#001D4A] opacity-100 mb-3">Como Funciona</h2>
+    <p class="xl:text-[23px] text-center font-dm font-light text-sm sm:text-base lg:text-[23px] leading-5 sm:leading-6 lg:leading-[35px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] opacity-100 mb-6 sm:mb-8 lg:mb-16">Processo simples e eficiente em 3 passos</p>
+
+    <!-- Steps -->
+    <!-- Reduzido gap e ajustado espaçamentos para mobile -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-12 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-16 relative">
+      
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center relative z-10">
+        <!-- Número -->
+        <!-- Ajustado tamanhos dos círculos para mobile -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 lg:w-[138px] lg:h-[138px] rounded-full flex items-center justify-center mb-4 sm:mb-6 lg:mb-8" style="background: #5b8fdb; filter: drop-shadow(0px 40px 20px rgba(0,51,127,0.2));">
+          <img src="/static/images/number-1.png" alt="Número 1" class="">
+        </div>
+        
+        <!-- Card -->
+        <!-- Aumentando altura dos cards para mobile e removendo círculo duplo dos ícones -->
+        <div class="card-como-funciona 2xl:max-w-[28rem] p-3 sm:p-4 lg:p-8 w-full max-w-xs sm:max-w-sm lg:w-[424px] lg:h-[309px] h-48 sm:h-56 rounded-[20px] sm:rounded-[30px] lg:rounded-[50px] flex flex-col justify-between" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <div>
+            <!-- Reduzido tamanhos de fonte para mobile -->
+            <h3 class="text-center font-dm font-black text-base  lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] opacity-100 mb-2 sm:mb-3 lg:mb-4">Conte sua necessidade</h3>
+            <p class="text-center xl:mt-[3rem] font-dm font-light text-xs sm:text-sm lg:text-[20px] leading-4 sm:leading-5 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A] opacity-100 mb-3 sm:mb-4 lg:mb-6">Formulário rápido ou ligação para entender seu projeto em detalhes</p>
+          </div>
+          
+          <!-- Ícone interno -->
+          <!-- Removendo container circular e aumentando ícone -->
+          <div class="flex items-center justify-center mx-auto">
+            <img src="/static/images/lapis-section.png" alt="Lápis" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-[74px] lg:h-[74px]">
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha conectora 1-2 -->
+      <div class="hidden lg:block absolute top-[19.375rem] left-1/3 xl:w-[10rem] w-[6rem] h-[5px] opacity-100 z-0" style="border: 5px solid #0047AB; transform: translateX(-50%);"></div>
+
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center relative z-10">
+        <!-- Número -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 lg:w-[138px] lg:h-[138px] rounded-full flex items-center justify-center mb-4 sm:mb-6 lg:mb-8" style="background: #0047ab; filter: drop-shadow(0px 40px 20px rgba(0,51,127,0.16));">
+          <img src="/static/images/number-2.png" alt="Número 2" class="">
+        </div>
+        
+        <!-- Card -->
+        <!-- Aumentando altura dos cards para mobile -->
+        <div class="p-3 sm:p-4 lg:p-8 w-full max-w-xs sm:max-w-sm lg:w-[424px] lg:h-[309px] h-48 sm:h-56 rounded-[20px] sm:rounded-[30px] lg:rounded-[50px] flex flex-col justify-between" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <div>
+            <h3 class="text-center font-dm font-black text-base sm:text-lg lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] opacity-100 mb-2 sm:mb-3 lg:mb-4">Receba propostas qualificadas</h3>
+            <p class="text-center  font-dm font-light text-xs sm:text-sm lg:text-[20px] leading-4 sm:leading-5 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A] opacity-100 mb-3 sm:mb-4 lg:mb-6">Apenas fornecedores pré-aprovados e com histórico comprovado</p>
+          </div>
+          
+          <!-- Ícone interno -->
+          <!-- Removendo container circular e aumentando ícone -->
+          <div class="flex items-center justify-center mx-auto">
+            <img src="/static/images/estrela-section.png" alt="Estrela" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-[74px] lg:h-[74px]">
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha conectora 2-3 -->
+      <div class="hidden lg:block absolute top-[19.375rem] left-2/3 xl:w-[10rem] w-[6rem] h-[5px] opacity-100 z-0" style="border: 5px solid #0047AB; transform: translateX(-50%);"></div>
+
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center relative z-10">
+        <!-- Número -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 lg:w-[138px] lg:h-[138px] rounded-full flex items-center justify-center mb-4 sm:mb-6 lg:mb-8" style="background: #00337f; filter: drop-shadow(0px 40px 20px rgba(0,51,127,0.16));">
+          <img src="/static/images/number-3.png" alt="Número 3" class="">
+        </div>
+        
+        <!-- Card -->
+        <!-- Aumentando altura dos cards para mobile -->
+        <div class="p-3 sm:p-4 lg:p-8 w-full max-w-xs sm:max-w-sm lg:w-[424px] lg:h-[309px] h-48 sm:h-56 rounded-[20px] sm:rounded-[30px] lg:rounded-[50px] flex flex-col justify-between" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <div>
+            <h3 class="text-center font-dm font-black text-base sm:text-lg lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] opacity-100 mb-2 sm:mb-3 lg:mb-4">Contrate com segurança</h3>
+            <p class="text-center xl:mt-[3rem] font-dm font-light text-xs sm:text-sm lg:text-[20px] leading-4 sm:leading-5 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A] opacity-100 mb-3 sm:mb-4 lg:mb-6">Modelos de contrato e suporte técnico durante toda a obra</p>
+          </div>
+          
+          <!-- Ícone interno -->
+          <!-- Removendo container circular e aumentando ícone -->
+          <div class="flex items-center justify-center mx-auto">
+            <img src="/static/images/checks-positive.png" alt="Check" class="w-16 h-16 sm:w-20 sm:h-20 lg:w-[74px] lg:h-[74px]">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action Button -->
+    <!-- Corrigindo layout do botão para ícone ficar ao lado do texto, não acima -->
+    <button onclick="window.open('https://wa.me/5511999034048', '_blank')" class="hover:bg-blue-700 font-medium transition-all transform hover:scale-105 flex flex-row items-center justify-center mx-auto px-6 sm:px-8 lg:px-[2rem] py-4 sm:py-5 lg:py-[2rem]" style="background: #0047AB; border-radius: 44px; opacity: 1;">
+      <!-- Ícone do WhatsApp ao lado do texto -->
+      <img src="/static/images/wpp-icon.png" alt="WhatsApp" class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mr-3 sm:mr-4">
+      <span class="comfunciona-button text-left font-dm font-medium text-base sm:text-lg lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-white opacity-100">Fale com um especialista</span>
+    </button>
+  </div>
+</section>
+
+<!-- Empresas que confiam -->
+<section class="py-16 bg-[#001D4A] text-white empresas-section">
+  <div class="container mx-auto px-6">
+
+    <!-- Título -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl lg:text-[45px] font-bold mb-3 font-dm">Empresas que confiam em nós</h2>
+      <p class="empresa-pp text-blue-200 xl:text-[23px] sm:text-lg font-dm">Resultados comprovados e clientes satisfeitos</p>
+    </div>
+
+    <!-- Logos -->
+    <!-- Desktop: Carousel -->
+    <div class="hidden md:block logos-carousel-container overflow-hidden bg-[#0047AB] py-6 rounded-full w-full max-w-6xl mx-auto mb-16">
+      <div class="logos-carousel flex items-center gap-12">
+        <!-- Original logos -->
+        <img src="/static/images/allos.svg" alt="Allos" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/bk.svg" alt="Burger King" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogaria-sp.svg" alt="Droga São Paulo" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogari-raia-svg.svg" alt="Raia" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogasil.svg" alt="Drogasil" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/pop-1.svg" alt="Popeyes" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/selfite.svg" alt="Selfit" class="logo-item mt-[11px] sm:mt-0 object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/globo.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/pachecow.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/smartfit.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+        
+        <!-- Duplicated logos for seamless loop -->
+        <img src="/static/images/allos.svg" alt="Allos" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/bk.svg" alt="Burger King" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogaria-sp.svg" alt="Droga São Paulo" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogari-raia-svg.svg" alt="Raia" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/drogasil.svg" alt="Drogasil" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/pop-1.svg" alt="Popeyes" class="logo-item object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/selfite.svg" alt="Selfit" class="logo-item mt-[11px] sm:mt-0 object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/globo.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/pachecow.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+        <img src="/static/images/smartfit.svg" alt="Selfit" class="logo-item mt-[11px] object-contain hover:scale-110 transition-transform duration-300">
+      </div>
+    </div>
+
+    <!-- Mobile: Static Grid -->
+    <div class="md:hidden grid grid-cols-2 justify-items-center items-center gap-6 sm:gap-10 mb-16 
+            bg-[#0047AB] px-4 sm:px-6 py-6 rounded-3xl w-[98%] max-w-6xl mx-auto">
+      <img src="/static/images/allos.svg" alt="Allos" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/bk.svg" alt="Burger King" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/drogaria-sp.svg" alt="Droga São Paulo" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/drogari-raia-svg.svg" alt="Raia" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/drogasil.svg" alt="Drogasil" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/pop-1.svg" alt="Popeyes" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/selfite.svg" alt="Selfit" class="mt-2 object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/globo.svg" alt="Globo" class="-mt-[1.2rem] object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/pachecow.svg" alt="Pacheco" class="-mt-[1.438rem] object-contain hover:scale-110 transition-transform duration-300">
+      <img src="/static/images/smartfit.svg" alt="Smart Fit" class="-mt-[1rem] object-contain hover:scale-110 transition-transform duration-300">
+    </div>
+
+    <!-- Testimonials -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mx-auto max-w-4xl md:max-w-none" style="max-width: 72rem;">
+
+      <!-- Testimonial 1 -->
+      <div class="bg-white text-gray-900 px-6 md:px-12 py-6 md:py-10 rounded-[30px] md:rounded-[50px] shadow-[0px_20px_30px_rgba(5,20,44,0.2)] mx-auto w-full max-w-md md:max-w-none">
+        <div class="flex items-center mb-4 md:mb-6">
+          <div class="w-10 h-10 xl:w-[4rem] md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+            <img src="/static/images/profile-icon.svg" alt="Profile" class="w-10 h-10 md:w-12 md:h-12">
+          </div>
+          <div>
+            <h4 class="font-bold font-dm text-sm md:text-base">João Silva</h4>
+            <p class="color-[#001D4A] text-xs md:text-sm font-dm">Diretor de Facilities</p>
+            <div class="flex gap-1">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+            </div>
+          </div>
+        </div>
+        <p class="text-center md:text-left italic font-light text-sm md:text-[20px] leading-6 md:leading-[30px] tracking-[0.2px] text-[#001D4A] font-dm">
+          "Finalmente encontramos fornecedores realmente qualificados. Nossa última obra foi entregue no prazo e dentro do orçamento. Recomendo!"
+        </p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white text-gray-900 px-6 md:px-12 py-6 md:py-10 rounded-[30px] md:rounded-[50px] shadow-[0px_20px_30px_rgba(5,20,44,0.2)] mx-auto w-full max-w-md md:max-w-none">
+        <div class="flex items-center mb-4 md:mb-6">
+          <div class="w-10 xl:w-[4rem] h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+            <img src="/static/images/profile-icon.svg" alt="Profile" class="w-10 h-10 md:w-12 md:h-12">
+          </div>
+          <div>
+            <h4 class="font-bold font-dm text-sm md:text-base">Mariana Santos</h4>
+            <p class="color-[#001D4A] text-xs md:text-sm font-dm">Gerente de Projetos</p>
+            <div class="flex gap-1">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+              <img src="/static/images/noun-star.svg" alt="Star" class="w-[12px] h-[11px] md:w-[15px] md:h-[14px]">
+            </div>
+          </div>
+        </div>
+        <p class="text-center md:text-left italic font-light text-sm md:text-[20px] leading-6 md:leading-[30px] text-[#001D4A] font-dm">
+          "A transparência e o suporte técnico do Portal da Obra fizeram toda a diferença no nosso projeto. Processo muito profissional!"
+        </p>
+      </div>
+    </div>
+
+    <!-- Call to Action Button -->
+    <button class="hover:bg-blue-700 font-medium transition-all mt-[4.92rem] transform hover:scale-105 flex items-center mx-auto px-4 sm:px-6 lg:px-[2rem] py-3 sm:py-4 lg:py-[2rem]" style="background: #0047AB; border-radius: 44px; opacity: 1;">
+      <img src="/static/images/broxe.svg" alt="WhatsApp" class="mr-2 sm:mr-4">
+      <span class="button-empresas text-left font-dm font-medium text-base sm:text-lg lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-white opacity-100">Fornecedores Qualificados</span>
+    </button>
+  </div>
+</section>
+
+<!-- Por que escolher -->
+<section id="por-que-escolher" class="py-8 sm:py-12 lg:py-16">
+  <div class="container mx-auto px-4 text-center">
+    <!-- Título -->
+    <div class="mb-8 sm:mb-12 lg:mb-16">
+      <h2 class="text-center font-dm font-black text-2xl sm:text-3xl lg:text-[45px] leading-8 sm:leading-10 lg:leading-[60px] lg:tracking-[0.45px] text-[#001D4A]">
+        Por que escolher o Portal da Obra?
+      </h2>
+      <p class="xl:text-[23px] text-center font-dm font-light text-base sm:text-lg lg:text-[23px] leading-6 sm:leading-7 lg:leading-[35px] tracking-wide lg:tracking-[0.23px] text-[#001D4A]">Vantagens exclusivas para sua empresa</p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12 lg:mb-16">
+      
+      <!-- Step 1 -->
+      <div class="flex flex-col items-center hover:transform hover:-translate-y-2 transition-all duration-300">
+        <!-- Card -->
+        <div class="p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md lg:w-[424px] lg:h-[309px] h-auto rounded-[30px] sm:rounded-[40px] lg:rounded-[50px] flex flex-col justify-center items-center transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <!-- Ícone interno -->
+          <div class="w-12 h-12 sm:w-16 sm:h-16 lg:w-[74px] lg:h-[74px] bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <img src="/static/images/calender.png" alt="Calendário" class="transition-transform duration-300 hover:rotate-12">
+          </div>
+          
+          <div class="text-center">
+            <h3 class="text-center font-dm font-black text-lg sm:text-xl lg:text-[23px] leading-6 sm:leading-7 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] mb-3 sm:mb-4">Mais previsibilidade</h3>
+            <p class="text-center font-dm font-light text-sm sm:text-base lg:text-[20px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A]">Cronogramas claros e compromissos firmes para você planejar com total segurança</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex flex-col items-center hover:transform hover:-translate-y-2 transition-all duration-300">
+        <!-- Card -->
+        <div class="p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md lg:w-[424px] lg:h-[309px] h-auto rounded-[30px] sm:rounded-[40px] lg:rounded-[50px] flex flex-col justify-center items-center transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <!-- Ícone interno -->
+          <div class="w-12 h-12 sm:w-16 sm:h-16 lg:w-[74px] lg:h-[74px] bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <img src="/static/images/security.png" alt="Segurança" class="transition-transform duration-300 hover:rotate-12">
+          </div>
+          
+          <div class="text-center">
+            <h3 class="text-center font-dm font-black text-lg sm:text-xl lg:text-[23px] leading-6 sm:leading-7 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] mb-3 sm:mb-4">Mais segurança</h3>
+            <p class="text-center font-dm font-light text-sm sm:text-base lg:text-[20px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A]">Fornecedores avaliados antes e durante a obra com critérios rigorosos de qualidade</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex flex-col items-center hover:transform hover:-translate-y-2 transition-all duration-300">
+        <!-- Card -->
+        <div class="p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md lg:w-[424px] lg:h-[309px] h-auto rounded-[30px] sm:rounded-[40px] lg:rounded-[50px] flex flex-col justify-center items-center transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(180deg, #c6d6f0 0.00%, #dde7f6 21.18%, #ffffff 100.00%); filter: drop-shadow(0px 20px 15px rgba(5,20,44,0.2));">
+          <!-- Ícone interno -->
+          <div class="w-12 h-12 sm:w-16 sm:h-16 lg:w-[74px] lg:h-[74px] bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <img src="/static/images/L-controle.png" alt="Controle" class="transition-transform duration-300 hover:rotate-12">
+          </div>
+          
+          <div class="text-center">
+            <h3 class="text-center font-dm font-black text-lg sm:text-xl lg:text-[23px] leading-6 sm:leading-7 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-[#001D4A] mb-3 sm:mb-4">Mais Controle</h3>
+            <p class="text-center font-dm font-light text-sm sm:text-base lg:text-[20px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.2px] text-[#001D4A]">Relatórios físico-financeiros e retenção contratual para transparência total</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pronto para contratar -->
+<section class="py-12 sm:py-20 lg:py-24 relative" style="background-image: url('/static/images/fundo-bg-2.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="container xl:mt-[-3rem] xl:mb-[-3rem]  mx-auto px-4 text-center">
+    <h2 class="text-center font-dm font-black text-3xl sm:text-4xl lg:text-[60px] leading-tight sm:leading-[1.2] lg:leading-[60px] text-white mb-6 sm:mb-8">
+      Pronto para contratar<br>
+      sua próxima obra com segurança<br>
+      e sem dor de cabeça?
+    </h2>
+    <p class="text-center font-dm font-light text-lg sm:text-xl lg:text-[25px] leading-relaxed lg:leading-[37px] tracking-[0.25px] text-[#C6D6F0] mx-auto">
+      Junte-se às empresas que já descobriram como contratar obras corporativas<br>
+      de forma inteligente, segura e eficiente
+    </p>
+  </div>
+</section>
+
+<!-- Formulário de Contato -->
+<section id="contato" class="py-8 sm:py-20 xl:mt-[-4rem] xl:mb-[-2rem] lg:py-24" style="background-color: #C6D6F0;">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Contact Form -->
+                <form method="POST" action="/contact/" class="space-y-4 sm:space-y-6">
+                <input type="hidden" name="csrfmiddlewaretoken" value="XZScfxNVQbeg3lIl6pNKt6yOZHxOuzvrFtNNSGTasGYLu9UpiUfCP4FaRdVYKmC6">
+
+                    <div>
+                        <!-- Usando placeholder-custom para cor #5B8FDB -->
+                        <input type="text" name="nome" placeholder="Nome Sobrenome" required class="w-full px-6 py-4 sm:py-5 rounded-[50px] text-gray-600 placeholder-custom bg-white border-0 focus:ring-2 focus:ring-blue-300 font-light text-base sm:text-lg shadow-sm">
+                    </div>
+                    <div>
+                        <!-- Usando placeholder-custom para cor #5B8FDB -->
+                        <input type="email" name="email" placeholder="E-mail" required class="w-full px-6 py-4 sm:py-5 rounded-[50px] text-gray-600 placeholder-custom bg-white border-0 focus:ring-2 focus:ring-blue-300 font-light text-base sm:text-lg shadow-sm">
+                    </div>
+                    <div>
+                        <!-- Usando placeholder-custom para cor #5B8FDB -->
+                        <input type="tel" name="telefone" placeholder="Telefone" required class="w-full px-6 py-4 sm:py-5 rounded-[50px] text-gray-600 placeholder-custom bg-white border-0 focus:ring-2 focus:ring-blue-300 font-light text-base sm:text-lg shadow-sm">
+                    </div>
+                    <div>
+                        <!-- Usando placeholder-custom para cor #5B8FDB -->
+                        <input type="text" name="empresa" placeholder="Nome da Empresa" required class="w-full px-6 py-4 sm:py-5 rounded-[50px] text-gray-600 placeholder-custom bg-white border-0 focus:ring-2 focus:ring-blue-300 font-light text-base sm:text-lg shadow-sm">
+                    </div>
+                    <div class="relative">
+                      <!-- Input visível (mesma aparência dos outros) -->
+                      <input 
+                        type="text" 
+                        id="faturamento-input"
+                        name="faturamento" 
+                        placeholder="Selecione uma opção" 
+                        required 
+                        readonly
+                        onclick="toggleDropdown()"
+                        class="w-full pl-14 pr-6 py-4 sm:py-5 rounded-[50px] text-gray-600 placeholder-custom bg-white border-0 focus:ring-2 focus:ring-blue-300 font-light text-base sm:text-lg shadow-sm cursor-pointer"
+                      >
+
+                      <!-- Ícone à esquerda -->
+                      <div class="absolute left-6 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+                        <svg id="icon-placeholder" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        
+                        <svg id="icon-fornecedor" class="w-5 h-5 hidden transition-transform duration-200" fill="#0047AB" viewBox="0 0 512 512" stroke="#0047AB" stroke-width="0.512" preserveAspectRatio="xMidYMid meet">
+                          <g>
+                            <g>
+                              <path d="M339.83,19.865h-1.123c-16.503,0-29.93,13.427-29.93,29.93v282.986c0,18.066-6.542,36.064-18.42,50.678 c-9.611,11.828-14.904,26.749-14.904,42.016c0,36.757,29.902,66.66,66.659,66.66h9.612l-24.221-49.537l5-16.465h23.588 l20.346,47.473l6.154-4.911c0.869-0.692,8.646-7.226,14.402-23.131c0.277-0.765,0.541-1.532,0.795-2.304 c8.338-25.415,2.643-54.321-14.865-75.438c-5.806-7.004-9.824-15.23-11.621-23.791c-1.023-4.877-1.543-9.878-1.543-14.862V49.795 C369.76,33.292,356.334,19.865,339.83,19.865z M320.777,112.05h12.797v190.988h12V112.05h12.186v217.119 c0,3.37,0.229,6.743,0.632,10.095h-37.876c0.16-2.156,0.262-4.318,0.262-6.482V112.05z M357.76,100.05h-36.982v-4.416h36.982 V100.05z M338.707,31.865h1.123c9.887,0,17.93,8.043,17.93,17.93v33.838h-36.982V49.795 C320.777,39.908,328.82,31.865,338.707,31.865z M373.686,375.48c14.898,17.97,19.766,42.508,12.701,64.037 c-0.215,0.655-0.439,1.308-0.676,1.961c-1.686,4.658-3.559,8.297-5.257,11.037l-16.449-38.383h-40.399l-8.955,29.496 l17.395,35.576c-25.348-4.738-44.592-27.029-44.592-53.73c0-12.52,4.338-24.752,12.217-34.447 c9.553-11.752,16.078-25.447,19.129-39.764h41.963C363.309,359.989,367.718,368.283,373.686,375.48z"></path>
+                              <path d="M339.574,65.773c8.777,0,15.918-7.141,15.918-15.918c0-8.778-7.141-15.919-15.918-15.919 c-8.778,0-15.92,7.141-15.92,15.919C323.654,58.632,330.796,65.773,339.574,65.773z M339.574,45.936 c2.16,0,3.918,1.757,3.918,3.919c0,2.161-1.758,3.918-3.918,3.918c-2.162,0-3.92-1.758-3.92-3.918 C335.654,47.693,337.412,45.936,339.574,45.936z"></path>
+                              <rect height="19.572" width="12" x="333.574" y="315.033"></rect>
+                            </g>
+                            <g>
+                              <path d="M189.584,446.227c-8.778,0-15.919,7.141-15.919,15.919s7.141,15.919,15.919,15.919s15.919-7.141,15.919-15.919 S198.362,446.227,189.584,446.227z M189.584,466.064c-2.161,0-3.919-1.758-3.919-3.919s1.758-3.919,3.919-3.919 s3.919,1.758,3.919,3.919S191.746,466.064,189.584,466.064z"></path>
+                              <path d="M243.602,121.333c6.411-10.453,9.799-22.489,9.799-34.808c0-36.757-29.903-66.66-66.66-66.66h-9.612l24.22,49.537 l-4.999,16.464h-23.589l-20.346-47.472l-6.155,4.912c-0.857,0.684-20.128,16.623-20.473,60.829h-15.353v28.105l5.321,3.066 c4.317,2.471,8.42,5.314,12.207,8.46c0.915,0.756,1.823,1.54,2.694,2.323c18.073,16.302,28.438,39.611,28.438,63.95v252.164 c0,16.504,13.428,29.932,29.932,29.932h1.118c16.505,0,29.932-13.428,29.932-29.932V219.558h0v-13.798 C220.077,175.619,228.211,146.425,243.602,121.333z M148.414,59.519l13.09,30.543l-17.362,14.073h-6.362 C137.979,80.987,143.847,66.952,148.414,59.519z M138.687,137.172c-1-0.899-2.035-1.792-3.065-2.644 c-4.102-3.408-8.538-6.51-13.187-9.222v-9.171h25.958l22.539-18.269h34.316l8.955-29.495l-17.395-35.577 c25.347,4.738,44.593,27.029,44.593,53.731c0,10.104-2.776,19.97-8.029,28.534c-16.548,26.98-25.295,58.344-25.296,90.7v13.8h0 v180.392h-12.492V208.962h-12v190.989h-12.49V210.04C171.095,182.309,159.285,155.752,138.687,137.172z M171.095,411.951h36.982 v4.415h-36.982V411.951z M190.145,480.135h-1.118c-9.888,0-17.932-8.045-17.932-17.932v-33.837h36.982v33.837 C208.077,472.09,200.032,480.135,190.145,480.135z"></path>
+                              <path d="M207.951,111.13h-48.695v34.698h48.695V111.13z M171.256,123.13h6.348v10.698h-6.348V123.13z M195.951,133.828h-6.347 V123.13h6.347V133.828z"></path>
+                              <rect height="19.573" width="12" x="183.584" y="177.395"></rect>
+                            </g>
+                          </g>
+                        </svg>
+
+                        <svg id="icon-lojista" class="w-5 h-5 hidden" fill="none" stroke="#0047AB" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                      </div>
+
+                      <!-- Chevron à direita -->
+                      <div class="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg id="chevron-icon" class="w-5 h-5 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                      </div>
+
+                      <!-- Dropdown customizado -->
+                      <div
+                        id="faturamento-dropdown"
+                        class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-lg overflow-hidden z-20"
+                      >
+                        <!-- Opção Fornecedor -->
+                        <div
+                          onclick="selectOption('Sou Fornecedor')"
+                          class="px-6 py-3.5 cursor-pointer transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 font-light text-gray-600 flex items-center gap-3 text-base sm:text-lg"
+                        >
+                        <svg id="icon-fornecedor" class="w-5 h-5 transition-transform duration-200" fill="#0047AB" viewBox="0 0 512 512" stroke="currentColor" stroke-width="0.512" preserveAspectRatio="xMidYMid meet">
+                          <g>
+                            <g>
+                              <path d="M339.83,19.865h-1.123c-16.503,0-29.93,13.427-29.93,29.93v282.986c0,18.066-6.542,36.064-18.42,50.678 c-9.611,11.828-14.904,26.749-14.904,42.016c0,36.757,29.902,66.66,66.659,66.66h9.612l-24.221-49.537l5-16.465h23.588 l20.346,47.473l6.154-4.911c0.869-0.692,8.646-7.226,14.402-23.131c0.277-0.765,0.541-1.532,0.795-2.304 c8.338-25.415,2.643-54.321-14.865-75.438c-5.806-7.004-9.824-15.23-11.621-23.791c-1.023-4.877-1.543-9.878-1.543-14.862V49.795 C369.76,33.292,356.334,19.865,339.83,19.865z M320.777,112.05h12.797v190.988h12V112.05h12.186v217.119 c0,3.37,0.229,6.743,0.632,10.095h-37.876c0.16-2.156,0.262-4.318,0.262-6.482V112.05z M357.76,100.05h-36.982v-4.416h36.982 V100.05z M338.707,31.865h1.123c9.887,0,17.93,8.043,17.93,17.93v33.838h-36.982V49.795 C320.777,39.908,328.82,31.865,338.707,31.865z M373.686,375.48c14.898,17.97,19.766,42.508,12.701,64.037 c-0.215,0.655-0.439,1.308-0.676,1.961c-1.686,4.658-3.559,8.297-5.257,11.037l-16.449-38.383h-40.399l-8.955,29.496 l17.395,35.576c-25.348-4.738-44.592-27.029-44.592-53.73c0-12.52,4.338-24.752,12.217-34.447 c9.553-11.752,16.078-25.447,19.129-39.764h41.963C363.309,359.989,367.718,368.283,373.686,375.48z"></path>
+                              <path d="M339.574,65.773c8.777,0,15.918-7.141,15.918-15.918c0-8.778-7.141-15.919-15.918-15.919 c-8.778,0-15.92,7.141-15.92,15.919C323.654,58.632,330.796,65.773,339.574,65.773z M339.574,45.936 c2.16,0,3.918,1.757,3.918,3.919c0,2.161-1.758,3.918-3.918,3.918c-2.162,0-3.92-1.758-3.92-3.918 C335.654,47.693,337.412,45.936,339.574,45.936z"></path>
+                              <rect height="19.572" width="12" x="333.574" y="315.033"></rect>
+                            </g>
+                            <g>
+                              <path d="M189.584,446.227c-8.778,0-15.919,7.141-15.919,15.919s7.141,15.919,15.919,15.919s15.919-7.141,15.919-15.919 S198.362,446.227,189.584,446.227z M189.584,466.064c-2.161,0-3.919-1.758-3.919-3.919s1.758-3.919,3.919-3.919 s3.919,1.758,3.919,3.919S191.746,466.064,189.584,466.064z"></path>
+                              <path d="M243.602,121.333c6.411-10.453,9.799-22.489,9.799-34.808c0-36.757-29.903-66.66-66.66-66.66h-9.612l24.22,49.537 l-4.999,16.464h-23.589l-20.346-47.472l-6.155,4.912c-0.857,0.684-20.128,16.623-20.473,60.829h-15.353v28.105l5.321,3.066 c4.317,2.471,8.42,5.314,12.207,8.46c0.915,0.756,1.823,1.54,2.694,2.323c18.073,16.302,28.438,39.611,28.438,63.95v252.164 c0,16.504,13.428,29.932,29.932,29.932h1.118c16.505,0,29.932-13.428,29.932-29.932V219.558h0v-13.798 C220.077,175.619,228.211,146.425,243.602,121.333z M148.414,59.519l13.09,30.543l-17.362,14.073h-6.362 C137.979,80.987,143.847,66.952,148.414,59.519z M138.687,137.172c-1-0.899-2.035-1.792-3.065-2.644 c-4.102-3.408-8.538-6.51-13.187-9.222v-9.171h25.958l22.539-18.269h34.316l8.955-29.495l-17.395-35.577 c25.347,4.738,44.593,27.029,44.593,53.731c0,10.104-2.776,19.97-8.029,28.534c-16.548,26.98-25.295,58.344-25.296,90.7v13.8h0 v180.392h-12.492V208.962h-12v190.989h-12.49V210.04C171.095,182.309,159.285,155.752,138.687,137.172z M171.095,411.951h36.982 v4.415h-36.982V411.951z M190.145,480.135h-1.118c-9.888,0-17.932-8.045-17.932-17.932v-33.837h36.982v33.837 C208.077,472.09,200.032,480.135,190.145,480.135z"></path>
+                              <path d="M207.951,111.13h-48.695v34.698h48.695V111.13z M171.256,123.13h6.348v10.698h-6.348V123.13z M195.951,133.828h-6.347 V123.13h6.347V133.828z"></path>
+                              <rect height="19.573" width="12" x="183.584" y="177.395"></rect>
+                            </g>
+                          </g>
+                        </svg>
+                          Sou Fornecedor
+                        </div>
+
+                        <!-- Divisor -->
+                        <div class="h-px bg-gray-200 mx-4"></div>
+
+                        <!-- Opção Lojista -->
+                        <div
+                          onclick="selectOption('Sou Lojista')"
+                          class="px-6 py-3.5 cursor-pointer transition-all duration-200 hover:bg-blue-50 hover:text-blue-600 font-light text-gray-600 flex items-center gap-3 text-base sm:text-lg"
+                        >
+                          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                          </svg>
+                          Sou Lojista
+                        </div>
+                      </div>
+                    </div>                    
+                    <div class="text-center sm:pt-6">
+                        <!-- Call to Action Button -->
+                        <button type="submit" class="hover:bg-blue-700 font-medium transition-all transform hover:scale-105 flex flex-row items-center justify-center mx-auto px-6 sm:px-8 lg:px-[2rem] py-4 sm:py-5" style="background: #0047AB; border-radius: 44px; opacity: 1;">
+                            <img src="/static/images/foguete.png" alt="Foguete" class="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mr-3 sm:mr-4">
+                            <span class="text-left font-dm font-medium text-base sm:text-lg lg:text-[23px] leading-5 sm:leading-6 lg:leading-[30px] tracking-wide lg:tracking-[0.23px] text-white opacity-100">Começar agora</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</section>
+
+<script>
+function toggleDropdown() {
+  const dropdown = document.getElementById('faturamento-dropdown');
+  const chevron = document.getElementById('chevron-icon');
+  
+  dropdown.classList.toggle('hidden');
+  chevron.classList.toggle('rotate-180');
+}
+
+function selectOption(text) {
+  const input = document.getElementById('faturamento-input');
+  const chevron = document.getElementById('chevron-icon');
+  
+  // Atualiza o valor do input
+  input.value = text;
+  
+  // Atualiza os ícones baseado na seleção
+  if (text === 'Sou Fornecedor') {
+    updateIcon('fornecedor');
+  } else if (text === 'Sou Lojista') {
+    updateIcon('lojista');
+  }
+  
+  // Fecha o dropdown
+  const dropdown = document.getElementById('faturamento-dropdown');
+  dropdown.classList.add('hidden');
+  chevron.classList.remove('rotate-180');
+}
+
+function updateIcon(value) {
+  const placeholder = document.getElementById('icon-placeholder');
+  const fornecedor = document.getElementById('icon-fornecedor');
+  const lojista = document.getElementById('icon-lojista');
+  
+  placeholder.classList.add('hidden');
+  fornecedor.classList.add('hidden');
+  lojista.classList.add('hidden');
+  
+  if (value === 'fornecedor') {
+    fornecedor.classList.remove('hidden');
+  } else if (value === 'lojista') {
+    lojista.classList.remove('hidden');
+  } else {
+    placeholder.classList.remove('hidden');
+  }
+}
+
+// Fecha o dropdown ao clicar fora
+document.addEventListener('click', function(event) {
+  const input = document.getElementById('faturamento-input');
+  const dropdown = document.getElementById('faturamento-dropdown');
+  const chevron = document.getElementById('chevron-icon');
+  
+  if (!input.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.add('hidden');
+    chevron.classList.remove('rotate-180');
+  }
+});
+
+document.querySelector('input[name="telefone"]').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    
+    if (value.length <= 10) {
+        // Telefone fixo: (11) 3456-7890
+        value = value.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
+    } else {
+        // Celular: (11) 98765-4321
+        value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+    }
+    
+    e.target.value = value;
+});
+
+</script>
+
+
+  
+  <!-- Footer -->
+  
+
+<!-- Footer portal da obra -->
+<footer class="bg-white py-12 sm:py-16 lg:py-20" style="background-color: #FFFFFF;">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      
+      <!-- Company Info + Redes Sociais -->
+      <div class="lg:col-span-1 text-center lg:text-left">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-10 sm:h-8 mb-6 mx-auto lg:mx-0">
+        <p class="font-dm font-light text-base sm:text-lg leading-6 sm:leading-7 text-[#001D4A] max-w-sm mx-auto lg:mx-0">
+          Conectamos empresas a fornecedores qualificados para obras corporativas com segurança, previsibilidade e transparência.
+        </p>
+
+        <!-- Redes Sociais abaixo -->
+        <div class="mt-6">
+          <h4 class="font-dm font-bold text-lg sm:text-xl text-[#001D4A] mb-6">Siga nas Redes</h4>
+          <ul class="flex justify-center lg:justify-start space-x-4">
+            <li class='item-social-media'>
+              <a href="https://x.com/portaldaobra/" target="_blank">
+                <div class="circle flex justify-center items-center text-white">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </div>
+              </a>
+            </li>
+            <li class='item-social-media'>
+              <a href="https://www.instagram.com/portal_da_obra/" target="_blank">
+                <div class="circle flex justify-center items-center text-white">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+              </a>
+            </li>
+            <li class='item-social-media'>
+              <a href="https://web.facebook.com/profile.php?id=61581749376214" target="_blank">
+                <div class="circle flex justify-center items-center text-white">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+              </a>
+            </li>
+            <li class='item-social-media'>
+              <a href="https://www.linkedin.com/company/portal-da-obra/" target="_blank">
+                <div class="circle flex justify-center items-center text-white">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Menu -->
+      <div class="lg:col-span-1 lg:pl-[6rem] text-center lg:text-left">
+        <h4 class="font-dm font-bold text-lg sm:text-xl text-[#001D4A] mb-6">Menu</h4>
+        <ul class="space-y-1 sm:space-y-2">
+          <li><a href="#solucao" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Solução</a></li>
+          <li><a href="#como-funciona" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Como Funciona</a></li>
+          <li><a href="#por-que-escolher" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Por que nós?</a></li>
+          <li><a href="#contato" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div class="lg:col-span-1 text-center lg:text-left">
+        <h4 class="font-dm font-bold text-lg sm:text-xl text-[#001D4A] mb-6">Contato</h4>
+        <ul class="space-y-1 sm:space-y-2">
+          <li class="flex items-center justify-center lg:justify-start">
+            <img src="/static/images/wpp-footer.png" alt="WhatsApp" class="mr-3">
+            <a href="https://wa.me/5511999034048" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-green-600 transition-colors duration-300">WhatsApp</a>
+          </li>
+          <li class="flex items-center justify-center lg:justify-start">
+            <img src="/static/images/contato-footer.png" alt="Email" class="mr-3">
+            <span class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-blue-600 transition-colors duration-300">contato@portaldaobra.com.br</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+  <!-- GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- JavaScript -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="/static/js/script.js"></script>
+  <!-- Mensagens Django -->
+
+</body>
+</html>
