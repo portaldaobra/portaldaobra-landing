@@ -80,7 +80,16 @@
       <div class="flex items-center">
         <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class=" md:h-[2rem] h-8">
       </div>
-      <div class="relative">
+      <div class="relative flex items-center gap-4">
+        <!-- Cadastre-se nav link -->
+        <a href="#cadastro"
+        class="inline-flex items-center gap-2 text-[#0047AB] font-dm text-base font-medium hover:text-[#001D4A] transition-colors"
+        style="margin-right: 1rem;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          Cadastre-se
+        </a>
         <a href="https://app.portaldaobra.com.br/auth/login" target="_blank" rel="noopener noreferrer"
         class="absolute top-1/2 right-0 inline-flex items-center gap-3 text-white text-sm z-50 font-medium shadow-lg transition-colors"
         style="background: #5B8FDB; padding: 14px 40px; padding-left: 2rem; border-radius: 44px; transform: translateY(-13%);">
@@ -197,6 +206,19 @@
             <div class="font-dm text-base md:text-xl font-normal tracking-wide">Sou Lojista:</div>
             <div class="font-dm text-base md:text-xl font-normal ">Quero fazer um orçamento</div>
           </div>
+        </a>
+
+        <!-- CTA Comece Agora -->
+        <a href="#cadastro"
+          class="group hover:opacity-90 text-[#0047AB] md:ml-[12rem] xl:ml-0 flex items-center xl:justify-center md:justify-start space-x-2 rounded-full w-full md:w-[21.1875rem] h-16 md:h-[5.5rem] px-4 mt-3 md:mt-4 transition-all duration-200"
+          style="background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.7); backdrop-filter: blur(4px);">
+          <svg class="w-5 h-5 md:w-6 md:h-6 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <span class="font-dm text-base md:text-xl font-semibold text-white tracking-wide">Comece Agora</span>
+          <svg class="w-4 h-4 text-white ml-auto group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
         </a>
       </div>
 
@@ -807,8 +829,149 @@ document.querySelector('input[name="telefone"]').addEventListener('input', funct
 
 
   
+  <!-- Seção de Cadastro -->
+
+<!-- Cadastro Section -->
+<section id="cadastro" class="py-12 sm:py-16 lg:py-24" style="background-color: #001D4A;">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Heading -->
+    <div class="text-center mb-10 sm:mb-12 lg:mb-16">
+      <span class="inline-flex items-center gap-2 text-[#C6D6F0] text-sm font-dm font-normal tracking-widest uppercase mb-4">
+        <img src="/static/images/noun-star.svg" alt="Estrela" class="w-4 h-4">
+        Plataforma
+      </span>
+      <h2 class="font-dm font-black text-3xl sm:text-4xl lg:text-[52px] leading-tight lg:leading-[60px] text-white mb-4">
+        Comece a usar o Portal da Obra
+      </h2>
+      <p class="font-dm font-light text-base sm:text-lg lg:text-[22px] leading-relaxed text-[#C6D6F0] max-w-2xl mx-auto">
+        Escolha seu perfil e cadastre-se gratuitamente. Sem mensalidade para começar.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+
+      <!-- Card: Construtora -->
+      <div class="group relative flex flex-col rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+           style="background: linear-gradient(160deg, #0047AB 0%, #001D4A 100%); border: 1px solid rgba(91,143,219,0.35);">
+
+        <!-- Top accent bar -->
+        <div class="h-1 w-full" style="background: linear-gradient(90deg, #5B8FDB, #C6D6F0);"></div>
+
+        <div class="flex flex-col flex-1 p-6 sm:p-8 lg:p-10">
+          <!-- Icon -->
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(91,143,219,0.2);">
+            <img src="/static/images/icone-empresa.png" alt="Construtora" style="width: 2rem; height: 2.1rem;">
+          </div>
+
+          <!-- Content -->
+          <h3 class="font-dm font-black text-2xl sm:text-[28px] leading-tight text-white mb-3">
+            Sou Construtora
+          </h3>
+          <p class="font-dm font-light text-base sm:text-lg leading-relaxed text-[#C6D6F0] mb-8 flex-1">
+            Receba oportunidades de obras, participe de licitacoes e gerencie seus projetos. Acesso a contratantes qualificados em todo o Brasil.
+          </p>
+
+          <!-- Bullet points -->
+          <ul class="space-y-2 mb-8">
+            <li class="flex items-center gap-3 text-[#C6D6F0] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Participe de licitacoes reais
+            </li>
+            <li class="flex items-center gap-3 text-[#C6D6F0] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Perfil verificado e credenciado
+            </li>
+            <li class="flex items-center gap-3 text-[#C6D6F0] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Gestao completa de projetos
+            </li>
+          </ul>
+
+          <!-- CTA -->
+          <a href="https://web.portaldaobra.com.br/register"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-3 w-full rounded-full font-dm font-semibold text-base sm:text-lg text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-95"
+             style="background: #5B8FDB; padding: 1rem 2rem;">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            Cadastrar como Construtora
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card: Contratante -->
+      <div class="group relative flex flex-col rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+           style="background: linear-gradient(160deg, #ffffff 0%, #EDF3FC 100%); border: 1px solid rgba(0,71,171,0.15);">
+
+        <!-- Top accent bar -->
+        <div class="h-1 w-full" style="background: linear-gradient(90deg, #0047AB, #5B8FDB);"></div>
+
+        <div class="flex flex-col flex-1 p-6 sm:p-8 lg:p-10">
+          <!-- Icon -->
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-6" style="background: rgba(0,71,171,0.08);">
+            <img src="/static/images/noun-shield.svg" alt="Contratante" class="w-8 h-8" style="filter: invert(19%) sepia(84%) saturate(1800%) hue-rotate(206deg) brightness(90%);">
+          </div>
+
+          <!-- Content -->
+          <h3 class="font-dm font-black text-2xl sm:text-[28px] leading-tight text-[#001D4A] mb-3">
+            Sou Contratante
+          </h3>
+          <p class="font-dm font-light text-base sm:text-lg leading-relaxed text-[#444D5E] mb-8 flex-1">
+            Publique projetos, receba orcamentos competitivos e acompanhe a execucao. Acesso a uma rede de fornecedores pre-qualificados.
+          </p>
+
+          <!-- Bullet points -->
+          <ul class="space-y-2 mb-8">
+            <li class="flex items-center gap-3 text-[#444D5E] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Orcamentos rapidos e padronizados
+            </li>
+            <li class="flex items-center gap-3 text-[#444D5E] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Fornecedores verificados e confiáveis
+            </li>
+            <li class="flex items-center gap-3 text-[#444D5E] text-sm sm:text-base font-dm font-light">
+              <img src="/static/images/icone-check.png" alt="check" class="w-4 h-4 flex-shrink-0">
+              Acompanhamento em tempo real
+            </li>
+          </ul>
+
+          <!-- CTA -->
+          <a href="https://web.portaldaobra.com.br/register"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-3 w-full rounded-full font-dm font-semibold text-base sm:text-lg text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-95"
+             style="background: #0047AB; padding: 1rem 2rem;">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            Cadastrar como Contratante
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom note -->
+    <p class="text-center font-dm font-light text-sm text-[#C6D6F0] mt-8 opacity-70">
+      Ja tem uma conta? <a href="https://app.portaldaobra.com.br/auth/login" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-100 transition-opacity">Entrar na plataforma</a>
+    </p>
+
+  </div>
+</section>
+
   <!-- Footer -->
-  
+
 
 <!-- Footer portal da obra -->
 <footer class="bg-white py-12 sm:py-16 lg:py-20" style="background-color: #FFFFFF;">
@@ -865,6 +1028,7 @@ document.querySelector('input[name="telefone"]').addEventListener('input', funct
           <li><a href="#solucao" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Solução</a></li>
           <li><a href="#como-funciona" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Como Funciona</a></li>
           <li><a href="#por-que-escolher" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Por que nós?</a></li>
+          <li><a href="#cadastro" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Cadastre-se</a></li>
           <li><a href="#contato" class="font-dm font-light text-base sm:text-lg text-[#001D4A] hover:text-[#0047AB] transition-colors duration-300">Contato</a></li>
         </ul>
       </div>
