@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar Contrato | Portal da Obra</title>
+
+  <!--
+    HOSTING: this page is served at /verify/:id (e.g. /verify/9a1b...c2).
+    Because the landing site is plain static HTML on S3 + CloudFront, the
+    deploy infra MUST add a CloudFront Function (or S3 redirect rule) that
+    rewrites any request matching `^/verify/[A-Za-z0-9-]+/?$` to
+    `/verify/index.html` so this file handles the dynamic id segment. The
+    contract id is then read from `window.location.pathname` at runtime.
+
+    Suggested CloudFront Function (viewer-request):
+
+      function handler(event) {
+        var req = event.request;
+        var uri = req.uri;
+        if (/^\/verify\/[A-Za-z0-9-]+\/?$/.test(uri)) {
+          req.uri = '/verify/index.html';
+        }
+        return req;
+      }
+
+    Local dev fallback: visit /verify/?id=<uuid> — the page also reads `id`
+    from the query string when the path lacks a segment.
+  -->
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+
+  <!-- Fonts + icons (match index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (same CDN + tokens as index.html) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            dm: ['"DM Sans"', 'sans-serif'],
+            'inter': ['Inter', 'sans-serif'],
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'primary': {
+              50: '#C6D6F0',
+              100: '#5B8FDB',
+              500: '#0047AB',
+              800: '#001D4A',
+              900: '#05142C',
+            },
+            'portal': {
+              'white': '#FFFFFF',
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+              'blue-darkest': '#05142C',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS (shared with index.html for header/footer parity) -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+  <!--
+    API base URL. Override per environment by replacing the `content` value
+    at deploy time (e.g. via S3 sed on deploy or a CloudFront-injected
+    config.js). Production default below.
+  -->
+  <meta name="api-base-url" content="https://api.portaldaobra.com.br/api/v1">
+
+  <style>
+    /* Local-only utility tweaks; everything else uses Tailwind + styles.css. */
+    .verify-card {
+      background: linear-gradient(160deg, #ffffff 0%, #EDF3FC 100%);
+      border: 1px solid rgba(0, 71, 171, 0.15);
+    }
+    .verify-accent {
+      background: linear-gradient(90deg, #0047AB, #5B8FDB);
+    }
+    .hash-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      word-break: break-all;
+    }
+    .focus-ring:focus-visible {
+      outline: 2px solid #0047AB;
+      outline-offset: 2px;
+    }
+    .spinner {
+      width: 56px;
+      height: 56px;
+      border-radius: 9999px;
+      border: 4px solid #C6D6F0;
+      border-top-color: #0047AB;
+      animation: verify-spin 0.9s linear infinite;
+    }
+    @keyframes verify-spin { to { transform: rotate(360deg); } }
+    .copy-flash {
+      background-color: #DCFCE7 !important;
+      color: #166534 !important;
+      border-color: #86EFAC !important;
+    }
+  </style>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- Header (visual parity with index.html, simplified for verify page) -->
+  <header class="bg-white shadow-sm">
+    <div class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="/" class="flex items-center focus-ring rounded-md" aria-label="Portal da Obra">
+          <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="md:h-[2rem] h-8">
+        </a>
+        <a href="/"
+           class="inline-flex items-center gap-2 text-[#0047AB] font-dm text-base font-medium hover:text-[#001D4A] transition-colors focus-ring rounded-md px-2 py-1"
+           data-i18n="back_to_site">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span>Voltar para o site</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="bg-white py-12 sm:py-16 lg:py-20 min-h-[70vh]">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[640px] mx-auto">
+
+        <!-- Page heading -->
+        <div class="text-center mb-8 sm:mb-10">
+          <span class="inline-flex items-center gap-2 text-[#0047AB] text-sm font-dm font-normal tracking-widest uppercase mb-3" data-i18n="kicker">
+            <img src="/static/images/noun-shield.svg" alt="" aria-hidden="true" class="w-4 h-4" style="filter: invert(19%) sepia(84%) saturate(1800%) hue-rotate(206deg) brightness(90%);">
+            <span>Verificação Pública</span>
+          </span>
+          <h1 class="font-dm font-black text-3xl sm:text-4xl leading-tight text-[#001D4A] mb-3" data-i18n="page_title">
+            Verificação de Contrato
+          </h1>
+          <p class="font-dm font-light text-base sm:text-lg leading-relaxed text-[#444D5E]" data-i18n="page_subtitle">
+            Confirme a autenticidade e o status de um contrato assinado no Portal da Obra.
+          </p>
+        </div>
+
+        <!-- aria-live region for state changes (announcements, copy success, etc.) -->
+        <div id="verify-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+        <!-- State container: only one of the children is visible at a time. -->
+        <section id="verify-states" aria-labelledby="verify-state-heading">
+          <h2 id="verify-state-heading" class="sr-only" data-i18n="state_heading">Status da verificação</h2>
+
+          <!-- LOADING -->
+          <div id="state-loading" class="verify-card rounded-[2rem] overflow-hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10 text-center">
+              <div class="flex justify-center mb-6" aria-hidden="true">
+                <div class="spinner"></div>
+              </div>
+              <p class="font-dm font-medium text-lg text-[#001D4A]" data-i18n="loading_title">Verificando contrato...</p>
+              <p class="font-dm font-light text-sm text-[#444D5E] mt-2" data-i18n="loading_subtitle">Aguarde alguns instantes.</p>
+            </div>
+          </div>
+
+          <!-- SIGNED -->
+          <div id="state-signed" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(34, 197, 94, 0.12);">
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12l5 5L20 7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A]" data-i18n="signed_title">Contrato assinado e verificado</h3>
+                  <p class="font-dm font-light text-sm text-[#444D5E] mt-1" data-i18n="signed_subtitle">Este contrato foi validado pelo Portal da Obra.</p>
+                </div>
+              </div>
+
+              <dl class="divide-y divide-[#C6D6F0]/60">
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_type">Tipo de contrato</dt>
+                  <dd id="field-type" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_status">Status</dt>
+                  <dd class="text-right">
+                    <span id="field-status-badge" class="inline-flex items-center gap-1 rounded-full px-3 py-1 font-dm text-xs font-semibold" style="background: rgba(34,197,94,0.12); color: #166534;">
+                      <span data-i18n="status_signed">Assinado</span>
+                    </span>
+                  </dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_signed_at">Assinado em</dt>
+                  <dd id="field-signed-at" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_signers">Assinantes</dt>
+                  <dd id="field-signers" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E] mb-2" data-i18n="field_hash">Hash de verificação</dt>
+                  <dd class="flex items-stretch gap-2">
+                    <code id="field-hash" class="hash-mono flex-1 rounded-md border border-[#C6D6F0] bg-white px-3 py-2 text-xs text-[#001D4A]">—</code>
+                    <button id="copy-hash" type="button"
+                            class="focus-ring inline-flex items-center gap-2 rounded-md border border-[#0047AB] bg-white px-3 py-2 font-dm text-xs font-semibold text-[#0047AB] transition-colors hover:bg-[#0047AB] hover:text-white"
+                            data-i18n-aria="copy_hash_aria">
+                      <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                      <span data-i18n="copy">Copiar</span>
+                    </button>
+                  </dd>
+                </div>
+              </dl>
+
+              <p class="mt-6 text-xs font-dm font-light text-[#5B8FDB]">
+                <span data-i18n="last_verified_at_label">Última consulta:</span>
+                <span id="field-last-verified-at">—</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- PENDING / DRAFT -->
+          <div id="state-pending" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(234, 179, 8, 0.15);">
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#CA8A04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A]" data-i18n="pending_title">Contrato pendente de assinatura</h3>
+                  <p class="font-dm font-light text-sm text-[#444D5E] mt-1" data-i18n="pending_subtitle">Aguardando todas as partes assinarem.</p>
+                </div>
+              </div>
+
+              <dl class="divide-y divide-[#C6D6F0]/60">
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_type">Tipo de contrato</dt>
+                  <dd id="field-type-pending" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_status">Status</dt>
+                  <dd class="text-right">
+                    <span id="field-status-badge-pending" class="inline-flex items-center gap-1 rounded-full px-3 py-1 font-dm text-xs font-semibold" style="background: rgba(234,179,8,0.18); color: #92400E;">
+                      <span data-i18n="status_pending">Pendente</span>
+                    </span>
+                  </dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_signers">Assinantes</dt>
+                  <dd id="field-signers-pending" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E] mb-2" data-i18n="field_hash">Hash de verificação</dt>
+                  <dd class="flex items-stretch gap-2">
+                    <code id="field-hash-pending" class="hash-mono flex-1 rounded-md border border-[#C6D6F0] bg-white px-3 py-2 text-xs text-[#001D4A]">—</code>
+                    <button id="copy-hash-pending" type="button"
+                            class="focus-ring inline-flex items-center gap-2 rounded-md border border-[#0047AB] bg-white px-3 py-2 font-dm text-xs font-semibold text-[#0047AB] transition-colors hover:bg-[#0047AB] hover:text-white"
+                            data-i18n-aria="copy_hash_aria">
+                      <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                      <span data-i18n="copy">Copiar</span>
+                    </button>
+                  </dd>
+                </div>
+              </dl>
+
+              <p class="mt-6 text-xs font-dm font-light text-[#5B8FDB]">
+                <span data-i18n="last_verified_at_label">Última consulta:</span>
+                <span id="field-last-verified-at-pending">—</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- REJECTED -->
+          <div id="state-rejected" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(220, 38, 38, 0.12);">
+                  <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18"/><path d="M6 6l12 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A]" data-i18n="rejected_title">Contrato rejeitado</h3>
+                  <p class="font-dm font-light text-sm text-[#444D5E] mt-1" data-i18n="rejected_subtitle">Este contrato não é mais válido.</p>
+                </div>
+              </div>
+
+              <dl class="divide-y divide-[#C6D6F0]/60">
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_type">Tipo de contrato</dt>
+                  <dd id="field-type-rejected" class="font-dm text-sm font-semibold text-[#001D4A] text-right">—</dd>
+                </div>
+                <div class="py-3 flex items-start justify-between gap-4">
+                  <dt class="font-dm text-sm font-medium text-[#444D5E]" data-i18n="field_status">Status</dt>
+                  <dd class="text-right">
+                    <span class="inline-flex items-center gap-1 rounded-full px-3 py-1 font-dm text-xs font-semibold" style="background: rgba(220,38,38,0.12); color: #991B1B;">
+                      <span data-i18n="status_rejected">Rejeitado</span>
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+
+              <p class="mt-6 font-dm font-light text-sm text-[#444D5E]" data-i18n="rejected_explanation">
+                Este contrato foi rejeitado por uma das partes envolvidas e não possui validade legal pelo Portal da Obra.
+              </p>
+
+              <p class="mt-4 text-xs font-dm font-light text-[#5B8FDB]">
+                <span data-i18n="last_verified_at_label">Última consulta:</span>
+                <span id="field-last-verified-at-rejected">—</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- NOT FOUND (404) -->
+          <div id="state-notfound" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10 text-center">
+              <div class="mx-auto mb-6 w-14 h-14 rounded-2xl flex items-center justify-center" style="background: rgba(100, 116, 139, 0.12);">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+              </div>
+              <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A] mb-2" data-i18n="notfound_title">Contrato não encontrado</h3>
+              <p class="font-dm font-light text-base text-[#444D5E]" data-i18n="notfound_subtitle">Verifique o link e tente novamente.</p>
+            </div>
+          </div>
+
+          <!-- RATE LIMITED (429) -->
+          <div id="state-ratelimited" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10 text-center">
+              <div class="mx-auto mb-6 w-14 h-14 rounded-2xl flex items-center justify-center" style="background: rgba(234, 179, 8, 0.15);">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#CA8A04" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A] mb-2" data-i18n="ratelimited_title">Muitas solicitações</h3>
+              <p class="font-dm font-light text-base text-[#444D5E]" data-i18n="ratelimited_subtitle">Aguarde alguns instantes e tente novamente.</p>
+            </div>
+          </div>
+
+          <!-- NETWORK / GENERIC ERROR -->
+          <div id="state-error" class="verify-card rounded-[2rem] overflow-hidden hidden">
+            <div class="h-1 w-full verify-accent"></div>
+            <div class="p-8 sm:p-10 text-center">
+              <div class="mx-auto mb-6 w-14 h-14 rounded-2xl flex items-center justify-center" style="background: rgba(100, 116, 139, 0.12);">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/>
+                </svg>
+              </div>
+              <h3 class="font-dm font-black text-2xl leading-tight text-[#001D4A] mb-2" data-i18n="error_title">Não foi possível verificar agora</h3>
+              <p class="font-dm font-light text-base text-[#444D5E] mb-6" data-i18n="error_subtitle">Tente novamente em instantes.</p>
+              <button id="retry-button" type="button"
+                      class="focus-ring inline-flex items-center justify-center gap-3 rounded-full font-dm font-semibold text-base text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-95"
+                      style="background: #0047AB; padding: 0.75rem 2rem;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                </svg>
+                <span data-i18n="retry">Tentar novamente</span>
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Footnote -->
+        <p class="text-center font-dm font-light text-xs text-[#5B8FDB] mt-8" data-i18n="privacy_note">
+          Esta página é pública e não exibe dados pessoais das partes envolvidas.
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer (simplified, matches index.html palette) -->
+  <footer class="bg-white py-8 sm:py-10 border-t border-[#C6D6F0]/40">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-8">
+        <p class="font-dm font-light text-sm text-[#001D4A] text-center sm:text-right">
+          <span data-i18n="footer_text">Verificação pública de contratos</span>
+          <span class="mx-2 text-[#C6D6F0]">•</span>
+          <a href="/" class="hover:text-[#0047AB] transition-colors focus-ring rounded" data-i18n="footer_link">portaldaobra.com.br</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------------------------------------------------------------------
+    // i18n strings — landing-style, no framework. Both locales fully populated.
+    // Default to pt_br when locale doesn't match.
+    // ---------------------------------------------------------------------
+    const I18N = {
+      pt_br: {
+        page_title: "Verificação de Contrato",
+        page_subtitle: "Confirme a autenticidade e o status de um contrato assinado no Portal da Obra.",
+        kicker: "Verificação Pública",
+        back_to_site: "Voltar para o site",
+        state_heading: "Status da verificação",
+
+        loading_title: "Verificando contrato...",
+        loading_subtitle: "Aguarde alguns instantes.",
+
+        signed_title: "Contrato assinado e verificado",
+        signed_subtitle: "Este contrato foi validado pelo Portal da Obra.",
+
+        pending_title: "Contrato pendente de assinatura",
+        pending_subtitle: "Aguardando todas as partes assinarem.",
+
+        rejected_title: "Contrato rejeitado",
+        rejected_subtitle: "Este contrato não é mais válido.",
+        rejected_explanation: "Este contrato foi rejeitado por uma das partes envolvidas e não possui validade legal pelo Portal da Obra.",
+
+        notfound_title: "Contrato não encontrado",
+        notfound_subtitle: "Verifique o link e tente novamente.",
+
+        ratelimited_title: "Muitas solicitações",
+        ratelimited_subtitle: "Aguarde alguns instantes e tente novamente.",
+
+        error_title: "Não foi possível verificar agora",
+        error_subtitle: "Tente novamente em instantes.",
+        retry: "Tentar novamente",
+
+        field_type: "Tipo de contrato",
+        field_status: "Status",
+        field_signed_at: "Assinado em",
+        field_signers: "Assinantes",
+        field_hash: "Hash de verificação",
+        last_verified_at_label: "Última consulta:",
+
+        status_signed: "Assinado",
+        status_pending: "Pendente",
+        status_rejected: "Rejeitado",
+        status_draft: "Rascunho",
+
+        copy: "Copiar",
+        copied: "Copiado",
+        copy_failed: "Falha ao copiar",
+        copy_hash_aria: "Copiar hash de verificação",
+
+        signers_count_one: "1 assinante",
+        signers_count_other: "{count} assinantes",
+
+        privacy_note: "Esta página é pública e não exibe dados pessoais das partes envolvidas.",
+        footer_text: "Verificação pública de contratos",
+        footer_link: "portaldaobra.com.br",
+      },
+      en: {
+        page_title: "Contract Verification",
+        page_subtitle: "Confirm the authenticity and status of a contract signed on Portal da Obra.",
+        kicker: "Public Verification",
+        back_to_site: "Back to site",
+        state_heading: "Verification status",
+
+        loading_title: "Verifying contract...",
+        loading_subtitle: "Please wait a moment.",
+
+        signed_title: "Contract signed and verified",
+        signed_subtitle: "This contract has been validated by Portal da Obra.",
+
+        pending_title: "Contract pending signatures",
+        pending_subtitle: "Waiting for all parties to sign.",
+
+        rejected_title: "Contract was rejected",
+        rejected_subtitle: "This contract is no longer valid.",
+        rejected_explanation: "This contract was rejected by one of the involved parties and is no longer legally valid through Portal da Obra.",
+
+        notfound_title: "Contract not found",
+        notfound_subtitle: "Check the link and try again.",
+
+        ratelimited_title: "Too many requests",
+        ratelimited_subtitle: "Please wait a moment and try again.",
+
+        error_title: "Unable to verify right now",
+        error_subtitle: "Please try again in a moment.",
+        retry: "Try again",
+
+        field_type: "Contract type",
+        field_status: "Status",
+        field_signed_at: "Signed at",
+        field_signers: "Signers",
+        field_hash: "Verification hash",
+        last_verified_at_label: "Last checked:",
+
+        status_signed: "Signed",
+        status_pending: "Pending",
+        status_rejected: "Rejected",
+        status_draft: "Draft",
+
+        copy: "Copy",
+        copied: "Copied",
+        copy_failed: "Copy failed",
+        copy_hash_aria: "Copy verification hash",
+
+        signers_count_one: "1 signer",
+        signers_count_other: "{count} signers",
+
+        privacy_note: "This page is public and does not display personal data of the involved parties.",
+        footer_text: "Public contract verification",
+        footer_link: "portaldaobra.com.br",
+      },
+    };
+
+    // ---------------------------------------------------------------------
+    // Locale detection: <html lang> → navigator.language → pt_br fallback.
+    // ---------------------------------------------------------------------
+    function detectLocale() {
+      const candidates = [];
+      const htmlLang = (document.documentElement.lang || "").toLowerCase();
+      if (htmlLang) candidates.push(htmlLang);
+      if (navigator.language) candidates.push(navigator.language.toLowerCase());
+      (navigator.languages || []).forEach(function (l) { candidates.push(String(l).toLowerCase()); });
+
+      for (let i = 0; i < candidates.length; i++) {
+        const c = candidates[i];
+        if (c.startsWith("pt")) return "pt_br";
+        if (c.startsWith("en")) return "en";
+      }
+      return "pt_br";
+    }
+
+    const LOCALE = detectLocale();
+    const t = I18N[LOCALE] || I18N.pt_br;
+
+    // Apply translations to all [data-i18n] elements (text content) and
+    // [data-i18n-aria] elements (aria-label).
+    function applyI18n() {
+      // Update <html lang> for screen readers + future CSS hooks.
+      document.documentElement.lang = LOCALE === "en" ? "en" : "pt-BR";
+      document.title = t.page_title + " | Portal da Obra";
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+        const key = el.getAttribute("data-i18n-aria");
+        if (t[key]) el.setAttribute("aria-label", t[key]);
+      });
+    }
+
+    // ---------------------------------------------------------------------
+    // Date formatting per locale.
+    // pt_br: DD/MM/YYYY HH:mm   |   en: MM/DD/YYYY hh:mm AM/PM
+    // ---------------------------------------------------------------------
+    function pad2(n) { return String(n).padStart(2, "0"); }
+
+    function formatDateTime(isoString) {
+      if (!isoString) return "—";
+      const d = new Date(isoString);
+      if (isNaN(d.getTime())) return "—";
+
+      if (LOCALE === "en") {
+        let hours = d.getHours();
+        const ampm = hours >= 12 ? "PM" : "AM";
+        hours = hours % 12 || 12;
+        return pad2(d.getMonth() + 1) + "/" + pad2(d.getDate()) + "/" + d.getFullYear()
+          + " " + pad2(hours) + ":" + pad2(d.getMinutes()) + " " + ampm;
+      }
+      return pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + "/" + d.getFullYear()
+        + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+    }
+
+    function formatSignerCount(count) {
+      const n = Number(count) || 0;
+      if (n === 1) return t.signers_count_one;
+      return t.signers_count_other.replace("{count}", String(n));
+    }
+
+    // ---------------------------------------------------------------------
+    // Contract id resolution: prefer URL path segment (/verify/<id>),
+    // fall back to ?id= query param for local dev.
+    // ---------------------------------------------------------------------
+    function getContractId() {
+      const path = window.location.pathname || "";
+      const m = path.match(/\/verify\/([A-Za-z0-9-]+)\/?$/);
+      if (m && m[1]) return m[1];
+      const qs = new URLSearchParams(window.location.search);
+      return qs.get("id");
+    }
+
+    // ---------------------------------------------------------------------
+    // API config + fetch with timeout.
+    // ---------------------------------------------------------------------
+    function getApiBaseUrl() {
+      const meta = document.querySelector('meta[name="api-base-url"]');
+      const value = meta ? meta.getAttribute("content") : "";
+      return (value || "https://api.portaldaobra.com.br/api/v1").replace(/\/$/, "");
+    }
+
+    function fetchVerification(contractId) {
+      const url = getApiBaseUrl() + "/contracts/verify/" + encodeURIComponent(contractId);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(function () { controller.abort(); }, 12000);
+
+      return fetch(url, {
+        method: "GET",
+        headers: { "Accept": "application/json" },
+        signal: controller.signal,
+        // No credentials — this endpoint is public.
+      }).then(function (response) {
+        clearTimeout(timeoutId);
+        return response;
+      }).catch(function (err) {
+        clearTimeout(timeoutId);
+        throw err;
+      });
+    }
+
+    // ---------------------------------------------------------------------
+    // Mock hook for QA. Activate by adding ?mock=signed|pending|rejected|draft|notfound|429|error.
+    // ---------------------------------------------------------------------
+    function getMockMode() {
+      return new URLSearchParams(window.location.search).get("mock");
+    }
+
+    function buildMockResponse(mode) {
+      const fixtures = {
+        signed: {
+          ok: true, status: 200, body: {
+            status: "signed",
+            type_name: LOCALE === "en" ? "Service Contract" : "Contrato de Prestação de Serviços",
+            signed_at: "2026-04-14T12:34:56Z",
+            verification_hash: "sha256:9a1b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7a8b9c0d1e2f",
+            signer_count: 3,
+            last_verified_at: "2026-05-02T10:00:00Z",
+          }
+        },
+        pending: {
+          ok: true, status: 200, body: {
+            status: "pending",
+            type_name: LOCALE === "en" ? "Service Contract" : "Contrato de Prestação de Serviços",
+            signed_at: null,
+            verification_hash: "sha256:abc123def456ghi789jkl012mno345pqr678stu901vwx234yz5abc6def789g",
+            signer_count: 2,
+            last_verified_at: "2026-05-02T10:00:00Z",
+          }
+        },
+        draft: {
+          ok: true, status: 200, body: {
+            status: "draft",
+            type_name: LOCALE === "en" ? "Service Contract" : "Contrato de Prestação de Serviços",
+            signed_at: null,
+            verification_hash: "sha256:000000000000000000000000000000000000000000000000000000000000000",
+            signer_count: 0,
+            last_verified_at: "2026-05-02T10:00:00Z",
+          }
+        },
+        rejected: {
+          ok: true, status: 200, body: {
+            status: "rejected",
+            type_name: LOCALE === "en" ? "Service Contract" : "Contrato de Prestação de Serviços",
+            signed_at: null,
+            verification_hash: "sha256:reject0000000000000000000000000000000000000000000000000000000000",
+            signer_count: 1,
+            last_verified_at: "2026-05-02T10:00:00Z",
+          }
+        },
+        notfound: { ok: false, status: 404, body: null },
+        "429": { ok: false, status: 429, body: null },
+        error: { ok: false, status: 500, body: null, networkError: true },
+      };
+      return fixtures[mode] || null;
+    }
+
+    // ---------------------------------------------------------------------
+    // State rendering.
+    // ---------------------------------------------------------------------
+    const STATE_IDS = [
+      "state-loading",
+      "state-signed",
+      "state-pending",
+      "state-rejected",
+      "state-notfound",
+      "state-ratelimited",
+      "state-error",
+    ];
+
+    function showState(id) {
+      STATE_IDS.forEach(function (s) {
+        const el = document.getElementById(s);
+        if (!el) return;
+        el.classList.toggle("hidden", s !== id);
+      });
+      const live = document.getElementById("verify-live-region");
+      if (live) {
+        const map = {
+          "state-loading": t.loading_title,
+          "state-signed": t.signed_title,
+          "state-pending": t.pending_title,
+          "state-rejected": t.rejected_title,
+          "state-notfound": t.notfound_title,
+          "state-ratelimited": t.ratelimited_title,
+          "state-error": t.error_title,
+        };
+        live.textContent = map[id] || "";
+      }
+    }
+
+    function renderSigned(data) {
+      document.getElementById("field-type").textContent = data.type_name || "—";
+      document.getElementById("field-signed-at").textContent = formatDateTime(data.signed_at);
+      document.getElementById("field-signers").textContent = formatSignerCount(data.signer_count);
+      document.getElementById("field-hash").textContent = data.verification_hash || "—";
+      document.getElementById("field-last-verified-at").textContent = formatDateTime(data.last_verified_at);
+      showState("state-signed");
+    }
+
+    function renderPending(data) {
+      document.getElementById("field-type-pending").textContent = data.type_name || "—";
+      document.getElementById("field-signers-pending").textContent = formatSignerCount(data.signer_count);
+      document.getElementById("field-hash-pending").textContent = data.verification_hash || "—";
+      document.getElementById("field-last-verified-at-pending").textContent = formatDateTime(data.last_verified_at);
+
+      // Adjust badge copy when status === "draft".
+      const badge = document.getElementById("field-status-badge-pending");
+      const span = badge ? badge.querySelector("span") : null;
+      if (span) span.textContent = data.status === "draft" ? t.status_draft : t.status_pending;
+
+      showState("state-pending");
+    }
+
+    function renderRejected(data) {
+      document.getElementById("field-type-rejected").textContent = data.type_name || "—";
+      document.getElementById("field-last-verified-at-rejected").textContent = formatDateTime(data.last_verified_at);
+      showState("state-rejected");
+    }
+
+    // ---------------------------------------------------------------------
+    // Copy-to-clipboard helpers.
+    // ---------------------------------------------------------------------
+    function attachCopyHandler(buttonId, sourceId) {
+      const btn = document.getElementById(buttonId);
+      const src = document.getElementById(sourceId);
+      if (!btn || !src) return;
+      const labelSpan = btn.querySelector("span");
+      const originalLabel = labelSpan ? labelSpan.textContent : t.copy;
+
+      btn.addEventListener("click", function () {
+        const text = src.textContent || "";
+        const announce = function (msg) {
+          const live = document.getElementById("verify-live-region");
+          if (live) live.textContent = msg;
+        };
+
+        const onSuccess = function () {
+          if (labelSpan) labelSpan.textContent = t.copied;
+          btn.classList.add("copy-flash");
+          announce(t.copied);
+          setTimeout(function () {
+            if (labelSpan) labelSpan.textContent = originalLabel;
+            btn.classList.remove("copy-flash");
+          }, 1800);
+        };
+        const onFail = function () {
+          if (labelSpan) labelSpan.textContent = t.copy_failed;
+          announce(t.copy_failed);
+          setTimeout(function () {
+            if (labelSpan) labelSpan.textContent = originalLabel;
+          }, 1800);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(onFail);
+        } else {
+          // Fallback: hidden textarea + execCommand.
+          try {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "absolute";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            onSuccess();
+          } catch (e) {
+            onFail();
+          }
+        }
+      });
+    }
+
+    // ---------------------------------------------------------------------
+    // Main flow.
+    // ---------------------------------------------------------------------
+    function handleResponse(response) {
+      if (response.status === 200) {
+        return response.body
+          ? Promise.resolve(response.body)
+          : response.json().then(function (data) { return data; });
+      }
+      if (response.status === 404) { showState("state-notfound"); return null; }
+      if (response.status === 429) { showState("state-ratelimited"); return null; }
+      showState("state-error");
+      return null;
+    }
+
+    function dispatchByStatus(data) {
+      if (!data || !data.status) {
+        showState("state-error");
+        return;
+      }
+      const status = String(data.status).toLowerCase();
+      if (status === "signed") return renderSigned(data);
+      if (status === "rejected") return renderRejected(data);
+      // pending + draft share the same view (different badge label).
+      if (status === "pending" || status === "draft") return renderPending(data);
+      showState("state-error");
+    }
+
+    function runVerification() {
+      showState("state-loading");
+
+      const id = getContractId();
+      if (!id) {
+        showState("state-notfound");
+        return;
+      }
+
+      const mock = getMockMode();
+      if (mock) {
+        const fixture = buildMockResponse(mock);
+        if (!fixture) {
+          showState("state-error");
+          return;
+        }
+        // Simulate a tiny delay so the loading state is visible during QA.
+        setTimeout(function () {
+          if (fixture.networkError) {
+            showState("state-error");
+            return;
+          }
+          if (fixture.ok) {
+            dispatchByStatus(fixture.body);
+          } else if (fixture.status === 404) {
+            showState("state-notfound");
+          } else if (fixture.status === 429) {
+            showState("state-ratelimited");
+          } else {
+            showState("state-error");
+          }
+        }, 350);
+        return;
+      }
+
+      fetchVerification(id)
+        .then(function (response) {
+          if (response.status === 404) { showState("state-notfound"); return null; }
+          if (response.status === 429) { showState("state-ratelimited"); return null; }
+          if (!response.ok) { showState("state-error"); return null; }
+          return response.json();
+        })
+        .then(function (data) {
+          if (data) dispatchByStatus(data);
+        })
+        .catch(function () {
+          showState("state-error");
+        });
+    }
+
+    // ---------------------------------------------------------------------
+    // Boot.
+    // ---------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", function () {
+      applyI18n();
+      attachCopyHandler("copy-hash", "field-hash");
+      attachCopyHandler("copy-hash-pending", "field-hash-pending");
+
+      const retry = document.getElementById("retry-button");
+      if (retry) retry.addEventListener("click", runVerification);
+
+      runVerification();
+    });
+  </script>
+</body>
+</html>
