@@ -1059,9 +1059,19 @@ document.querySelector('input[name="telefone"]').addEventListener('input', funct
       <a href="/legal/terms/" class="hover:text-[#0047AB] transition-colors duration-200 font-dm font-light">Termos de Uso</a>
       <span class="text-slate-300">·</span>
       <a href="/legal/cookies/" class="hover:text-[#0047AB] transition-colors duration-200 font-dm font-light">Política de Cookies</a>
+      <span class="text-slate-300">·</span>
+      <button type="button" id="manage-cookies-link" class="hover:text-[#0047AB] transition-colors duration-200 font-dm font-light cursor-pointer bg-transparent border-0 p-0 text-sm text-[#001D4A]">
+        <span class="pt_br-content">Gerenciar cookies</span>
+        <span class="en-content">Manage cookies</span>
+      </button>
     </div>
   </div>
 </footer>
+<script>
+  document.getElementById('manage-cookies-link').addEventListener('click', function() {
+    window.dispatchEvent(new CustomEvent('reopen-cookie-banner', { detail: { mode: 'customize' } }));
+  });
+</script>
 
   
   <!-- GSAP Library -->
