@@ -57,6 +57,18 @@
     .lang-btn-active { background: #0047AB !important; color: #fff !important; }
     .lang-btn { transition: all 0.2s; }
   </style>
+  <!-- GTM Consent Mode v2 default-deny (D-18.0-3) — must run BEFORE any GTM tag could fire -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    window.__gtmConsentInitialized = true;
+  </script>
+  <!-- GTM script itself is injected dynamically by js/gtm-gate.js after explicit analytics consent -->
+  <script src="/js/gtm-gate.js" defer></script>
 </head>
 <body class="bg-white font-sans lang-pt_br">
 
