@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Cookies — Portal da Obra</title>
+  <meta name="description" content="Política de Cookies do Portal da Obra em conformidade com a LGPD.">
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+  <!-- Google Fonts - DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'portal': {
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .lang-pt_br .en-content,
+    .lang-en .pt_br-content { display: none; }
+
+    .prose h1 { font-size: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #001D4A; }
+    .prose h2 { font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #001D4A; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
+    .prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #0047AB; }
+    .prose p { margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.75; color: #334155; }
+    .prose ul { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: disc; }
+    .prose ol { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: decimal; }
+    .prose li { margin-top: 0.35rem; margin-bottom: 0.35rem; line-height: 1.7; color: #334155; }
+    .prose blockquote { border-left: 4px solid #5B8FDB; padding-left: 1rem; margin: 1.25rem 0; font-style: italic; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+    .prose th { background: #001D4A; color: #fff; padding: 0.6rem 0.85rem; text-align: left; font-weight: 600; }
+    .prose td { border: 1px solid #e2e8f0; padding: 0.55rem 0.85rem; vertical-align: top; color: #334155; }
+    .prose tr:nth-child(even) td { background: #f8fafc; }
+    .prose code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; font-family: 'Courier New', monospace; color: #0047AB; }
+    .prose pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+    .prose pre code { background: none; color: inherit; padding: 0; }
+    .prose a { color: #0047AB; text-decoration: underline; }
+    .prose a:hover { color: #001D4A; }
+    .prose strong { font-weight: 600; color: #1e293b; }
+    .prose hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+
+    .lang-btn-active { background: #0047AB !important; color: #fff !important; }
+    .lang-btn { transition: all 0.2s; }
+  </style>
+</head>
+<body class="bg-white font-sans lang-pt_br">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-7">
+      </a>
+      <div class="flex items-center gap-2">
+        <button data-toggle-lang="pt_br" id="btn-pt_br"
+          class="lang-btn lang-btn-active px-3 py-1.5 rounded-full text-sm font-medium bg-portal-blue-primary text-white">
+          PT-BR
+        </button>
+        <button data-toggle-lang="en" id="btn-en"
+          class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-slate-50 border-b border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 text-sm text-slate-500">
+      <a href="/" class="hover:text-portal-blue-primary">Portal da Obra</a>
+      <span class="mx-2">›</span>
+      <span class="pt_br-content">Política de Cookies</span>
+      <span class="en-content">Cookie Policy</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- PT-BR Content -->
+    <section class="pt_br-content prose max-w-none">
+      <h1>Política de Cookies</h1>
+
+      <p><strong>Última atualização:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>Esta política descreve o uso de cookies e tecnologias similares pela plataforma &lt;&lt;COMPANY_NAME&gt;&gt;, em conformidade com a LGPD (Lei nº 13.709/2018), art. 8º (consentimento) e art. 33 (transferência internacional).</blockquote>
+
+      <hr>
+
+      <h2>1. O que são cookies</h2>
+
+      <p>Cookies são pequenos arquivos de texto armazenados no seu navegador ou dispositivo quando você visita um site ou acessa uma aplicação web. Eles permitem que a plataforma reconheça o seu dispositivo entre visitas, lembrando informações como sua sessão autenticada, preferências de idioma e configurações de interface.</p>
+
+      <p>Além de cookies tradicionais (arquivos no disco), usamos tecnologias similares como:</p>
+
+      <ul>
+        <li><strong>Armazenamento local (localStorage)</strong> — para persistir preferências de consentimento e estado de interface no navegador.</li>
+        <li><strong>Armazenamento de sessão (sessionStorage)</strong> — para dados temporários válidos apenas durante a sessão ativa.</li>
+        <li><strong>Tokens de sessão</strong> — identificadores criptografados transmitidos via cabeçalho HTTP, usados para autenticar e autorizar suas requisições à API da plataforma.</li>
+      </ul>
+
+      <p>Cookies e tecnologias similares são amplamente utilizados para:</p>
+
+      <ol>
+        <li><strong>Autenticação e segurança</strong> — manter você autenticado durante a navegação, sem exigir nova autenticação a cada página.</li>
+        <li><strong>Memorização de preferências</strong> — lembrar seu idioma preferido (PT-BR ou EN) e outras configurações de interface.</li>
+        <li><strong>Medição de uso</strong> — compreender como os usuários interagem com a plataforma, ajudando-nos a identificar problemas e melhorar a experiência — somente com o seu consentimento.</li>
+      </ol>
+
+      <p>Esta política explica quais categorias de cookies utilizamos, para que servem e como você pode controlá-los.</p>
+
+      <hr>
+
+      <h2>2. Categorias de cookies</h2>
+
+      <p>Em conformidade com o art. 8º §3 da LGPD — que exige que o consentimento para tratamento de dados seja específico por finalidade, vedando o consentimento genérico —, utilizamos <strong>exatamente três categorias de cookies</strong>, cada uma com controle independente. Você pode aceitar ou recusar cada categoria separadamente.</p>
+
+      <h3>2.1 Essenciais</h3>
+
+      <table>
+        <thead><tr><th>Atributo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Sempre ativos — não podem ser desabilitados</td></tr>
+          <tr><td><strong>Finalidade</strong></td><td>Autenticação, manutenção de sessão, segurança</td></tr>
+          <tr><td><strong>Base legal LGPD</strong></td><td>Art. 7º §V — execução de contrato; art. 7º §IX — legítimo interesse (segurança)</td></tr>
+          <tr><td><strong>Consentimento necessário</strong></td><td>Não — são imprescindíveis para o funcionamento da plataforma</td></tr>
+        </tbody>
+      </table>
+
+      <p>Os cookies essenciais são estritamente necessários para que a plataforma funcione. Sem eles, você não consegue fazer login, navegar entre páginas autenticadas nem utilizar os recursos centrais do Portal da Obra.</p>
+
+      <p><strong>Exemplos de uso:</strong></p>
+      <ul>
+        <li>Token de sessão do AWS Cognito (autenticação do usuário)</li>
+        <li>Identificadores de sessão CSRF (proteção contra ataques cross-site)</li>
+        <li>Preferência de idioma selecionado pelo usuário</li>
+        <li>Estado do fluxo de aceitação de termos de uso</li>
+      </ul>
+
+      <h3>2.2 Análise (Analytics)</h3>
+
+      <table>
+        <thead><tr><th>Atributo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Opt-in — desabilitado por padrão; ativado somente após seu consentimento explícito</td></tr>
+          <tr><td><strong>Finalidade</strong></td><td>Análise de uso da plataforma e melhoria da experiência</td></tr>
+          <tr><td><strong>Ferramenta</strong></td><td>Google Tag Manager — container ID <code>GTM-PHFRLWGJ</code></td></tr>
+          <tr><td><strong>Base legal LGPD</strong></td><td>Art. 7º §I — consentimento</td></tr>
+          <tr><td><strong>Consentimento necessário</strong></td><td>Sim</td></tr>
+        </tbody>
+      </table>
+
+      <p>Os cookies de análise nos ajudam a entender como os usuários interagem com a plataforma — quais páginas são mais acessadas, onde ocorrem erros de navegação e quais fluxos precisam de melhorias. As informações coletadas são agregadas e não identificam individualmente os usuários.</p>
+
+      <p><strong>Mecanismo de proteção:</strong> o Google Tag Manager é carregado com a instrução de consentimento padrão bloqueada:</p>
+
+      <pre><code>gtag('consent', 'default', {
+  analytics_storage: 'denied'
+});</code></pre>
+
+      <p>Além disso, o contêiner GTM-PHFRLWGJ só é injetado no DOM após a confirmação do seu consentimento analítico por um guarda JavaScript no código da plataforma. Antes disso, nenhum script de análise é executado e nenhum dado é enviado ao Google.</p>
+
+      <h3>2.3 Marketing</h3>
+
+      <table>
+        <thead><tr><th>Atributo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Opt-in — desabilitado por padrão; ativado somente após seu consentimento explícito</td></tr>
+          <tr><td><strong>Finalidade</strong></td><td>Publicidade direcionada e mensuração de campanhas (uso futuro)</td></tr>
+          <tr><td><strong>Pixels ativos</strong></td><td>Nenhum no momento</td></tr>
+          <tr><td><strong>Base legal LGPD</strong></td><td>Art. 7º §I — consentimento</td></tr>
+          <tr><td><strong>Consentimento necessário</strong></td><td>Sim</td></tr>
+        </tbody>
+      </table>
+
+      <p>A categoria de marketing está reservada para uso futuro. Atualmente, <strong>nenhum pixel de publicidade ou ferramenta de rastreamento de marketing está ativo</strong> na plataforma. Esta categoria existe para garantir que, caso venha a ser utilizada no futuro, o seu consentimento explícito seja solicitado antes de qualquer ativação.</p>
+
+      <p>Você pode conceder ou revogar o consentimento para marketing de forma independente das demais categorias, a qualquer momento.</p>
+
+      <hr>
+
+      <h2>3. Como gerenciar seus cookies</h2>
+
+      <h3>Banner de cookies</h3>
+
+      <p>Na sua primeira visita (ou após a limpeza do armazenamento local do navegador), exibimos um <strong>banner de consentimento de cookies</strong> com três opções de controle de igual peso, em conformidade com o art. 8º §3 da LGPD (consentimento específico por finalidade) e com o princípio de não utilização de padrões enganosos:</p>
+
+      <table>
+        <thead><tr><th>CTA</th><th>Efeito</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Aceitar tudo</strong></td><td>Ativa as três categorias: essenciais + análise + marketing</td></tr>
+          <tr><td><strong>Somente essenciais</strong></td><td>Ativa apenas os cookies essenciais; análise e marketing permanecem desabilitados</td></tr>
+          <tr><td><strong>Personalizar</strong></td><td>Abre painel de controle granular com um toggle independente por categoria</td></tr>
+        </tbody>
+      </table>
+
+      <p>As três opções são apresentadas com igual destaque visual. Nenhuma opção é pré-selecionada ou visualmente privilegiada em relação às demais.</p>
+
+      <h3>Reabertura do banner — link "Gerenciar cookies"</h3>
+
+      <p>O rodapé de todas as páginas da plataforma contém o link <strong>"Gerenciar cookies"</strong>. Ao clicar nesse link, o banner de consentimento é reaberto, permitindo que você revise ou altere suas preferências a qualquer momento.</p>
+
+      <h3>Controle granular</h3>
+
+      <p>No painel de personalização, você pode:</p>
+      <ul>
+        <li>Habilitar ou desabilitar a categoria <strong>Análise</strong> independentemente.</li>
+        <li>Habilitar ou desabilitar a categoria <strong>Marketing</strong> independentemente.</li>
+        <li>Os cookies <strong>Essenciais</strong> permanecem sempre ativos e não possuem toggle de desabilitação.</li>
+      </ul>
+
+      <h3>Revogação do consentimento (art. 8º §5 + art. 18 §IX da LGPD)</h3>
+
+      <p>Nos termos do art. 8º §5 da LGPD, <strong>a revogação do consentimento é tão fácil quanto a sua concessão</strong>. Você pode revogar seu consentimento para análise e/ou marketing a qualquer momento através do link "Gerenciar cookies" no rodapé ou do portal <code>/dashboard/privacy</code>.</p>
+
+      <p>Nos termos do art. 18 §IX da LGPD, a revogação do consentimento tem efeito imediato para tratamentos futuros. Não é possível reverter o processamento de dados que já ocorreu antes da revogação.</p>
+
+      <h3>Configurações do navegador</h3>
+
+      <p>Você também pode gerenciar ou excluir cookies diretamente nas configurações do seu navegador. Consulte a documentação do seu navegador para instruções específicas:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/microsoft-edge/delete-cookies-in-microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <p><strong>Atenção:</strong> a exclusão de cookies essenciais via configurações do navegador pode encerrar sua sessão autenticada e exigir novo login.</p>
+
+      <hr>
+
+      <h2>4. Cookies de terceiros</h2>
+
+      <p>A plataforma utiliza o seguinte serviço de terceiros que pode definir ou ler cookies no seu dispositivo, após o seu consentimento para a categoria de Análise:</p>
+
+      <h3>Google Tag Manager (GTM)</h3>
+
+      <table>
+        <thead><tr><th>Atributo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Provedor</strong></td><td>Google LLC</td></tr>
+          <tr><td><strong>Produto</strong></td><td>Google Tag Manager — container ID <code>GTM-PHFRLWGJ</code></td></tr>
+          <tr><td><strong>Finalidade</strong></td><td>Gerenciamento de tags de análise; carregado somente após consentimento analítico</td></tr>
+          <tr><td><strong>Dados transmitidos</strong></td><td>Eventos de interação agregados (visualizações de página, cliques, erros)</td></tr>
+          <tr><td><strong>Região de processamento</strong></td><td>Estados Unidos da América (EUA)</td></tr>
+          <tr><td><strong>Base LGPD para transferência</strong></td><td>Art. 33 §II.b — cláusulas contratuais padrão (SCC) sob o Data Processing Agreement vigente entre &lt;&lt;COMPANY_NAME&gt;&gt; e Google LLC</td></tr>
+          <tr><td><strong>Política de privacidade do Google</strong></td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Proteção de privacidade:</strong> o contêiner GTM só é injetado após o seu consentimento explícito para cookies de análise. Antes disso, o estado padrão é <code>analytics_storage: 'denied'</code> e nenhum script é carregado.</p>
+
+      <p><strong>Transferência internacional (LGPD art. 33 §II.b):</strong> o processamento de dados via Google Tag Manager implica transferência internacional de dados pessoais para os Estados Unidos. Essa transferência está fundamentada em cláusulas contratuais padrão (SCC) incluídas no Data Processing Amendment (DPA) firmado com a Google LLC, em conformidade com o art. 33 §II.b da LGPD.</p>
+
+      <p>Não utilizamos atualmente pixels de publicidade de terceiros (Facebook, TikTok, LinkedIn, etc.). Caso isso mude no futuro, esta política será atualizada e seu consentimento para a categoria de Marketing será solicitado antes de qualquer ativação.</p>
+
+      <hr>
+
+      <h2>5. Mudanças nesta Política</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; pode atualizar esta Política de Cookies periodicamente para refletir mudanças nas tecnologias utilizadas, nas ferramentas de análise, em resposta a alterações na legislação (LGPD e regulamentos da ANPD) ou por decisão operacional.</p>
+
+      <p><strong>Versionamento:</strong> esta é a versão <strong>1.0.0</strong> desta Política de Cookies, em vigor a partir de &lt;&lt;EFFECTIVE_DATE&gt;&gt;. Cada versão publicada recebe um número de versão e uma data de atualização.</p>
+
+      <p><strong>Aviso de mudanças substanciais:</strong> em caso de alteração material desta Política — como a adição de uma nova categoria de cookies, a inclusão de um novo provedor de terceiros ou mudança na finalidade de uso —, você será notificado por e-mail e por um <strong>modal de reaceitação não dispensável</strong> exibido na próxima vez que acessar a plataforma. O modal exigirá confirmação explícita antes de você continuar usando a plataforma (art. 8º §6 da LGPD).</p>
+
+      <p><strong>Mudanças não materiais</strong> (como correções gramaticais, atualização de links, esclarecimentos que não alteram o escopo do tratamento) podem ser publicadas sem aviso prévio.</p>
+
+      <p>A versão anterior desta Política permanece acessível mediante solicitação ao DPO.</p>
+
+      <hr>
+
+      <h2>6. Contato</h2>
+
+      <p>Para dúvidas, solicitações de revogação de consentimento ou reclamações relacionadas ao uso de cookies:</p>
+
+      <table>
+        <thead><tr><th>Canal</th><th>Informação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Encarregado (DPO)</strong></td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (padrão: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>Portal de autoatendimento</strong></td><td><code>/dashboard/privacy</code> — painel de preferências de consentimento</td></tr>
+          <tr><td><strong>Gerenciar cookies</strong></td><td>Link no rodapé da plataforma — reabre o banner de consentimento</td></tr>
+          <tr><td><strong>ANPD</strong></td><td>Para reclamações perante a autoridade reguladora: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>Para temas de proteção de dados mais amplos — coleta, uso, compartilhamento, direitos do titular (art. 18 da LGPD) —, consulte nossa <strong><a href="/legal/privacy/">Política de Privacidade</a></strong>.</p>
+
+      <p>Respondemos em até <strong>15 dias</strong> a partir do recebimento da solicitação, nos termos do art. 19 da LGPD.</p>
+    </section>
+
+    <!-- EN Content -->
+    <section class="en-content prose max-w-none">
+      <h1>Cookie Policy</h1>
+
+      <p><strong>Last updated:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>This policy describes the use of cookies and similar technologies by the &lt;&lt;COMPANY_NAME&gt;&gt; platform, in compliance with the LGPD (Brazilian General Data Protection Law — Lei nº 13.709/2018), art. 8 (consent) and art. 33 (international transfers).</blockquote>
+
+      <hr>
+
+      <h2>1. What are cookies</h2>
+
+      <p>Cookies are small text files stored in your browser or device when you visit a website or access a web application. They allow the platform to recognise your device between visits, remembering information such as your authenticated session, language preferences, and interface settings.</p>
+
+      <p>In addition to traditional cookies (files on disk), we use similar technologies including:</p>
+
+      <ul>
+        <li><strong>Local storage (localStorage)</strong> — to persist consent preferences and interface state in the browser.</li>
+        <li><strong>Session storage (sessionStorage)</strong> — for temporary data valid only during the active session.</li>
+        <li><strong>Session tokens</strong> — encrypted identifiers transmitted via HTTP headers, used to authenticate and authorise your requests to the platform's API.</li>
+      </ul>
+
+      <p>Cookies and similar technologies are widely used to:</p>
+
+      <ol>
+        <li><strong>Authentication and security</strong> — keep you authenticated while navigating, without requiring you to log in again on each page.</li>
+        <li><strong>Remembering preferences</strong> — recall your preferred language (PT-BR or EN) and other interface settings.</li>
+        <li><strong>Measuring usage</strong> — understand how users interact with the platform, helping us identify issues and improve the experience — only with your consent.</li>
+      </ol>
+
+      <p>This policy explains which categories of cookies we use, what they are for, and how you can control them.</p>
+
+      <hr>
+
+      <h2>2. Cookie categories</h2>
+
+      <p>In compliance with LGPD art. 8 §3 — which requires that consent for data processing be specific per purpose, prohibiting generic consent — we use <strong>exactly three categories of cookies</strong>, each with independent control. You may accept or decline each category separately.</p>
+
+      <h3>2.1 Essential</h3>
+
+      <table>
+        <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Always active — cannot be disabled</td></tr>
+          <tr><td><strong>Purpose</strong></td><td>Authentication, session maintenance, security</td></tr>
+          <tr><td><strong>LGPD legal basis</strong></td><td>Art. 7 §V — contract performance; art. 7 §IX — legitimate interest (security)</td></tr>
+          <tr><td><strong>Consent required</strong></td><td>No — they are indispensable for the platform to function</td></tr>
+        </tbody>
+      </table>
+
+      <p>Essential cookies are strictly necessary for the platform to operate. Without them, you cannot log in, navigate authenticated pages, or use the core features of Portal da Obra.</p>
+
+      <p><strong>Examples of use:</strong></p>
+      <ul>
+        <li>AWS Cognito session token (user authentication)</li>
+        <li>CSRF session identifiers (cross-site request forgery protection)</li>
+        <li>User-selected language preference</li>
+        <li>Terms-of-use acceptance flow state</li>
+      </ul>
+
+      <h3>2.2 Analytics</h3>
+
+      <table>
+        <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Opt-in — disabled by default; activated only upon your explicit consent</td></tr>
+          <tr><td><strong>Purpose</strong></td><td>Platform usage analysis and experience improvement</td></tr>
+          <tr><td><strong>Tool</strong></td><td>Google Tag Manager — container ID <code>GTM-PHFRLWGJ</code></td></tr>
+          <tr><td><strong>LGPD legal basis</strong></td><td>Art. 7 §I — consent</td></tr>
+          <tr><td><strong>Consent required</strong></td><td>Yes</td></tr>
+        </tbody>
+      </table>
+
+      <p>Analytics cookies help us understand how users interact with the platform — which pages are most visited, where navigation errors occur, and which flows need improvement. The information collected is aggregated and does not individually identify users.</p>
+
+      <p><strong>Privacy protection mechanism:</strong> Google Tag Manager is loaded with the default consent instruction blocked:</p>
+
+      <pre><code>gtag('consent', 'default', {
+  analytics_storage: 'denied'
+});</code></pre>
+
+      <p>Additionally, the GTM-PHFRLWGJ container is only injected into the DOM after confirmation of your analytics consent via a JavaScript guard in the platform's code. Before that point, no analytics script runs and no data is sent to Google.</p>
+
+      <h3>2.3 Marketing</h3>
+
+      <table>
+        <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Status</strong></td><td>Opt-in — disabled by default; activated only upon your explicit consent</td></tr>
+          <tr><td><strong>Purpose</strong></td><td>Targeted advertising and campaign measurement (future use)</td></tr>
+          <tr><td><strong>Active pixels</strong></td><td>None at this time</td></tr>
+          <tr><td><strong>LGPD legal basis</strong></td><td>Art. 7 §I — consent</td></tr>
+          <tr><td><strong>Consent required</strong></td><td>Yes</td></tr>
+        </tbody>
+      </table>
+
+      <p>The marketing category is reserved for future use. Currently, <strong>no advertising pixel or marketing tracking tool is active</strong> on the platform. This category exists to ensure that, if it is ever used in the future, your explicit consent will be requested before any activation.</p>
+
+      <p>You may grant or revoke consent for marketing independently of the other categories, at any time.</p>
+
+      <hr>
+
+      <h2>3. How to manage your cookies</h2>
+
+      <h3>Cookie banner</h3>
+
+      <p>On your first visit (or after clearing your browser's local storage), we display a <strong>cookie consent banner</strong> with three equal-weight control options, in compliance with LGPD art. 8 §3 (specific consent per purpose) and the principle of non-use of deceptive patterns:</p>
+
+      <table>
+        <thead><tr><th>CTA</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Accept all</strong></td><td>Activates all three categories: essential + analytics + marketing</td></tr>
+          <tr><td><strong>Essential only</strong></td><td>Activates only essential cookies; analytics and marketing remain disabled</td></tr>
+          <tr><td><strong>Customise</strong></td><td>Opens a granular control panel with one independent toggle per category</td></tr>
+        </tbody>
+      </table>
+
+      <p>The three options are presented with equal visual prominence. No option is pre-selected or visually privileged over the others.</p>
+
+      <h3>Reopening the banner — "Manage cookies" link</h3>
+
+      <p>The footer of all platform pages contains the <strong>"Manage cookies"</strong> link. Clicking this link reopens the consent banner, allowing you to review or change your preferences at any time.</p>
+
+      <h3>Granular control</h3>
+
+      <p>In the customisation panel, you can:</p>
+      <ul>
+        <li>Enable or disable the <strong>Analytics</strong> category independently.</li>
+        <li>Enable or disable the <strong>Marketing</strong> category independently.</li>
+        <li><strong>Essential</strong> cookies remain always active and have no disable toggle.</li>
+      </ul>
+
+      <h3>Withdrawing consent (LGPD art. 8 §5 + art. 18 §IX)</h3>
+
+      <p>Pursuant to LGPD art. 8 §5, <strong>withdrawing consent is as easy as granting it</strong>. You may withdraw your consent for analytics and/or marketing at any time via the "Manage cookies" link in the footer or the <code>/dashboard/privacy</code> portal.</p>
+
+      <p>Pursuant to LGPD art. 18 §IX, consent withdrawal takes immediate effect for future processing. It is not possible to undo processing that already occurred before the withdrawal.</p>
+
+      <h3>Browser settings</h3>
+
+      <p>You can also manage or delete cookies directly in your browser settings. Consult your browser's documentation for specific instructions:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/microsoft-edge/delete-cookies-in-microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+
+      <p><strong>Note:</strong> deleting essential cookies via browser settings may terminate your authenticated session and require you to log in again.</p>
+
+      <hr>
+
+      <h2>4. Third-party cookies</h2>
+
+      <p>The platform uses the following third-party service that may set or read cookies on your device, after your consent for the Analytics category:</p>
+
+      <h3>Google Tag Manager (GTM)</h3>
+
+      <table>
+        <thead><tr><th>Attribute</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Provider</strong></td><td>Google LLC</td></tr>
+          <tr><td><strong>Product</strong></td><td>Google Tag Manager — container ID <code>GTM-PHFRLWGJ</code></td></tr>
+          <tr><td><strong>Purpose</strong></td><td>Analytics tag management; loaded only after analytics consent</td></tr>
+          <tr><td><strong>Data transmitted</strong></td><td>Aggregated interaction events (page views, clicks, errors)</td></tr>
+          <tr><td><strong>Processing region</strong></td><td>United States of America (USA)</td></tr>
+          <tr><td><strong>LGPD basis for transfer</strong></td><td>Art. 33 §II.b — standard contractual clauses (SCC) under the Data Processing Agreement in force between &lt;&lt;COMPANY_NAME&gt;&gt; and Google LLC</td></tr>
+          <tr><td><strong>Google Privacy Policy</strong></td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a></td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Privacy protection:</strong> the GTM container is only injected after your explicit consent for analytics cookies. Before that, the default state is <code>analytics_storage: 'denied'</code> and no script is loaded.</p>
+
+      <p><strong>International transfer (LGPD art. 33 §II.b):</strong> processing data via Google Tag Manager entails an international transfer of personal data to the United States. This transfer is grounded in standard contractual clauses (SCC) included in the Data Processing Amendment (DPA) executed with Google LLC, in compliance with LGPD art. 33 §II.b.</p>
+
+      <p>We do not currently use third-party advertising pixels (Facebook, TikTok, LinkedIn, etc.). If this changes in the future, this policy will be updated and your consent for the Marketing category will be requested before any activation.</p>
+
+      <hr>
+
+      <h2>5. Changes to this Policy</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; may update this Cookie Policy periodically to reflect changes in the technologies used, in the analytics tools, in response to changes in legislation (LGPD and ANPD regulations), or for operational reasons.</p>
+
+      <p><strong>Versioning:</strong> this is version <strong>1.0.0</strong> of this Cookie Policy, in effect as of &lt;&lt;EFFECTIVE_DATE&gt;&gt;. Each published version is assigned a version number and an update date.</p>
+
+      <p><strong>Notice of material changes:</strong> in the event of a material change to this Policy — such as the addition of a new cookie category, the inclusion of a new third-party provider, or a change in purpose — you will be notified by email and by a <strong>non-dismissible re-acceptance modal</strong> displayed the next time you access the platform. The modal will require explicit confirmation before you can continue using the platform (LGPD art. 8 §6).</p>
+
+      <p><strong>Non-material changes</strong> (such as grammatical corrections, link updates, or clarifications that do not change the scope of processing) may be published without prior notice.</p>
+
+      <p>The previous version of this Policy remains available upon request to the DPO.</p>
+
+      <hr>
+
+      <h2>6. Contact</h2>
+
+      <p>For questions, consent withdrawal requests, or complaints relating to the use of cookies:</p>
+
+      <table>
+        <thead><tr><th>Channel</th><th>Information</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Data Protection Officer (DPO)</strong></td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (default: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>Self-service portal</strong></td><td><code>/dashboard/privacy</code> — consent preferences panel</td></tr>
+          <tr><td><strong>Manage cookies</strong></td><td>Link in the platform footer — reopens the consent banner</td></tr>
+          <tr><td><strong>ANPD</strong></td><td>For complaints to the regulatory authority: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>For broader data protection topics — collection, use, sharing, data subject rights (LGPD art. 18) — please consult our <strong><a href="/legal/privacy/">Privacy Policy</a></strong>.</p>
+
+      <p>We respond within <strong>15 business days</strong> of receiving a request, pursuant to LGPD art. 19.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 mt-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+        <a href="/legal/privacy/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Privacidade</span>
+          <span class="en-content">Privacy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/terms/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Termos de Uso</span>
+          <span class="en-content">Terms of Use</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/cookies/" class="font-medium text-portal-blue-primary">
+          <span class="pt_br-content">Política de Cookies</span>
+          <span class="en-content">Cookie Policy</span>
+        </a>
+        <a href="/" class="ml-auto hover:text-slate-800 transition-colors flex items-center gap-1">
+          <span>←</span>
+          <span class="pt_br-content">Voltar ao site</span>
+          <span class="en-content">Back to site</span>
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-slate-400">
+        <span class="pt_br-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — Todos os direitos reservados.</span>
+        <span class="en-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — All rights reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      document.body.className = 'bg-white font-sans lang-' + lang;
+      document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+        if (btn.dataset.toggleLang === lang) {
+          btn.classList.add('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+        } else {
+          btn.classList.remove('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-600');
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.toggleLang));
+    });
+
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  </script>
+</body>
+</html>
