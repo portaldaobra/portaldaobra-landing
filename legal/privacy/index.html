@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — Portal da Obra</title>
+  <meta name="description" content="Política de Privacidade do Portal da Obra, em conformidade com a LGPD (Lei nº 13.709/2018).">
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+  <!-- Google Fonts - DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'portal': {
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .lang-pt_br .en-content,
+    .lang-en .pt_br-content { display: none; }
+
+    .prose h1 { font-size: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #001D4A; }
+    .prose h2 { font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #001D4A; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
+    .prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #0047AB; }
+    .prose p { margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.75; color: #334155; }
+    .prose ul { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: disc; }
+    .prose ol { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: decimal; }
+    .prose li { margin-top: 0.35rem; margin-bottom: 0.35rem; line-height: 1.7; color: #334155; }
+    .prose blockquote { border-left: 4px solid #5B8FDB; padding-left: 1rem; margin: 1.25rem 0; font-style: italic; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+    .prose th { background: #001D4A; color: #fff; padding: 0.6rem 0.85rem; text-align: left; font-weight: 600; }
+    .prose td { border: 1px solid #e2e8f0; padding: 0.55rem 0.85rem; vertical-align: top; color: #334155; }
+    .prose tr:nth-child(even) td { background: #f8fafc; }
+    .prose code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; font-family: 'Courier New', monospace; color: #0047AB; }
+    .prose pre { background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+    .prose pre code { background: none; color: inherit; padding: 0; }
+    .prose a { color: #0047AB; text-decoration: underline; }
+    .prose a:hover { color: #001D4A; }
+    .prose strong { font-weight: 600; color: #1e293b; }
+    .prose hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+
+    .lang-btn-active { background: #0047AB !important; color: #fff !important; }
+    .lang-btn { transition: all 0.2s; }
+  </style>
+</head>
+<body class="bg-white font-sans lang-pt_br">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-7">
+      </a>
+      <div class="flex items-center gap-2">
+        <button data-toggle-lang="pt_br" id="btn-pt_br"
+          class="lang-btn lang-btn-active px-3 py-1.5 rounded-full text-sm font-medium bg-portal-blue-primary text-white">
+          PT-BR
+        </button>
+        <button data-toggle-lang="en" id="btn-en"
+          class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-slate-50 border-b border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 text-sm text-slate-500">
+      <a href="/" class="hover:text-portal-blue-primary">Portal da Obra</a>
+      <span class="mx-2">›</span>
+      <span class="pt_br-content">Política de Privacidade</span>
+      <span class="en-content">Privacy Policy</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- PT-BR Content -->
+    <section class="pt_br-content prose max-w-none">
+      <h1>Política de Privacidade</h1>
+
+      <p><strong>Última atualização:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>Esta política descreve como &lt;&lt;COMPANY_NAME&gt;&gt; coleta, utiliza, compartilha e protege seus dados pessoais conforme a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e suas alterações subsequentes.</blockquote>
+
+      <hr>
+
+      <h2>1. Quem somos</h2>
+
+      <p><strong>&lt;&lt;COMPANY_NAME&gt;&gt;</strong> (doravante "nós", "nos" ou "Portal da Obra") é a pessoa jurídica controladora dos dados pessoais tratados nesta plataforma, nos termos do art. 5º, §VI da LGPD.</p>
+
+      <table>
+        <thead><tr><th>Informação</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Razão social</td><td>&lt;&lt;COMPANY_NAME&gt;&gt;</td></tr>
+          <tr><td>CNPJ</td><td>&lt;&lt;COMPANY_CNPJ&gt;&gt;</td></tr>
+          <tr><td>Endereço</td><td>&lt;&lt;COMPANY_ADDRESS&gt;&gt;</td></tr>
+          <tr><td>Site</td><td><a href="https://portaldaobra.com.br">https://portaldaobra.com.br</a></td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>O que é a plataforma:</strong> Portal da Obra é um marketplace B2B para sourcing corporativo na construção civil. A plataforma conecta clientes (empresas contratantes) a construtoras (fornecedores), viabilizando abertura de orçamentos (BIDs), convite de fornecedores, avaliação de propostas, adjudicação de contrato, coleta de assinaturas eletrônicas via Assinafy e execução do projeto com rastreamento de progresso.</p>
+
+      <p>Todos os usuários são representantes corporativos (pessoas físicas que agem em nome de pessoas jurídicas). A plataforma não é dirigida ao consumidor final pessoa física.</p>
+
+      <hr>
+
+      <h2>2. Encarregado pelo Tratamento de Dados (DPO)</h2>
+
+      <p>Em cumprimento ao art. 41 da LGPD e ao art. 9º da Resolução CD/ANPD nº 18/2024, &lt;&lt;COMPANY_NAME&gt;&gt; designou um Encarregado pelo Tratamento de Dados Pessoais (DPO).</p>
+
+      <table>
+        <thead><tr><th>Informação</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Nome</td><td>&lt;&lt;DPO_NAME&gt;&gt;</td></tr>
+          <tr><td>E-mail de contato</td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (padrão: dpo@portaldaobra.com.br)</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Compromissos do DPO (Res. 18/2024):</strong></p>
+      <ul>
+        <li><strong>Art. 10, §IV</strong> — O agente de tratamento assegura ao titular meios céleres, eficazes e adequados para comunicar-se com o Encarregado e exercer seus direitos.</li>
+        <li><strong>Art. 13</strong> — O Encarregado comunica-se com os titulares e com a ANPD de forma clara e precisa <strong>em língua portuguesa</strong>.</li>
+        <li><strong>Art. 41 §1º da LGPD</strong> — A identidade e as informações de contato do Encarregado são divulgadas publicamente, em local de destaque e de fácil acesso, neste site e na plataforma.</li>
+      </ul>
+
+      <p>O Encarregado aceita reclamações, fornece esclarecimentos, adota providências cabíveis e serve como ponto de contato com a ANPD (Res. 18/2024, art. 15).</p>
+
+      <hr>
+
+      <h2>3. Quais dados coletamos</h2>
+
+      <p>Coletamos dados pessoais nas seguintes categorias. Para o inventário completo campo a campo, consulte o Registro das Atividades de Tratamento (RoPA).</p>
+
+      <table>
+        <thead><tr><th>Categoria</th><th>Exemplos</th><th>Fonte</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Identificação</strong></td><td>Nome completo, e-mail, telefone, endereço, CEP, nome da empresa, nome comercial</td><td>Fornecido pelo usuário</td></tr>
+          <tr><td><strong>Financeiro</strong></td><td>Saldo de carteira, histórico de transações, chave PIX (criptografada), valor dos contratos, ID de transação Asaas</td><td>Sistema / fornecido pelo usuário</td></tr>
+          <tr><td><strong>KYC / Verificação de identidade</strong></td><td>Tipo e número de documento (CPF, RG, CNPJ, IE, CCM, CREA/CAU), dados biométricos/documentais submetidos à Asaas, hash de verificação</td><td>Fornecido pelo usuário</td></tr>
+          <tr><td><strong>Texto livre</strong></td><td>Mensagens de chat do BID, perguntas e respostas de Q&amp;A, descrições de projeto, notas de proposta, razão de recusa</td><td>Fornecido pelo usuário</td></tr>
+          <tr><td><strong>Comportamental</strong></td><td>Último login, locale preferido, origem de acesso (web/backoffice), preferências de notificação</td><td>Sistema</td></tr>
+          <tr><td><strong>Técnico</strong></td><td>IP de aceite de contrato, User Agent, hash de token de redefinição de senha, sub do Cognito</td><td>Sistema</td></tr>
+          <tr><td><strong>Evidência de consentimento</strong></td><td>IP e User Agent no momento do aceite de contrato/termos, timestamp de aceite dos termos, registros de aceite de termos de uso</td><td>Sistema</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Nota sobre texto livre:</strong> campos de texto aberto (chat, Q&amp;A, descrições) podem conter dados pessoais de terceiros inseridos pelo próprio usuário. Recomendamos não inserir dados pessoais desnecessários nesses campos.</p>
+
+      <p><strong>Nota sobre referências de terceiros:</strong> coletamos nome, e-mail e telefone de contatos de referência indicados por construtoras no processo de vetting. Esses contatos não forneceram consentimento diretamente à plataforma. Caso você seja um contato de referência e queira exercer seus direitos nos termos do art. 18 da LGPD, entre em contato com nosso DPO.</p>
+
+      <hr>
+
+      <h2>4. Bases legais</h2>
+
+      <p>O tratamento de cada categoria de dados pessoais tem fundamento em ao menos uma das hipóteses legais do art. 7º (dados comuns) ou art. 11 (dados sensíveis) da LGPD.</p>
+
+      <table>
+        <thead><tr><th>Categoria</th><th>Base legal LGPD</th><th>Exemplo concreto</th></tr></thead>
+        <tbody>
+          <tr><td>Identificação</td><td>Art. 7º §V — execução de contrato</td><td>Nome e CNPJ do usuário são necessários para emitir contratos e BIDs na plataforma</td></tr>
+          <tr><td>Financeiro</td><td>Art. 7º §II — cumprimento de obrigação legal + Art. 16 §I — exceção de retenção</td><td>Transações financeiras retidas 5 anos por obrigação fiscal (Receita Federal)</td></tr>
+          <tr><td>KYC / biométrico (documentos)</td><td>Art. 11 §II.g — prevenção à fraude e segurança do titular em processos de identificação eletrônica</td><td>CPF e documentos submetidos à Asaas para verificação de identidade e prevenção a fraudes</td></tr>
+          <tr><td>KYC (dados fiscais: CNPJ, IE)</td><td>Art. 7º §II — obrigação legal (NF-e, ISS) + Art. 7º §V — execução de contrato</td><td>CNPJ obrigatório para emissão fiscal e formalização contratual</td></tr>
+          <tr><td>Marketing / comunicações comerciais</td><td>Art. 7º §I — consentimento</td><td>E-mail marketing somente após consentimento explícito no cadastro ou painel de preferências</td></tr>
+          <tr><td>Texto livre (operações de negócio)</td><td>Art. 7º §IX — legítimo interesse</td><td>Mensagens de negociação do BID retidas para continuidade do processo contratual e resolução de disputas</td></tr>
+          <tr><td>Comportamental / técnico</td><td>Art. 7º §IX — legítimo interesse</td><td>Último login e User Agent usados para monitoramento de segurança da sessão</td></tr>
+          <tr><td>Evidência de consentimento</td><td>Art. 7º §I — consentimento + Art. 8º §2 — ônus da prova</td><td>IP e timestamp de aceite de termos retidos para comprovar o consentimento perante a ANPD</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>5. Finalidades do tratamento</h2>
+
+      <p>Tratamos seus dados pessoais para as seguintes finalidades:</p>
+
+      <ol>
+        <li><strong>Prestação do serviço B2B de sourcing na construção civil</strong> — criação e gerenciamento de orçamentos (BIDs), convite de fornecedores, avaliação de propostas, adjudicação de contratos.</li>
+        <li><strong>Execução de contratos</strong> — geração, renderização e armazenamento imutável de contratos assinados eletronicamente via Assinafy (art. 7º §V da LGPD).</li>
+        <li><strong>Processamento de pagamentos</strong> — operação de carteiras digitais e transações via Asaas (subcontas vinculadas a contratantes e construtoras).</li>
+        <li><strong>Verificação de identidade (KYC)</strong> — verificação de documentos e prevenção à fraude para habilitar transações financeiras (art. 11 §II.g da LGPD).</li>
+        <li><strong>Envio de notificações</strong> — alertas operacionais (novas propostas, mudança de status de BID, assinatura de contrato, transações financeiras) via e-mail e notificações in-app.</li>
+        <li><strong>Segurança e prevenção a fraudes</strong> — monitoramento de sessão, logs de auditoria, controle de acesso.</li>
+        <li><strong>Cumprimento de obrigações legais</strong> — retenção fiscal de registros financeiros, resposta a solicitações de autoridades competentes.</li>
+        <li><strong>Marketing</strong> (somente com consentimento) — comunicações sobre novos recursos da plataforma, conteúdos relevantes para o setor da construção civil.</li>
+        <li><strong>Melhoria da plataforma</strong> — análise de uso via Google Tag Manager (GTM-PHFRLWGJ), condicionada ao seu consentimento de cookies analíticos.</li>
+      </ol>
+
+      <hr>
+
+      <h2>6. Compartilhamento e subprocessadores</h2>
+
+      <p>Compartilhamos dados pessoais com os seguintes subprocessadores, somente na medida necessária para as finalidades declaradas:</p>
+
+      <table>
+        <thead><tr><th>Subprocessador</th><th>Finalidade</th><th>Região</th><th>Base LGPD</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AWS</strong> (RDS + S3 + Cognito)</td><td>Banco de dados, armazenamento de arquivos, autenticação</td><td><strong>us-east-1 (EUA)</strong></td><td>Art. 33 §II.b — cláusulas contratuais padrão sob AWS DPA (ver disclosure abaixo)</td></tr>
+          <tr><td><strong>AWS SES</strong></td><td>Entrega de e-mails (QA e produção)</td><td>sa-east-1 (Brasil)</td><td>Doméstico — art. 33 não aplicável</td></tr>
+          <tr><td><strong>Asaas</strong></td><td>Pagamentos + KYC de usuários</td><td>Brasil</td><td>Doméstico — art. 33 não aplicável</td></tr>
+          <tr><td><strong>Assinafy</strong></td><td>Assinatura eletrônica de contratos</td><td>Brasil</td><td>Doméstico — art. 33 não aplicável</td></tr>
+          <tr><td><strong>AgentMail</strong></td><td>Entrega de e-mails (local/dev)</td><td>EUA</td><td>Art. 33 §II.b — cláusulas contratuais padrão sob DPA (em formalização)</td></tr>
+          <tr><td><strong>Sentry</strong></td><td>Rastreamento de erros (web + api)</td><td>EUA</td><td>Art. 33 §II.b — cláusulas contratuais padrão sob DPA (em formalização)</td></tr>
+        </tbody>
+      </table>
+
+      <p>Não vendemos nem alugamos seus dados pessoais a terceiros para fins publicitários.</p>
+
+      <p><strong>Política de alteração de subprocessadores:</strong> a adição de um novo subprocessador que acesse dados pessoais de clientes da plataforma requer aviso prévio de 30 dias por e-mail a todos os administradores de conta, antes da ativação.</p>
+
+      <h3>Disclosure obrigatório — Transferência internacional AWS</h3>
+
+      <blockquote>"Os dados pessoais armazenados em infraestrutura AWS são processados na região us-east-1 (Estados Unidos), constituindo transferência internacional regida pelo art. 33, §II, alínea 'b' da LGPD, mediante cláusulas contratuais padrão sob o Data Processing Agreement vigente com a Amazon Web Services, Inc."</blockquote>
+
+      <hr>
+
+      <h2>7. Retenção de dados</h2>
+
+      <p>Os dados pessoais são retidos pelo período mínimo necessário para as finalidades declaradas, observados os seguintes prazos:</p>
+
+      <table>
+        <thead><tr><th>Tipo de dado</th><th>Prazo</th><th>Base legal</th></tr></thead>
+        <tbody>
+          <tr><td>Dados de identificação e operação (não transacionados)</td><td>30 dias após exclusão da conta, seguido de anonimização</td><td>Art. 12 (dado anonimizado sai do escopo da LGPD)</td></tr>
+          <tr><td>Registros financeiros e fiscais</td><td>5 anos após o encerramento do exercício fiscal correspondente</td><td>Art. 16 §I — obrigação legal (Receita Federal)</td></tr>
+          <tr><td>Contratos assinados eletronicamente</td><td>Prazo indefinido — imutabilidade criptográfica necessária para integridade jurídica</td><td>Art. 7º §V — execução de contrato; Art. 16 §I — obrigação legal</td></tr>
+          <tr><td>Evidência de consentimento</td><td>Prazo indefinido (para fins de comprovação perante a ANPD)</td><td>Art. 8º §2 — ônus da prova do controlador</td></tr>
+          <tr><td>Dados KYC (documentos)</td><td>5 anos (Art. 16 §I); ao final, sever-link: colunas PII nuladas + arquivo S3 excluído</td><td>Art. 16 §I</td></tr>
+          <tr><td>Tokens de autenticação e redefinição de senha</td><td>Somente pelo período de validade da sessão / token</td><td>Art. 18 §IV — hard-delete imediato</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>8. Direitos do titular</h2>
+
+      <p>Nos termos do art. 18 da LGPD, você tem os seguintes direitos em relação aos seus dados pessoais tratados por &lt;&lt;COMPANY_NAME&gt;&gt;:</p>
+
+      <table>
+        <thead><tr><th>Direito</th><th>Descrição</th><th>Como exercer</th></tr></thead>
+        <tbody>
+          <tr><td><strong>§I — Confirmação</strong></td><td>Confirmar a existência de tratamento dos seus dados</td><td>Portal <code>/dashboard/privacy</code> ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§II — Acesso</strong></td><td>Acessar os seus dados pessoais</td><td>Portal <code>/dashboard/privacy</code> (exportação) ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§III — Correção</strong></td><td>Corrigir dados incompletos, inexatos ou desatualizados</td><td>Portal <code>/dashboard/privacy</code> ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§IV — Anonimização / bloqueio / eliminação</strong></td><td>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade com a LGPD</td><td>Portal <code>/dashboard/privacy</code> ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§V — Portabilidade</strong></td><td>Solicitar portabilidade dos seus dados a outro fornecedor de serviço</td><td>E-mail ao DPO (exportação em formato aberto)</td></tr>
+          <tr><td><strong>§VI — Eliminação</strong></td><td>Solicitar eliminação dos dados tratados com base em consentimento</td><td>Portal <code>/dashboard/privacy</code> ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§VII — Informação sobre compartilhamento</strong></td><td>Obter informação sobre entidades com as quais compartilhamos seus dados</td><td>Esta política, §6, ou e-mail ao DPO</td></tr>
+          <tr><td><strong>§VIII — Informação sobre não consentimento</strong></td><td>Ser informado sobre a possibilidade de não fornecer consentimento e suas consequências</td><td>Esta política e fluxo de cadastro</td></tr>
+          <tr><td><strong>§IX — Revogação do consentimento</strong></td><td>Revogar consentimento para tratamentos baseados em consentimento (ex.: marketing)</td><td>Portal <code>/dashboard/privacy</code> — painel de preferências de consentimento</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Prazo de resposta:</strong> Respondemos às solicitações dos titulares em até 15 dias, nos termos do art. 19 da LGPD.</p>
+
+      <p><strong>Portal de autoatendimento:</strong> o portal <code>/dashboard/privacy</code> permite exercer os direitos de acesso, exportação, correção e eliminação sem necessidade de e-mail ao DPO.</p>
+
+      <p><strong>Contato alternativo:</strong> Para solicitações complexas ou que não possam ser atendidas pelo portal, envie e-mail ao DPO em &lt;&lt;DPO_EMAIL&gt;&gt;.</p>
+
+      <hr>
+
+      <h2>9. Cookies</h2>
+
+      <p>Esta plataforma utiliza cookies. Para informações detalhadas sobre os tipos de cookies utilizados, seus propósitos e como gerenciá-los, consulte nossa <strong><a href="/legal/cookies/">Política de Cookies</a></strong>.</p>
+
+      <p>Em resumo, utilizamos três categorias de cookies:</p>
+      <ul>
+        <li><strong>Essenciais</strong> — sempre ativos; necessários para autenticação e funcionamento da plataforma.</li>
+        <li><strong>Analíticos</strong> — somente com seu consentimento; usados para análise de uso via Google Tag Manager (GTM-PHFRLWGJ).</li>
+        <li><strong>Marketing</strong> — somente com seu consentimento; reservados para uso futuro.</li>
+      </ul>
+
+      <hr>
+
+      <h2>10. Eliminação e anonimização</h2>
+
+      <h3>Regra padrão: anonimização por padrão</h3>
+
+      <p>Quando você solicita a exclusão da sua conta ou o exercício do direito à eliminação (art. 18 §IV da LGPD), aplicamos a seguinte regra: <strong>em vez de destruir registros históricos que possam comprometer a integridade de transações passadas, anonimizamos os campos identificadores</strong> — substituindo nome, e-mail, CPF, CNPJ, telefone, endereço e outros dados de identificação por valores neutros (ex.: "Usuário Removido") ou nulos.</p>
+
+      <p>Dados anonimizados deixam de ser dados pessoais nos termos do art. 12 da LGPD (dado ao qual não se pode associar, direta ou indiretamente, a identidade de um indivíduo por meios técnicos razoáveis).</p>
+
+      <p>Registros financeiros e fiscais são mantidos pelo prazo legalmente obrigatório (5 anos, art. 16 §I) vinculados ao registro anonimizado.</p>
+
+      <h3>Q5 — Contratos assinados: preservação irreversível</h3>
+
+      <blockquote>"Quando você assina um contrato através da plataforma, seus dados de identificação ficam preservados no documento assinado de forma irreversível, conforme exigido para a integridade jurídica do contrato (LGPD art. 7º §V — execução de contrato — e art. 16, I — cumprimento de obrigação legal)."</blockquote>
+
+      <p>Isso significa que o PDF assinado, o certificado de assinatura e o snapshot do corpo do contrato — que contêm seu nome e dados de identificação — são retidos indefinidamente. A alteração desses documentos invalidaria a assinatura eletrônica e violaria a integridade jurídica do instrumento contratual.</p>
+
+      <h3>Q3 — Documentos KYC: sever-link</h3>
+
+      <p>Para documentos de verificação de identidade (KYC) submetidos via Asaas (CPF, CNH, CNPJ, fotos de documento), aplicamos o padrão <strong>sever-link</strong>:</p>
+
+      <ul>
+        <li>Ao receber uma solicitação de eliminação, <strong>os arquivos de documentos são excluídos do armazenamento S3</strong> e as colunas com dados identificadores (tipo de documento, número, dados de verificação) são nuladas no banco de dados.</li>
+        <li>O <strong>registro de verificação em si é mantido</strong> (com <code>is_anonymized = true</code>), sem qualquer dado identificador, para garantir a integridade referencial do histórico financeiro e de auditoria fiscal.</li>
+        <li>A retenção do registro de verificação anonimizado fundamenta-se no art. 16 §I (obrigação legal fiscal) e na necessidade de integridade do rastro de auditoria de transações financeiras.</li>
+      </ul>
+
+      <hr>
+
+      <h2>11. Crianças e adolescentes</h2>
+
+      <blockquote>"Portal da Obra é uma plataforma B2B para sourcing corporativo na construção civil. A coleta de dados pessoais de menores não é prevista pelo design da plataforma. Caso dados de um menor sejam coletados inadvertidamente, o controlador exercerá a eliminação imediata nos termos do art. 18, IV da LGPD."</blockquote>
+
+      <p>Todos os usuários da plataforma são representantes corporativos de pessoas jurídicas. Se você acredita que dados de um menor foram coletados inadvertidamente, entre em contato imediatamente com nosso DPO em &lt;&lt;DPO_EMAIL&gt;&gt;.</p>
+
+      <hr>
+
+      <h2>12. Mudanças nesta Política</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; pode atualizar esta Política de Privacidade periodicamente para refletir mudanças nas nossas práticas de tratamento de dados, em resposta a alterações na legislação (LGPD e regulamentos da ANPD) ou por decisão operacional.</p>
+
+      <p><strong>Versionamento:</strong> cada versão publicada recebe um número de versão (ex.: 1.0.0) e uma data de atualização, registrados na tabela <code>terms_versions</code> da plataforma.</p>
+
+      <p><strong>Aviso de mudanças:</strong> em caso de alteração material desta Política, você será notificado por e-mail e por um <strong>modal de reaceitação não dispensável</strong> exibido na próxima vez que acessar a plataforma.</p>
+
+      <p><strong>Histórico de aceites:</strong> seus aceites anteriores são registrados com data, versão aceita, IP e User Agent na tabela <code>terms_acceptances</code>, para fins de comprovação nos termos do art. 8º §2 da LGPD.</p>
+
+      <hr>
+
+      <h2>13. Contato</h2>
+
+      <p>Para dúvidas, solicitações de exercício de direitos ou reclamações relacionadas ao tratamento dos seus dados pessoais:</p>
+
+      <table>
+        <thead><tr><th>Canal</th><th>Informação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Encarregado (DPO)</strong></td><td>&lt;&lt;DPO_NAME&gt;&gt; — &lt;&lt;DPO_EMAIL&gt;&gt;</td></tr>
+          <tr><td><strong>Portal de autoatendimento</strong></td><td><code>/dashboard/privacy</code></td></tr>
+          <tr><td><strong>ANPD</strong></td><td>Para reclamações perante a autoridade reguladora: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>Respondemos em até <strong>15 dias</strong> a partir do recebimento da solicitação, nos termos do art. 19 da LGPD.</p>
+    </section>
+
+    <!-- EN Content -->
+    <section class="en-content prose max-w-none">
+      <h1>Privacy Policy</h1>
+
+      <p><strong>Last updated:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>This policy describes how &lt;&lt;COMPANY_NAME&gt;&gt; collects, uses, shares, and protects your personal data in accordance with the Lei Geral de Proteção de Dados (LGPD — Law No. 13,709/2018) and its subsequent amendments.</blockquote>
+
+      <hr>
+
+      <h2>1. Who we are</h2>
+
+      <p><strong>&lt;&lt;COMPANY_NAME&gt;&gt;</strong> (hereinafter "we", "us", or "Portal da Obra") is the legal entity that acts as the controller of personal data processed on this platform, as defined by LGPD Art. 5 §VI.</p>
+
+      <table>
+        <thead><tr><th>Information</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Legal name</td><td>&lt;&lt;COMPANY_NAME&gt;&gt;</td></tr>
+          <tr><td>CNPJ</td><td>&lt;&lt;COMPANY_CNPJ&gt;&gt;</td></tr>
+          <tr><td>Address</td><td>&lt;&lt;COMPANY_ADDRESS&gt;&gt;</td></tr>
+          <tr><td>Website</td><td><a href="https://portaldaobra.com.br">https://portaldaobra.com.br</a></td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>About the platform:</strong> Portal da Obra is a B2B marketplace for corporate construction sourcing. The platform connects clients (contracting companies) with contractors (vendor companies), enabling the opening of quotes (BIDs), vendor invitations, proposal evaluation, contract award, electronic signature collection via Assinafy, and project execution tracking.</p>
+
+      <p>All users are corporate representatives (natural persons acting on behalf of legal entities). The platform is not directed at individual end consumers.</p>
+
+      <hr>
+
+      <h2>2. Data Protection Officer (DPO)</h2>
+
+      <p>In compliance with LGPD Art. 41 and Art. 9 of Resolution CD/ANPD No. 18/2024, &lt;&lt;COMPANY_NAME&gt;&gt; has designated a Data Protection Officer (DPO).</p>
+
+      <table>
+        <thead><tr><th>Information</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Name</td><td>&lt;&lt;DPO_NAME&gt;&gt;</td></tr>
+          <tr><td>Contact email</td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (default: dpo@portaldaobra.com.br)</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>DPO commitments (Res. 18/2024):</strong></p>
+      <ul>
+        <li><strong>Art. 10 §IV</strong> — The controller ensures that data subjects have fast, effective, and adequate means to communicate with the DPO and exercise their rights.</li>
+        <li><strong>Art. 13</strong> — The DPO communicates with data subjects and the ANPD clearly and precisely <strong>in Portuguese</strong>.</li>
+        <li><strong>LGPD Art. 41 §1</strong> — The DPO's identity and contact information are publicly disclosed in a prominent, easily accessible location on this website and within the platform.</li>
+      </ul>
+
+      <p>The DPO accepts complaints, provides clarifications, takes appropriate action, and serves as the point of contact with the ANPD (Res. 18/2024, Art. 15).</p>
+
+      <hr>
+
+      <h2>3. What data we collect</h2>
+
+      <p>We collect personal data in the following categories. For the complete field-by-field inventory, refer to the Record of Processing Activities (RoPA).</p>
+
+      <table>
+        <thead><tr><th>Category</th><th>Examples</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Identification</strong></td><td>Full name, email, phone, address, postal code, company legal name, trade name</td><td>User-provided</td></tr>
+          <tr><td><strong>Financial</strong></td><td>Wallet balance, transaction history, PIX key (encrypted), contract values, Asaas transaction ID</td><td>System / user-provided</td></tr>
+          <tr><td><strong>KYC / Identity verification</strong></td><td>Document type and number (CPF, RG, CNPJ, IE, CCM, CREA/CAU), biometric/documentary data submitted to Asaas, verification hash</td><td>User-provided</td></tr>
+          <tr><td><strong>Free-text</strong></td><td>BID chat messages, Q&amp;A questions and answers, project descriptions, proposal notes, rejection reasons</td><td>User-provided</td></tr>
+          <tr><td><strong>Behavioral</strong></td><td>Last login, preferred locale, access origin (web/backoffice), notification preferences</td><td>System</td></tr>
+          <tr><td><strong>Technical</strong></td><td>Contract acceptance IP, User Agent, password reset token hash, Cognito sub</td><td>System</td></tr>
+          <tr><td><strong>Consent evidence</strong></td><td>IP and User Agent at contract/terms acceptance, terms acceptance timestamp, terms acceptance records</td><td>System</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Note on free-text fields:</strong> open-text fields (chat, Q&amp;A, descriptions) may contain personal data of third parties inserted by the user themselves. We recommend not inserting unnecessary personal data in these fields.</p>
+
+      <p><strong>Note on third-party references:</strong> we collect the name, email, and phone of reference contacts indicated by contractors during the vetting process. These contacts did not directly provide consent to the platform. If you are a reference contact and wish to exercise your rights under LGPD Art. 18, please contact our DPO.</p>
+
+      <hr>
+
+      <h2>4. Legal bases</h2>
+
+      <p>The processing of each category of personal data is grounded in at least one of the legal grounds set out in LGPD Art. 7 (general personal data) or Art. 11 (sensitive personal data).</p>
+
+      <table>
+        <thead><tr><th>Category</th><th>LGPD legal basis</th><th>Concrete example</th></tr></thead>
+        <tbody>
+          <tr><td>Identification</td><td>Art. 7 §V — contract execution</td><td>User name and CNPJ are required to issue contracts and BIDs on the platform</td></tr>
+          <tr><td>Financial</td><td>Art. 7 §II — compliance with legal obligation + Art. 16 §I — retention exception</td><td>Financial transactions retained for 5 years under fiscal obligation (Receita Federal)</td></tr>
+          <tr><td>KYC / biometric (documents)</td><td>Art. 11 §II.g — fraud prevention and data subject security in electronic identity verification processes</td><td>CPF and documents submitted to Asaas for identity verification and fraud prevention</td></tr>
+          <tr><td>KYC (tax data: CNPJ, IE)</td><td>Art. 7 §II — legal obligation (NF-e, ISS) + Art. 7 §V — contract execution</td><td>CNPJ required for fiscal invoicing and contract formalization</td></tr>
+          <tr><td>Marketing / commercial communications</td><td>Art. 7 §I — consent</td><td>Email marketing only after explicit consent at registration or in the preferences panel</td></tr>
+          <tr><td>Free-text (business operations)</td><td>Art. 7 §IX — legitimate interest</td><td>BID negotiation messages retained for process continuity and dispute resolution</td></tr>
+          <tr><td>Behavioral / technical</td><td>Art. 7 §IX — legitimate interest</td><td>Last login and User Agent used for session security monitoring</td></tr>
+          <tr><td>Consent evidence</td><td>Art. 7 §I — consent + Art. 8 §2 — controller's burden of proof</td><td>IP and timestamp of terms acceptance retained to demonstrate consent to the ANPD</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>5. Purposes of processing</h2>
+
+      <p>We process your personal data for the following purposes:</p>
+
+      <ol>
+        <li><strong>B2B construction sourcing service delivery</strong> — creating and managing quotes (BIDs), inviting vendors, evaluating proposals, awarding contracts.</li>
+        <li><strong>Contract execution</strong> — generating, rendering, and immutably storing contracts electronically signed via Assinafy (LGPD Art. 7 §V).</li>
+        <li><strong>Payment processing</strong> — operating digital wallets and transactions via Asaas (sub-accounts linked to clients and contractors).</li>
+        <li><strong>Identity verification (KYC)</strong> — verifying documents and preventing fraud to enable financial transactions (LGPD Art. 11 §II.g).</li>
+        <li><strong>Sending notifications</strong> — operational alerts (new proposals, BID status changes, contract signing, financial transactions) via email and in-app notifications.</li>
+        <li><strong>Security and fraud prevention</strong> — session monitoring, audit logs, access control.</li>
+        <li><strong>Compliance with legal obligations</strong> — fiscal retention of financial records, responding to requests from competent authorities.</li>
+        <li><strong>Marketing</strong> (only with consent) — communications about new platform features and relevant content for the construction industry.</li>
+        <li><strong>Platform improvement</strong> — usage analytics via Google Tag Manager (GTM-PHFRLWGJ), subject to your analytics cookie consent.</li>
+      </ol>
+
+      <hr>
+
+      <h2>6. Sharing and subprocessors</h2>
+
+      <p>We share personal data with the following subprocessors, only to the extent necessary for the stated purposes:</p>
+
+      <table>
+        <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Region</th><th>LGPD basis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AWS</strong> (RDS + S3 + Cognito)</td><td>Database, file storage, authentication</td><td><strong>us-east-1 (USA)</strong></td><td>Art. 33 §II.b — standard contractual clauses under AWS DPA (see disclosure below)</td></tr>
+          <tr><td><strong>AWS SES</strong></td><td>Email delivery (QA and production)</td><td>sa-east-1 (Brazil)</td><td>Domestic — Art. 33 not applicable</td></tr>
+          <tr><td><strong>Asaas</strong></td><td>Payments + user KYC</td><td>Brazil</td><td>Domestic — Art. 33 not applicable</td></tr>
+          <tr><td><strong>Assinafy</strong></td><td>Electronic contract signing</td><td>Brazil</td><td>Domestic — Art. 33 not applicable</td></tr>
+          <tr><td><strong>AgentMail</strong></td><td>Email delivery (local/dev)</td><td>USA</td><td>Art. 33 §II.b — standard contractual clauses under DPA (pending formalization)</td></tr>
+          <tr><td><strong>Sentry</strong></td><td>Error tracking (web + api)</td><td>USA</td><td>Art. 33 §II.b — standard contractual clauses under DPA (pending formalization)</td></tr>
+        </tbody>
+      </table>
+
+      <p>We do not sell or rent your personal data to third parties for advertising purposes.</p>
+
+      <p><strong>Subprocessor change policy:</strong> the addition of a new subprocessor that accesses platform customer personal data requires 30 days' prior notice by email to all account administrators before activation.</p>
+
+      <h3>Required disclosure — AWS international transfer</h3>
+
+      <blockquote>"Personal data stored in AWS infrastructure is processed in the us-east-1 region (United States), constituting an international transfer governed by Article 33 §II.b of the LGPD, under standard contractual clauses pursuant to the Data Processing Agreement in effect with Amazon Web Services, Inc."</blockquote>
+
+      <hr>
+
+      <h2>7. Retention</h2>
+
+      <p>Personal data is retained for the minimum period necessary for the stated purposes, subject to the following schedules:</p>
+
+      <table>
+        <thead><tr><th>Data type</th><th>Period</th><th>Legal basis</th></tr></thead>
+        <tbody>
+          <tr><td>Identification and operational data (non-transacted)</td><td>30 days after account deletion, followed by anonymization</td><td>Art. 12 (anonymized data falls outside LGPD scope)</td></tr>
+          <tr><td>Financial and fiscal records</td><td>5 years after the close of the corresponding fiscal year</td><td>Art. 16 §I — legal obligation (Receita Federal)</td></tr>
+          <tr><td>Electronically signed contracts</td><td>Indefinite — cryptographic immutability required for legal integrity</td><td>Art. 7 §V — contract execution; Art. 16 §I — legal obligation</td></tr>
+          <tr><td>Consent evidence</td><td>Indefinite (for proof before the ANPD)</td><td>Art. 8 §2 — controller's burden of proof</td></tr>
+          <tr><td>KYC documents</td><td>5 years (Art. 16 §I); at expiry, sever-link: PII columns nulled + S3 file deleted</td><td>Art. 16 §I</td></tr>
+          <tr><td>Authentication tokens and password reset tokens</td><td>Only for the validity period of the session / token</td><td>Art. 18 §IV — immediate hard-delete</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>8. Data subject rights</h2>
+
+      <p>Under LGPD Art. 18, you have the following rights with respect to personal data processed by &lt;&lt;COMPANY_NAME&gt;&gt;:</p>
+
+      <table>
+        <thead><tr><th>Right</th><th>Description</th><th>How to exercise</th></tr></thead>
+        <tbody>
+          <tr><td><strong>§I — Confirmation</strong></td><td>Confirm that your data is being processed</td><td>Portal <code>/dashboard/privacy</code> or email to the DPO</td></tr>
+          <tr><td><strong>§II — Access</strong></td><td>Access your personal data</td><td>Portal <code>/dashboard/privacy</code> (export) or email to the DPO</td></tr>
+          <tr><td><strong>§III — Correction</strong></td><td>Correct incomplete, inaccurate, or outdated data</td><td>Portal <code>/dashboard/privacy</code> or email to the DPO</td></tr>
+          <tr><td><strong>§IV — Anonymization / blocking / deletion</strong></td><td>Request anonymization, blocking, or deletion of unnecessary data or data processed in violation of the LGPD</td><td>Portal <code>/dashboard/privacy</code> or email to the DPO</td></tr>
+          <tr><td><strong>§V — Portability</strong></td><td>Request portability of your data to another service provider</td><td>Email to the DPO (export in open format)</td></tr>
+          <tr><td><strong>§VI — Deletion</strong></td><td>Request deletion of consent-based data</td><td>Portal <code>/dashboard/privacy</code> or email to the DPO</td></tr>
+          <tr><td><strong>§VII — Sharing information</strong></td><td>Obtain information about entities with whom we share your data</td><td>This policy, §6, or email to the DPO</td></tr>
+          <tr><td><strong>§VIII — Non-consent information</strong></td><td>Be informed about the option not to give consent and its consequences</td><td>This policy and the registration flow</td></tr>
+          <tr><td><strong>§IX — Consent revocation</strong></td><td>Revoke consent for consent-based processing (e.g., marketing)</td><td>Portal <code>/dashboard/privacy</code> — consent preferences panel</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Response time:</strong> We respond to data subject requests within 15 days, pursuant to LGPD Art. 19.</p>
+
+      <p><strong>Self-service portal:</strong> the <code>/dashboard/privacy</code> portal allows you to exercise access, export, correction, and deletion rights without emailing the DPO.</p>
+
+      <p><strong>Alternative contact:</strong> For complex requests or requests that cannot be handled through the portal, email the DPO at &lt;&lt;DPO_EMAIL&gt;&gt;.</p>
+
+      <hr>
+
+      <h2>9. Cookies</h2>
+
+      <p>This platform uses cookies. For detailed information about the types of cookies used, their purposes, and how to manage them, please refer to our <strong><a href="/legal/cookies/">Cookie Policy</a></strong>.</p>
+
+      <p>In summary, we use three categories of cookies:</p>
+      <ul>
+        <li><strong>Essential</strong> — always active; required for authentication and platform functionality.</li>
+        <li><strong>Analytics</strong> — only with your consent; used for usage analysis via Google Tag Manager (GTM-PHFRLWGJ).</li>
+        <li><strong>Marketing</strong> — only with your consent; reserved for future use.</li>
+      </ul>
+
+      <hr>
+
+      <h2>10. Deletion and anonymization</h2>
+
+      <h3>Default rule: anonymize-by-default</h3>
+
+      <p>When you request account deletion or exercise the right to erasure (LGPD Art. 18 §IV), we apply the following rule: <strong>rather than destroying historical records that could undermine the integrity of past transactions, we anonymize identifying fields</strong> — replacing name, email, CPF, CNPJ, phone, address, and other identifying data with neutral values (e.g., "Removed User") or nulls.</p>
+
+      <p>Anonymized data ceases to be personal data under LGPD Art. 12 (data that cannot be associated, directly or indirectly, with the identity of an individual by reasonable technical means).</p>
+
+      <p>Financial and fiscal records are retained for the legally required period (5 years, Art. 16 §I) linked to the anonymized record.</p>
+
+      <h3>Q5 — Signed contracts: irreversible preservation</h3>
+
+      <blockquote>"When you sign a contract through the platform, your identification data is preserved in the signed document in an irreversible manner, as required for the legal integrity of the contract (LGPD Art. 7 §V — contract execution — and Art. 16 §I — compliance with legal obligation)."</blockquote>
+
+      <p>This means the signed PDF, the signature certificate, and the contract body snapshot — which contain your name and identifying data — are retained indefinitely. Altering these documents would invalidate the electronic signature and violate the legal integrity of the contractual instrument.</p>
+
+      <h3>Q3 — KYC documents: sever-link</h3>
+
+      <p>For identity verification documents (KYC) submitted via Asaas (CPF, driver's license, CNPJ, document photos), we apply the <strong>sever-link</strong> pattern:</p>
+
+      <ul>
+        <li>Upon receiving a deletion request, <strong>document files are deleted from S3 storage</strong> and the columns containing identifying data (document type, number, verification data) are nulled in the database.</li>
+        <li>The <strong>verification record itself is retained</strong> (with <code>is_anonymized = true</code>), without any identifying data, to preserve the referential integrity of the financial and fiscal audit history.</li>
+        <li>Retention of the anonymized verification record is grounded in Art. 16 §I (legal fiscal obligation) and the need to maintain the integrity of the financial transaction audit trail.</li>
+      </ul>
+
+      <hr>
+
+      <h2>11. Children and adolescents</h2>
+
+      <blockquote>"Portal da Obra is a B2B platform for corporate construction sourcing. Collection of personal data from minors is not anticipated by design. If a minor's data is inadvertently collected, the controller exercises immediate deletion under LGPD Art. 18 §IV."</blockquote>
+
+      <p>All platform users are corporate representatives of legal entities. If you believe a minor's data has been inadvertently collected, please contact our DPO immediately at &lt;&lt;DPO_EMAIL&gt;&gt;.</p>
+
+      <hr>
+
+      <h2>12. Changes to this Policy</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; may update this Privacy Policy periodically to reflect changes in our data processing practices, in response to legislative changes (LGPD and ANPD regulations), or for operational reasons.</p>
+
+      <p><strong>Versioning:</strong> each published version receives a version number (e.g., 1.0.0) and an update date, recorded in the <code>terms_versions</code> table of the platform.</p>
+
+      <p><strong>Notice of changes:</strong> in the event of a material change to this Policy, you will be notified by email and by a <strong>non-dismissible re-acceptance modal</strong> displayed the next time you access the platform.</p>
+
+      <p><strong>Acceptance history:</strong> your previous acceptances are recorded with date, accepted version, IP, and User Agent in the <code>terms_acceptances</code> table, for evidentiary purposes under LGPD Art. 8 §2.</p>
+
+      <hr>
+
+      <h2>13. Contact</h2>
+
+      <p>For questions, requests to exercise rights, or complaints related to the processing of your personal data:</p>
+
+      <table>
+        <thead><tr><th>Channel</th><th>Information</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Data Protection Officer (DPO)</strong></td><td>&lt;&lt;DPO_NAME&gt;&gt; — &lt;&lt;DPO_EMAIL&gt;&gt;</td></tr>
+          <tr><td><strong>Self-service portal</strong></td><td><code>/dashboard/privacy</code></td></tr>
+          <tr><td><strong>ANPD</strong></td><td>For complaints to the regulatory authority: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>We respond within <strong>15 days</strong> of receiving the request, pursuant to LGPD Art. 19.</p>
+
+      <p>The DPO will communicate with you in Portuguese, in accordance with the commitment established by Art. 13 of Resolution CD/ANPD No. 18/2024.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 mt-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+        <a href="/legal/privacy/" class="font-medium text-portal-blue-primary">
+          <span class="pt_br-content">Privacidade</span>
+          <span class="en-content">Privacy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/terms/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Termos de Uso</span>
+          <span class="en-content">Terms of Use</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/cookies/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Política de Cookies</span>
+          <span class="en-content">Cookie Policy</span>
+        </a>
+        <a href="/" class="ml-auto hover:text-slate-800 transition-colors flex items-center gap-1">
+          <span>←</span>
+          <span class="pt_br-content">Voltar ao site</span>
+          <span class="en-content">Back to site</span>
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-slate-400">
+        <span class="pt_br-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — Todos os direitos reservados.</span>
+        <span class="en-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — All rights reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      document.body.className = 'bg-white font-sans lang-' + lang;
+      // Update button styles
+      document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+        if (btn.dataset.toggleLang === lang) {
+          btn.classList.add('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+        } else {
+          btn.classList.remove('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-600');
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.toggleLang));
+    });
+
+    // Apply saved choice on load
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  </script>
+</body>
+</html>
