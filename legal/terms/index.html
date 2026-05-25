@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termos de Uso — Portal da Obra</title>
+  <meta name="description" content="Termos de Uso da plataforma Portal da Obra para contratação corporativa na construção civil.">
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+  <!-- Google Fonts - DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'portal': {
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .lang-pt_br .en-content,
+    .lang-en .pt_br-content { display: none; }
+
+    .prose h1 { font-size: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #001D4A; }
+    .prose h2 { font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #001D4A; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
+    .prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #0047AB; }
+    .prose p { margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.75; color: #334155; }
+    .prose ul { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: disc; }
+    .prose ol { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: decimal; }
+    .prose li { margin-top: 0.35rem; margin-bottom: 0.35rem; line-height: 1.7; color: #334155; }
+    .prose blockquote { border-left: 4px solid #5B8FDB; padding-left: 1rem; margin: 1.25rem 0; font-style: italic; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+    .prose th { background: #001D4A; color: #fff; padding: 0.6rem 0.85rem; text-align: left; font-weight: 600; }
+    .prose td { border: 1px solid #e2e8f0; padding: 0.55rem 0.85rem; vertical-align: top; color: #334155; }
+    .prose tr:nth-child(even) td { background: #f8fafc; }
+    .prose code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; font-family: 'Courier New', monospace; color: #0047AB; }
+    .prose a { color: #0047AB; text-decoration: underline; }
+    .prose a:hover { color: #001D4A; }
+    .prose strong { font-weight: 600; color: #1e293b; }
+    .prose hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+
+    .lang-btn-active { background: #0047AB !important; color: #fff !important; }
+    .lang-btn { transition: all 0.2s; }
+  </style>
+  <!-- GTM Consent Mode v2 default-deny (D-18.0-3) — must run BEFORE any GTM tag could fire -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    window.__gtmConsentInitialized = true;
+  </script>
+  <!-- GTM script itself is injected dynamically by js/gtm-gate.js after explicit analytics consent -->
+  <script src="/js/gtm-gate.js" defer></script>
+</head>
+<body class="bg-white font-sans lang-pt_br">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-7">
+      </a>
+      <div class="flex items-center gap-2">
+        <button data-toggle-lang="pt_br" id="btn-pt_br"
+          class="lang-btn lang-btn-active px-3 py-1.5 rounded-full text-sm font-medium bg-portal-blue-primary text-white">
+          PT-BR
+        </button>
+        <button data-toggle-lang="en" id="btn-en"
+          class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-slate-50 border-b border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 text-sm text-slate-500">
+      <a href="/" class="hover:text-portal-blue-primary">Portal da Obra</a>
+      <span class="mx-2">›</span>
+      <span class="pt_br-content">Termos de Uso</span>
+      <span class="en-content">Terms of Use</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- PT-BR Content -->
+    <section class="pt_br-content prose max-w-none">
+      <h1>Termos de Uso</h1>
+
+      <p><strong>Última atualização:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>Estes Termos de Uso regem o acesso e a utilização da plataforma &lt;&lt;COMPANY_NAME&gt;&gt;, incluindo todos os seus recursos, funcionalidades e serviços. Ao criar uma conta ou utilizar a plataforma, você concorda expressamente com estes Termos.</blockquote>
+
+      <hr>
+
+      <h2>1. Aceitação dos Termos</h2>
+
+      <p>Ao acessar ou utilizar a plataforma &lt;&lt;COMPANY_NAME&gt;&gt;, você declara que leu, compreendeu e aceita integralmente estes Termos de Uso, bem como nossa <strong>Política de Privacidade</strong> disponível em <a href="/legal/privacy/">/legal/privacy</a>.</p>
+
+      <p>A aceitação é realizada de forma <strong>explícita</strong> por meio de clique no botão "Aceitar" exibido no momento do cadastro e, posteriormente, sempre que uma nova versão destes Termos for publicada. A aceitação eletrônica tem o mesmo valor jurídico de uma assinatura manuscrita, nos termos da Lei nº 14.063/2020 e do art. 10 da MP nº 2.200-2/2001.</p>
+
+      <p>Estes Termos entram em vigor a partir de <strong>&lt;&lt;EFFECTIVE_DATE&gt;&gt;</strong> e vinculam o usuário e a empresa que ele representa desde o momento da aceitação.</p>
+
+      <p><strong>Se você não concordar com qualquer disposição destes Termos, não utilize a plataforma.</strong></p>
+
+      <hr>
+
+      <h2>2. Descrição do Serviço</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; é uma plataforma B2B de SaaS (Software como Serviço) para sourcing corporativo na construção civil. A plataforma viabiliza o gerenciamento estruturado de processos de contratação em projetos multi-unidade, conectando:</p>
+
+      <ul>
+        <li><strong>Clientes (Lojistas)</strong> — empresas contratantes que abrem orçamentos e contratam serviços de construção;</li>
+        <li><strong>Contratadas (Construtoras)</strong> — empresas fornecedoras que recebem convites para BIDs, submetem propostas e executam contratos;</li>
+        <li><strong>Administradores (Portal da Obra)</strong> — equipe operacional da &lt;&lt;COMPANY_NAME&gt;&gt; responsável pela curadoria, vetting e supervisão da plataforma.</li>
+      </ul>
+
+      <p><strong>Funcionalidades principais:</strong></p>
+
+      <ol>
+        <li>Abertura e gestão de orçamentos (chamados de <strong>"Quote"</strong> pela perspectiva do Cliente e <strong>"BID"</strong> pela perspectiva da Contratada — ver §6);</li>
+        <li>Convite de fornecedores habilitados (com validação CNPJ e vetting operacional);</li>
+        <li>Q&amp;A com filtragem por inteligência artificial;</li>
+        <li>Avaliação de propostas com curadoria do Portal;</li>
+        <li>Chat privado entre Cliente e Contratada por BID;</li>
+        <li>Adjudicação de contrato e coleta de assinaturas eletrônicas via Assinafy;</li>
+        <li>Execução do projeto com rastreamento de marcos e aprovação de artefatos pelo Cliente;</li>
+        <li>Processamento de pagamentos via subconta Asaas.</li>
+      </ol>
+
+      <p>A plataforma é dirigida <strong>exclusivamente a pessoas jurídicas</strong> representadas por pessoas físicas com poderes de representação outorgados. Não é uma plataforma de consumo final.</p>
+
+      <hr>
+
+      <h2>3. Cadastro e Elegibilidade</h2>
+
+      <h3>3.1 Elegibilidade</h3>
+
+      <p>Para utilizar a plataforma &lt;&lt;COMPANY_NAME&gt;&gt;, o usuário e a empresa que ele representa devem:</p>
+
+      <ol>
+        <li>Ser <strong>pessoa jurídica</strong> devidamente constituída e registrada no Brasil, com <strong>CNPJ ativo</strong> junto à Receita Federal;</li>
+        <li>Ser representada por um responsável legal com <strong>poderes de representação</strong> (sócio, diretor, procurador ou equivalente) para vinculação contratual;</li>
+        <li>Não estar impedida por lei ou decisão judicial de celebrar contratos ou praticar atos comerciais.</li>
+      </ol>
+
+      <p>A plataforma <strong>não é dirigida a pessoas físicas na condição de consumidores finais</strong> nem a menores de 18 anos.</p>
+
+      <h3>3.2 Processo de cadastro</h3>
+
+      <p>O cadastro está sujeito a <strong>aprovação prévia</strong> pela equipe de backoffice da &lt;&lt;COMPANY_NAME&gt;&gt;. Nenhum usuário é habilitado automaticamente. A aprovação envolve:</p>
+
+      <ul>
+        <li>Verificação do CNPJ e regularidade fiscal (Receita Federal);</li>
+        <li>Vetting operacional da empresa (análise de capacidade técnica, referências, documentação);</li>
+        <li>Validação dos dados de identificação submetidos.</li>
+      </ul>
+
+      <p>O usuário compromete-se a fornecer informações <strong>verdadeiras, completas e atualizadas</strong> no cadastro e a manter esses dados atualizados durante toda a vigência do contrato. Informações falsas ou desatualizadas constituem violação destes Termos e podem acarretar suspensão ou cancelamento da conta.</p>
+
+      <h3>3.3 Responsabilidade pela conta</h3>
+
+      <p>O usuário é responsável por:</p>
+
+      <ul>
+        <li>Manter a confidencialidade de suas credenciais de acesso (login e senha);</li>
+        <li>Todas as ações realizadas em nome da empresa sob sua conta;</li>
+        <li>Notificar imediatamente a &lt;&lt;COMPANY_NAME&gt;&gt; em caso de acesso não autorizado ou comprometimento de credenciais.</li>
+      </ul>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; não se responsabiliza por danos decorrentes do uso não autorizado de credenciais por falha do usuário em adotar as precauções devidas.</p>
+
+      <hr>
+
+      <h2>4. Conduta do Usuário</h2>
+
+      <h3>4.1 Comportamentos proibidos</h3>
+
+      <p>Ao utilizar a plataforma, o usuário compromete-se a <strong>não</strong>:</p>
+
+      <ol>
+        <li>Fornecer informações falsas, enganosas ou fraudulentas em qualquer etapa do processo de BID, cadastro ou execução contratual;</li>
+        <li>Assediar, intimidar, ameaçar ou discriminar outros usuários da plataforma;</li>
+        <li>Utilizar a plataforma para fins ilegais, incluindo lavagem de dinheiro, financiamento de atividades ilícitas, fraude fiscal ou qualquer ato tipificado como crime ou contravenção penal no ordenamento jurídico brasileiro;</li>
+        <li>Realizar scraping, crawling, indexação automatizada ou qualquer extração sistemática de dados da plataforma sem autorização prévia e expressa por escrito da &lt;&lt;COMPANY_NAME&gt;&gt;;</li>
+        <li>Tentar fazer engenharia reversa, decompilar, desmontar ou derivar o código-fonte da plataforma ou de qualquer de seus componentes;</li>
+        <li>Introduzir vírus, malware, scripts maliciosos ou qualquer código que possa prejudicar o funcionamento da plataforma ou de sistemas de outros usuários;</li>
+        <li>Utilizar a plataforma para enviar comunicações comerciais não solicitadas (spam) a outros usuários;</li>
+        <li>Contornar ou tentar contornar mecanismos de segurança, controles de acesso ou regras de elegibilidade da plataforma;</li>
+        <li>Ceder, sublicenciar ou transferir sua conta ou credenciais de acesso a terceiros.</li>
+      </ol>
+
+      <h3>4.2 Consequências de violações</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; reserva-se o direito de, a seu exclusivo critério e sem prejuízo de outras medidas legais:</p>
+
+      <ul>
+        <li><strong>Suspender temporariamente</strong> o acesso do usuário à plataforma enquanto investiga uma possível violação;</li>
+        <li><strong>Encerrar definitivamente</strong> a conta do usuário em caso de violação confirmada;</li>
+        <li><strong>Reportar atividades ilícitas</strong> às autoridades competentes;</li>
+        <li><strong>Reter evidências</strong> de uso indevido para fins de exercício de direito de regresso.</li>
+      </ul>
+
+      <hr>
+
+      <h2>5. Propriedade Intelectual</h2>
+
+      <h3>5.1 Direitos da &lt;&lt;COMPANY_NAME&gt;&gt;</h3>
+
+      <p>A plataforma &lt;&lt;COMPANY_NAME&gt;&gt;, incluindo seu código-fonte, design, interface, arquitetura, funcionalidades, marcas, logotipos, textos e documentação, é de <strong>propriedade exclusiva da &lt;&lt;COMPANY_NAME&gt;&gt;</strong> (CNPJ: &lt;&lt;COMPANY_CNPJ&gt;&gt;) e está protegida pela Lei nº 9.610/1998 (Lei de Direitos Autorais), pela Lei nº 9.279/1996 (Lei de Propriedade Industrial) e pelas demais normas aplicáveis.</p>
+
+      <p>O uso da plataforma não confere ao usuário qualquer direito de propriedade intelectual sobre a plataforma ou seus componentes. É vedado ao usuário reproduzir, modificar, distribuir, sublicenciar ou criar obras derivadas da plataforma sem autorização prévia e escrita da &lt;&lt;COMPANY_NAME&gt;&gt;.</p>
+
+      <h3>5.2 Conteúdo do usuário</h3>
+
+      <p>O usuário retém todos os direitos de propriedade intelectual sobre o conteúdo que ele próprio carrega na plataforma, incluindo <strong>especificações técnicas, plantas, memoriais descritivos, desenhos de projeto, propostas comerciais e demais documentos</strong> ("Conteúdo do Usuário").</p>
+
+      <p>Ao carregar Conteúdo do Usuário na plataforma, o usuário outorga à &lt;&lt;COMPANY_NAME&gt;&gt; uma <strong>licença não exclusiva, limitada ao escopo do serviço contratado</strong>, para:</p>
+
+      <ul>
+        <li>Armazenar, processar e exibir o Conteúdo do Usuário às partes autorizadas (conforme o papel contratual: Cliente, Contratada ou Administrador);</li>
+        <li>Transmitir o Conteúdo do Usuário aos subprocessadores necessários para a prestação do serviço (ex.: armazenamento em AWS S3, assinatura via Assinafy);</li>
+        <li>Manter o Conteúdo do Usuário pelos prazos estabelecidos na Política de Privacidade.</li>
+      </ul>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; <strong>não utiliza o Conteúdo do Usuário para fins de treinamento de modelos de inteligência artificial</strong> sem consentimento específico e prévio do usuário.</p>
+
+      <hr>
+
+      <h2>6. Processo de BID / Orçamento</h2>
+
+      <h3>6.1 Denominação e perspectiva de cada papel</h3>
+
+      <p>A entidade central do processo de contratação é denominada <strong>"BID"</strong> no código, nas tabelas do banco de dados e em toda a comunicação técnica — este é o termo padrão do setor de construção civil brasileiro. A interface exibe:</p>
+
+      <table>
+        <thead><tr><th>Papel</th><th>Denominação na interface</th></tr></thead>
+        <tbody>
+          <tr><td>Cliente (Lojista) — quem abre</td><td>Orçamento (Quote em inglês)</td></tr>
+          <tr><td>Contratada (Construtora) — quem responde</td><td>BID</td></tr>
+          <tr><td>Administrador (backoffice)</td><td>BID</td></tr>
+        </tbody>
+      </table>
+
+      <h3>6.2 Ciclo do processo</h3>
+
+      <p>O processo de sourcing na plataforma segue as seguintes etapas:</p>
+
+      <ol>
+        <li><strong>Abertura do Orçamento:</strong> o Cliente cria um Orçamento descrevendo o escopo do projeto, requisitos técnicos e cronograma estimado;</li>
+        <li><strong>Convite de Contratadas:</strong> a &lt;&lt;COMPANY_NAME&gt;&gt; ou o Cliente convida Contratadas habilitadas para participar do BID. A lista de participantes pode ser curada pela equipe do Portal;</li>
+        <li><strong>NDA e acesso ao escopo:</strong> a Contratada convidada pode ser solicitada a assinar um Acordo de Confidencialidade (NDA) antes de acessar o escopo completo do projeto. O NDA reutiliza a infraestrutura de contratos da plataforma (ver §8);</li>
+        <li><strong>Q&amp;A com filtragem por IA:</strong> a Contratada pode submeter perguntas técnicas ao Cliente. As perguntas passam por filtragem automática para remover identificadores e são respondidas pelo Cliente de forma centralizada, preservando o anonimato entre concorrentes;</li>
+        <li><strong>Submissão de proposta:</strong> cada Contratada prepara e submete sua proposta comercial e técnica dentro do prazo estipulado;</li>
+        <li><strong>Avaliação e curadoria:</strong> o Portal revisa as propostas recebidas e apresenta uma análise comparativa ao Cliente. A identidade das Contratadas pode permanecer anonimizada durante esta etapa, a critério da configuração do BID;</li>
+        <li><strong>Chat privado:</strong> após a curadoria e a abertura dos envelopes, é habilitado um canal de chat privado entre o Cliente e cada Contratada individualmente para negociação final;</li>
+        <li><strong>Adjudicação e contrato:</strong> o Cliente seleciona a Contratada vencedora. A plataforma gera o contrato de execução com base no tipo de contrato configurado, e as partes assinam eletronicamente via Assinafy (ver §8);</li>
+        <li><strong>Execução e artefatos:</strong> durante a execução, a Contratada carrega artefatos de progresso (fotos, relatórios, medições). O Cliente revisa e aprova formalmente os artefatos na plataforma.</li>
+      </ol>
+
+      <h3>6.3 Responsabilidade sobre o conteúdo do BID</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; atua como <strong>facilitador</strong> do processo de sourcing e não é parte nos contratos celebrados entre Clientes e Contratadas. A responsabilidade pelo escopo técnico, pelos prazos e pelo conteúdo das propostas é das partes contratantes. A &lt;&lt;COMPANY_NAME&gt;&gt; não garante o desempenho contratual de nenhuma Contratada.</p>
+
+      <hr>
+
+      <h2>7. Pagamentos</h2>
+
+      <h3>7.1 Modelo de subconta Asaas</h3>
+
+      <p>O processamento de pagamentos na plataforma &lt;&lt;COMPANY_NAME&gt;&gt; é realizado por meio da integração com a <strong>Asaas Gestão Financeira Ltda.</strong> ("Asaas"), utilizando o modelo de <strong>subcontas vinculadas</strong>. Cada empresa (Cliente ou Contratada) cadastrada na plataforma possui uma subconta individual na Asaas, com saldo próprio gerenciado pela Asaas.</p>
+
+      <p>A Asaas opera como <strong>instituição de pagamento</strong> autorizada pelo Banco Central do Brasil, nos termos da Resolução BCB nº 80/2021 e legislação aplicável.</p>
+
+      <h3>7.2 Conta Escrow nativa</h3>
+
+      <p>A plataforma utiliza a funcionalidade de <strong>Conta Escrow nativa</strong> da Asaas para reter valores de pagamento durante o período de execução contratual, liberando os recursos à Contratada conforme os marcos de aprovação definidos no contrato e confirmados pelo Cliente na plataforma.</p>
+
+      <h3>7.3 Autorização do usuário</h3>
+
+      <p>Ao utilizar as funcionalidades de pagamento da plataforma, o usuário autoriza expressamente a &lt;&lt;COMPANY_NAME&gt;&gt; a:</p>
+
+      <ul>
+        <li>Invocar operações de pagamento (transferências, cobranças, retenções e liberações de escrow) em nome da empresa do usuário junto à Asaas, conforme as instruções registradas na plataforma;</li>
+        <li>Acessar informações de saldo e histórico de transações da subconta Asaas do usuário para fins de exibição na plataforma e de prestação de contas.</li>
+      </ul>
+
+      <p>Esta autorização é específica para as operações realizadas dentro da plataforma e não confere à &lt;&lt;COMPANY_NAME&gt;&gt; poderes para realizar operações financeiras além do escopo contratual.</p>
+
+      <h3>7.4 Tarifas e cobranças</h3>
+
+      <p>As tarifas da plataforma e os percentuais aplicáveis sobre transações são definidos no contrato de prestação de serviços celebrado entre a &lt;&lt;COMPANY_NAME&gt;&gt; e o usuário no momento do onboarding. A &lt;&lt;COMPANY_NAME&gt;&gt; reserva-se o direito de revisar as tarifas mediante aviso prévio de 30 (trinta) dias.</p>
+
+      <h3>7.5 Disputas financeiras</h3>
+
+      <p>Disputas relativas a transações realizadas via Asaas são regidas pelos Termos de Uso da Asaas e pelo contrato de prestação de serviços. A &lt;&lt;COMPANY_NAME&gt;&gt; atuará como facilitador em disputas entre Clientes e Contratadas, mas não é responsável por inadimplemento contratual de nenhuma das partes.</p>
+
+      <hr>
+
+      <h2>8. Contratos Assinados</h2>
+
+      <h3>8.1 Infraestrutura de assinatura eletrônica</h3>
+
+      <p>Os contratos celebrados entre Clientes e Contratadas por meio da plataforma são assinados eletronicamente com uso da plataforma <strong>Assinafy</strong> (Griaule Biometrics do Brasil Ltda.), que aplica certificado de assinatura digital em conformidade com a ICP-Brasil e com os requisitos da Lei nº 14.063/2020.</p>
+
+      <p>O processo de assinatura eletrônica é gerenciado pela Assinafy; a &lt;&lt;COMPANY_NAME&gt;&gt; recebe o documento assinado e seu certificado de integridade via API após a conclusão do fluxo de assinaturas.</p>
+
+      <h3>8.2 Imutabilidade contratual (Invariante I-17)</h3>
+
+      <p><strong>Os contratos assinados são imutáveis.</strong> Uma vez que todas as partes tenham assinado o documento, nenhuma alteração pode ser feita ao corpo do contrato, às suas variáveis, ao conteúdo ou aos dados dos signatários, seja pela plataforma, seja pelos usuários.</p>
+
+      <p>Qualquer tentativa de alteração do conteúdo de um contrato já assinado via API retornará o erro <code>405 CONTRACT_IMMUTABLE</code>. Esta imutabilidade é intencional e tecnicamente necessária para preservar a validade jurídica da assinatura eletrônica.</p>
+
+      <h3>8.3 Preservação dos dados de identificação</h3>
+
+      <p>Em conformidade com os requisitos de integridade jurídica dos contratos assinados eletronicamente e com a legislação brasileira aplicável:</p>
+
+      <blockquote>"Quando você assina um contrato através da plataforma, seus dados de identificação ficam preservados no documento assinado de forma irreversível, conforme exigido para a integridade jurídica do contrato (LGPD art. 7º §V — execução de contrato — e art. 16, I — cumprimento de obrigação legal)."</blockquote>
+
+      <p>Isso significa que o PDF assinado, o certificado de assinatura e o snapshot do corpo do contrato — que contêm nome, CNPJ e demais dados identificadores dos signatários — são <strong>retidos indefinidamente</strong> pela plataforma. A alteração desses dados invalidaria a assinatura eletrônica e comprometeria a validade jurídica do instrumento contratual. Para mais detalhes, consulte a §10 da nossa <strong>Política de Privacidade</strong> em <a href="/legal/privacy/">/legal/privacy</a>.</p>
+
+      <h3>8.4 Status e operações disponíveis pós-assinatura</h3>
+
+      <p>Após a assinatura, as únicas operações permitidas sobre um contrato são:</p>
+
+      <ul>
+        <li>Alteração de <strong>status</strong> pelo administrador do Portal (ex.: em andamento, concluído, rescindido);</li>
+        <li><strong>Sincronização</strong> do status com a Assinafy (via endpoint de webhook ou pull);</li>
+        <li><strong>Download</strong> do PDF assinado e do certificado;</li>
+        <li><strong>Marcação como rejeitado</strong> pelo administrador, com registro de razão.</li>
+      </ul>
+
+      <p>O documento assinado em si não é alterável por nenhuma dessas operações.</p>
+
+      <hr>
+
+      <h2>9. Limitação de Responsabilidade</h2>
+
+      <h3>9.1 Papel de facilitador</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; atua como <strong>facilitador tecnológico</strong> do processo de sourcing corporativo na construção civil. A plataforma conecta Clientes e Contratadas e fornece a infraestrutura para a condução do processo, mas <strong>não é parte nos contratos</strong> celebrados entre essas partes e <strong>não assume responsabilidade</strong> pelo cumprimento ou descumprimento das obrigações contratuais por qualquer das partes.</p>
+
+      <h3>9.2 Isenção de responsabilidade por atrasos e disputas contratuais</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; <strong>não se responsabiliza</strong> por:</p>
+
+      <ul>
+        <li>Atrasos na execução de obras ou serviços contratados entre Clientes e Contratadas;</li>
+        <li>Disputas comerciais, técnicas ou financeiras entre as partes contratantes;</li>
+        <li>Qualidade, adequação ou conformidade técnica dos serviços ou materiais entregues pelas Contratadas;</li>
+        <li>Inadimplemento financeiro de qualquer das partes.</li>
+      </ul>
+
+      <h3>9.3 Limitação de danos</h3>
+
+      <p>Na máxima extensão permitida pela legislação brasileira aplicável, a responsabilidade total da &lt;&lt;COMPANY_NAME&gt;&gt; perante um usuário, seja por ação contratual, extracontratual ou qualquer outra, está <strong>limitada ao total das tarifas pagas pelo usuário à &lt;&lt;COMPANY_NAME&gt;&gt; nos 12 (doze) meses anteriores</strong> ao evento gerador do dano.</p>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; não será responsável por danos indiretos, incidentais, especiais, punitivos ou consequentes, incluindo lucros cessantes, perda de oportunidade de negócio ou danos reputacionais, mesmo que tenha sido avisada da possibilidade de tais danos.</p>
+
+      <h3>9.4 Força maior</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; não será responsável pelo descumprimento total ou parcial de suas obrigações quando esse descumprimento decorrer de <strong>caso fortuito ou força maior</strong>, assim entendidos os eventos imprevisíveis ou inevitáveis que escapem ao controle razoável da &lt;&lt;COMPANY_NAME&gt;&gt;, incluindo desastres naturais, falhas de infraestrutura de terceiros (ex.: provedores de nuvem), atos governamentais, guerras, pandemias ou crises sistêmicas.</p>
+
+      <h3>9.5 Disponibilidade da plataforma</h3>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; empreenderá esforços comercialmente razoáveis para manter a plataforma disponível, mas <strong>não garante disponibilidade ininterrupta</strong>. Manutenções programadas serão comunicadas com antecedência mínima de 24 horas, salvo em casos de emergência técnica.</p>
+
+      <hr>
+
+      <h2>10. Privacidade</h2>
+
+      <p>O tratamento dos seus dados pessoais pela &lt;&lt;COMPANY_NAME&gt;&gt; é regido pela nossa <strong>Política de Privacidade</strong>, disponível em <a href="/legal/privacy/">/legal/privacy</a>, que é parte integrante destes Termos de Uso.</p>
+
+      <p>A coleta, o uso, o compartilhamento e a retenção dos seus dados pessoais são realizados em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong> e com as regulamentações da Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+      <p>Ao aceitar estes Termos, você declara que leu e compreendeu a Política de Privacidade e consente com o tratamento dos seus dados pessoais conforme nela descrito, nas hipóteses em que o consentimento é a base legal aplicável (art. 7º §I da LGPD).</p>
+
+      <hr>
+
+      <h2>11. Lei Aplicável e Jurisdição</h2>
+
+      <p>Estes Termos de Uso são regidos e interpretados de acordo com as leis da <strong>República Federativa do Brasil</strong>.</p>
+
+      <p>Para dirimir quaisquer controvérsias oriundas ou relacionadas a estes Termos, as partes elegem o <strong>foro da comarca de &lt;&lt;JURISDICTION_CITY&gt;&gt;, Estado correspondente</strong>, com exclusão de qualquer outro, por mais privilegiado que seja.</p>
+
+      <p>A eleição de foro não impede que qualquer das partes busque medidas cautelares urgentes perante qualquer juízo competente, quando necessário para preservação de direitos.</p>
+
+      <hr>
+
+      <h2>12. Mudanças nos Termos</h2>
+
+      <p>A &lt;&lt;COMPANY_NAME&gt;&gt; reserva-se o direito de alterar estes Termos de Uso a qualquer momento, por razões operacionais, legais ou regulatórias.</p>
+
+      <p><strong>Versioning:</strong> cada versão publicada recebe um número de versão (ex.: 1.0.0) e uma data de atualização, registrados na tabela <code>terms_versions</code> da plataforma.</p>
+
+      <p><strong>Aviso de mudanças:</strong> sempre que uma nova versão destes Termos for publicada, você será notificado por e-mail e por um <strong>modal de reaceitação não dispensável</strong> exibido na próxima vez que acessar a plataforma. O modal apresentará as principais mudanças e exigirá <strong>aceite explícito</strong> antes de permitir o acesso à plataforma. O modal possui apenas duas opções:</p>
+
+      <ul>
+        <li><strong>"Aceitar"</strong> — você aceita os Termos atualizados e continua usando a plataforma;</li>
+        <li><strong>"Não aceitar e sair"</strong> — você não aceita os Termos atualizados. Seu acesso será encerrado até que você aceite ou cancele sua conta.</li>
+      </ul>
+
+      <p>Clicar fora do modal (backdrop) ou pressionar a tecla Esc <strong>não dispensa</strong> o modal nem contorna a necessidade de aceitação.</p>
+
+      <p><strong>Histórico de aceites:</strong> seus aceites anteriores são registrados com data, versão aceita, endereço IP e User Agent na tabela <code>terms_acceptances</code>, para fins de comprovação nos termos do art. 8º §2 da LGPD. A versão anterior destes Termos permanece disponível mediante solicitação ao DPO.</p>
+
+      <p>O uso continuado da plataforma após a aceitação de uma nova versão constitui confirmação do aceite.</p>
+
+      <hr>
+
+      <h2>13. Contato</h2>
+
+      <p>Para dúvidas sobre estes Termos de Uso, entre em contato com:</p>
+
+      <table>
+        <thead><tr><th>Canal</th><th>Informação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Suporte geral</strong></td><td>Disponível dentro da plataforma em <code>/dashboard/support</code> ou pelo e-mail de suporte da &lt;&lt;COMPANY_NAME&gt;&gt;</td></tr>
+          <tr><td><strong>Encarregado (DPO) — questões de proteção de dados</strong></td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (padrão: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>Endereço</strong></td><td>&lt;&lt;COMPANY_ADDRESS&gt;&gt;</td></tr>
+          <tr><td><strong>CNPJ</strong></td><td>&lt;&lt;COMPANY_CNPJ&gt;&gt;</td></tr>
+        </tbody>
+      </table>
+
+      <p>Para questões específicas de proteção de dados pessoais e exercício dos seus direitos como titular nos termos da LGPD, entre em contato diretamente com o Encarregado pelo Tratamento de Dados (DPO) no endereço de e-mail indicado acima.</p>
+
+      <p>Respondemos a solicitações de suporte em até <strong>2 (dois) dias úteis</strong> e a solicitações de exercício de direitos de proteção de dados em até <strong>15 (quinze) dias</strong>, nos termos do art. 19 da LGPD.</p>
+    </section>
+
+    <!-- EN Content -->
+    <section class="en-content prose max-w-none">
+      <h1>Terms of Use</h1>
+
+      <p><strong>Last updated:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>These Terms of Use govern access to and use of the &lt;&lt;COMPANY_NAME&gt;&gt; platform, including all its features, functionality, and services. By creating an account or using the platform, you expressly agree to these Terms.</blockquote>
+
+      <hr>
+
+      <h2>1. Acceptance of Terms</h2>
+
+      <p>By accessing or using the &lt;&lt;COMPANY_NAME&gt;&gt; platform, you represent that you have read, understood, and fully accept these Terms of Use, as well as our <strong>Privacy Policy</strong> available at <a href="/legal/privacy/">/legal/privacy</a>.</p>
+
+      <p>Acceptance is performed <strong>explicitly</strong> by clicking the "Accept" button displayed at the time of registration and subsequently whenever a new version of these Terms is published. Electronic acceptance has the same legal force as a handwritten signature, pursuant to Law No. 14,063/2020 and Art. 10 of Provisional Measure No. 2,200-2/2001.</p>
+
+      <p>These Terms take effect as of <strong>&lt;&lt;EFFECTIVE_DATE&gt;&gt;</strong> and are binding on the user and the company they represent from the moment of acceptance.</p>
+
+      <p><strong>If you do not agree with any provision of these Terms, do not use the platform.</strong></p>
+
+      <hr>
+
+      <h2>2. Service Description</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; is a B2B SaaS (Software as a Service) platform for corporate construction sourcing and delivery. The platform enables structured management of procurement processes for multi-unit construction projects, connecting:</p>
+
+      <ul>
+        <li><strong>Clients (Lojistas)</strong> — contracting companies that open quotes and procure construction services;</li>
+        <li><strong>Contractors (Construtoras)</strong> — vendor companies that receive BID invitations, submit proposals, and execute contracts;</li>
+        <li><strong>Administrators (Portal da Obra)</strong> — the &lt;&lt;COMPANY_NAME&gt;&gt; operations team responsible for curation, vetting, and platform oversight.</li>
+      </ul>
+
+      <p><strong>Core features:</strong></p>
+
+      <ol>
+        <li>Opening and managing quotes (called <strong>"Quote"</strong> from the Client's perspective and <strong>"BID"</strong> from the Contractor's perspective — see §6);</li>
+        <li>Inviting qualified vendors (with CNPJ validation and operational vetting);</li>
+        <li>AI-filtered Q&amp;A between clients and contractors;</li>
+        <li>Proposal evaluation with Portal curation;</li>
+        <li>Private per-BID chat between Client and Contractor;</li>
+        <li>Contract award and electronic signature collection via Assinafy;</li>
+        <li>Project execution tracking with milestone artifacts and Client sign-off;</li>
+        <li>Payment processing via Asaas sub-accounts.</li>
+      </ol>
+
+      <p>The platform is directed <strong>exclusively at legal entities</strong> represented by authorized natural persons with signing authority. It is not a consumer-facing platform.</p>
+
+      <hr>
+
+      <h2>3. Registration and Eligibility</h2>
+
+      <h3>3.1 Eligibility</h3>
+
+      <p>To use the &lt;&lt;COMPANY_NAME&gt;&gt; platform, the user and the company they represent must:</p>
+
+      <ol>
+        <li>Be a <strong>legal entity</strong> duly incorporated and registered in Brazil, with an <strong>active CNPJ</strong> registered with the Receita Federal;</li>
+        <li>Be represented by a legal representative with <strong>binding authority</strong> (partner, director, legal attorney, or equivalent) to enter into contracts;</li>
+        <li>Not be prohibited by law or judicial decision from entering into contracts or conducting commercial activities.</li>
+      </ol>
+
+      <p>The platform is <strong>not directed at natural persons as end consumers</strong> or at individuals under 18 years of age.</p>
+
+      <h3>3.2 Registration process</h3>
+
+      <p>Registration is subject to <strong>prior approval</strong> by the &lt;&lt;COMPANY_NAME&gt;&gt; backoffice team. No user is enabled automatically. Approval involves:</p>
+
+      <ul>
+        <li>CNPJ verification and fiscal compliance check (Receita Federal);</li>
+        <li>Operational vetting of the company (technical capacity review, references, documentation);</li>
+        <li>Validation of submitted identification data.</li>
+      </ul>
+
+      <p>The user undertakes to provide <strong>true, complete, and current</strong> information at registration and to keep that information up to date throughout the term of the service. False or outdated information constitutes a breach of these Terms and may result in account suspension or termination.</p>
+
+      <h3>3.3 Account responsibility</h3>
+
+      <p>The user is responsible for:</p>
+
+      <ul>
+        <li>Maintaining the confidentiality of their access credentials (login and password);</li>
+        <li>All actions performed on behalf of the company under their account;</li>
+        <li>Immediately notifying &lt;&lt;COMPANY_NAME&gt;&gt; of any unauthorized access or compromise of credentials.</li>
+      </ul>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; shall not be liable for damages arising from unauthorized use of credentials due to the user's failure to take appropriate precautions.</p>
+
+      <hr>
+
+      <h2>4. User Conduct</h2>
+
+      <h3>4.1 Prohibited behaviors</h3>
+
+      <p>When using the platform, the user undertakes <strong>not to</strong>:</p>
+
+      <ol>
+        <li>Provide false, misleading, or fraudulent information at any stage of the BID process, registration, or contractual execution;</li>
+        <li>Harass, intimidate, threaten, or discriminate against other platform users;</li>
+        <li>Use the platform for illegal purposes, including money laundering, financing of illicit activities, tax fraud, or any act classified as a crime or misdemeanor under Brazilian law;</li>
+        <li>Carry out scraping, crawling, automated indexing, or any systematic extraction of platform data without prior written authorization from &lt;&lt;COMPANY_NAME&gt;&gt;;</li>
+        <li>Attempt to reverse engineer, decompile, disassemble, or derive the source code of the platform or any of its components;</li>
+        <li>Introduce viruses, malware, malicious scripts, or any code that could disrupt the platform's operation or other users' systems;</li>
+        <li>Use the platform to send unsolicited commercial communications (spam) to other users;</li>
+        <li>Circumvent or attempt to circumvent security mechanisms, access controls, or eligibility rules of the platform;</li>
+        <li>Transfer, sublicense, or assign their account or access credentials to third parties.</li>
+      </ol>
+
+      <h3>4.2 Consequences of violations</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; reserves the right, at its sole discretion and without prejudice to other legal remedies, to:</p>
+
+      <ul>
+        <li><strong>Temporarily suspend</strong> the user's access to the platform while investigating a possible violation;</li>
+        <li><strong>Permanently terminate</strong> the user's account upon a confirmed violation;</li>
+        <li><strong>Report illegal activities</strong> to the competent authorities;</li>
+        <li><strong>Retain evidence</strong> of misuse for the purpose of exercising rights of recourse.</li>
+      </ul>
+
+      <hr>
+
+      <h2>5. Intellectual Property</h2>
+
+      <h3>5.1 &lt;&lt;COMPANY_NAME&gt;&gt;'s rights</h3>
+
+      <p>The &lt;&lt;COMPANY_NAME&gt;&gt; platform, including its source code, design, interface, architecture, features, trademarks, logos, texts, and documentation, is the <strong>exclusive property of &lt;&lt;COMPANY_NAME&gt;&gt;</strong> (CNPJ: &lt;&lt;COMPANY_CNPJ&gt;&gt;) and is protected by Law No. 9,610/1998 (Copyright Law), Law No. 9,279/1996 (Industrial Property Law), and other applicable regulations.</p>
+
+      <p>Use of the platform does not grant the user any intellectual property rights over the platform or its components. The user is prohibited from reproducing, modifying, distributing, sublicensing, or creating derivative works from the platform without prior written authorization from &lt;&lt;COMPANY_NAME&gt;&gt;.</p>
+
+      <h3>5.2 User content</h3>
+
+      <p>The user retains all intellectual property rights over content they themselves upload to the platform, including <strong>technical specifications, blueprints, descriptive reports, project drawings, commercial proposals, and other documents</strong> ("User Content").</p>
+
+      <p>By uploading User Content to the platform, the user grants &lt;&lt;COMPANY_NAME&gt;&gt; a <strong>non-exclusive license, limited to the scope of the contracted service</strong>, to:</p>
+
+      <ul>
+        <li>Store, process, and display User Content to authorized parties (in accordance with the contractual role: Client, Contractor, or Administrator);</li>
+        <li>Transmit User Content to the subprocessors required to provide the service (e.g., storage on AWS S3, signing via Assinafy);</li>
+        <li>Retain User Content for the periods set out in the Privacy Policy.</li>
+      </ul>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; <strong>does not use User Content to train artificial intelligence models</strong> without the user's specific prior consent.</p>
+
+      <hr>
+
+      <h2>6. BID / Quote Process</h2>
+
+      <h3>6.1 Naming and role perspective</h3>
+
+      <p>The central entity of the procurement process is referred to as <strong>"BID"</strong> in the code, database tables, and all technical communication — this is the standard term used in the Brazilian construction industry. The interface displays:</p>
+
+      <table>
+        <thead><tr><th>Role</th><th>Interface label</th></tr></thead>
+        <tbody>
+          <tr><td>Client (Lojista) — who opens it</td><td>Quote (Orçamento in Portuguese)</td></tr>
+          <tr><td>Contractor (Construtora) — who responds</td><td>BID</td></tr>
+          <tr><td>Administrator (backoffice)</td><td>BID</td></tr>
+        </tbody>
+      </table>
+
+      <h3>6.2 Process cycle</h3>
+
+      <p>The sourcing process on the platform follows these steps:</p>
+
+      <ol>
+        <li><strong>Quote opening:</strong> the Client creates a Quote describing the project scope, technical requirements, and estimated schedule;</li>
+        <li><strong>Contractor invitation:</strong> &lt;&lt;COMPANY_NAME&gt;&gt; or the Client invites qualified Contractors to participate in the BID. The list of participants may be curated by the Portal team;</li>
+        <li><strong>NDA and scope access:</strong> the invited Contractor may be required to sign a Non-Disclosure Agreement (NDA) before accessing the full project scope. The NDA reuses the platform's contract infrastructure (see §8);</li>
+        <li><strong>AI-filtered Q&amp;A:</strong> the Contractor may submit technical questions to the Client. Questions are automatically filtered to remove identifiers and are answered by the Client centrally, preserving anonymity among competing bidders;</li>
+        <li><strong>Proposal submission:</strong> each Contractor prepares and submits their commercial and technical proposal within the specified deadline;</li>
+        <li><strong>Evaluation and curation:</strong> the Portal reviews the submitted proposals and presents a comparative analysis to the Client. Contractor identities may remain anonymized during this stage, at the BID configuration's discretion;</li>
+        <li><strong>Private chat:</strong> after curation and envelope opening, a private chat channel is enabled between the Client and each Contractor individually for final negotiation;</li>
+        <li><strong>Contract award:</strong> the Client selects the winning Contractor. The platform generates the execution contract based on the configured contract type, and the parties sign electronically via Assinafy (see §8);</li>
+        <li><strong>Execution and artifacts:</strong> during execution, the Contractor uploads progress artifacts (photos, reports, measurements). The Client reviews and formally approves the artifacts on the platform.</li>
+      </ol>
+
+      <h3>6.3 Responsibility over BID content</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; acts as a <strong>facilitator</strong> of the sourcing process and is not a party to the contracts entered into between Clients and Contractors. Responsibility for the technical scope, timelines, and proposal content rests with the contracting parties. &lt;&lt;COMPANY_NAME&gt;&gt; does not guarantee the contractual performance of any Contractor.</p>
+
+      <hr>
+
+      <h2>7. Payments</h2>
+
+      <h3>7.1 Asaas sub-account model</h3>
+
+      <p>Payment processing on the &lt;&lt;COMPANY_NAME&gt;&gt; platform is carried out through integration with <strong>Asaas Gestão Financeira Ltda.</strong> ("Asaas"), using the <strong>linked sub-account model</strong>. Each company (Client or Contractor) registered on the platform has an individual sub-account at Asaas, with its own balance managed by Asaas.</p>
+
+      <p>Asaas operates as a <strong>payment institution</strong> authorized by the Banco Central do Brasil, pursuant to BCB Resolution No. 80/2021 and applicable legislation.</p>
+
+      <h3>7.2 Native Escrow Account</h3>
+
+      <p>The platform uses Asaas's native <strong>Escrow Account</strong> functionality to hold payment funds during the contractual execution period, releasing funds to the Contractor in accordance with the approval milestones defined in the contract and confirmed by the Client on the platform.</p>
+
+      <h3>7.3 User authorization</h3>
+
+      <p>By using the platform's payment features, the user expressly authorizes &lt;&lt;COMPANY_NAME&gt;&gt; to:</p>
+
+      <ul>
+        <li>Invoke payment operations (transfers, charges, escrow holds and releases) on behalf of the user's company with Asaas, in accordance with instructions recorded on the platform;</li>
+        <li>Access balance and transaction history information from the user's Asaas sub-account for display on the platform and for accounting purposes.</li>
+      </ul>
+
+      <p>This authorization is specific to operations carried out within the platform and does not grant &lt;&lt;COMPANY_NAME&gt;&gt; authority to conduct financial operations beyond the contractual scope.</p>
+
+      <h3>7.4 Fees and charges</h3>
+
+      <p>Platform fees and applicable transaction percentages are defined in the service agreement entered into between &lt;&lt;COMPANY_NAME&gt;&gt; and the user at onboarding. &lt;&lt;COMPANY_NAME&gt;&gt; reserves the right to revise fees with 30 (thirty) days' prior notice.</p>
+
+      <h3>7.5 Financial disputes</h3>
+
+      <p>Disputes regarding transactions conducted via Asaas are governed by Asaas's Terms of Service and the service agreement. &lt;&lt;COMPANY_NAME&gt;&gt; will act as a facilitator in disputes between Clients and Contractors but is not responsible for contractual default by either party.</p>
+
+      <hr>
+
+      <h2>8. Signed Contracts</h2>
+
+      <h3>8.1 Electronic signature infrastructure</h3>
+
+      <p>Contracts entered into between Clients and Contractors through the platform are signed electronically using the <strong>Assinafy</strong> platform (Griaule Biometrics do Brasil Ltda.), which applies a digital signature certificate compliant with ICP-Brasil and with the requirements of Law No. 14,063/2020.</p>
+
+      <p>The electronic signature process is managed by Assinafy; &lt;&lt;COMPANY_NAME&gt;&gt; receives the signed document and its integrity certificate via API after the signature flow is completed.</p>
+
+      <h3>8.2 Contract immutability (Invariant I-17)</h3>
+
+      <p><strong>Signed contracts are immutable.</strong> Once all parties have signed the document, no changes can be made to the contract body, its variables, content, or signatory data, whether by the platform or by users.</p>
+
+      <p>Any attempt to modify the content of an already-signed contract via the API will return error <code>405 CONTRACT_IMMUTABLE</code>. This immutability is intentional and technically necessary to preserve the legal validity of the electronic signature.</p>
+
+      <h3>8.3 Preservation of identification data</h3>
+
+      <p>In accordance with the legal integrity requirements of electronically signed contracts and applicable Brazilian law:</p>
+
+      <blockquote>"When you sign a contract through the platform, your identification data is preserved in the signed document in an irreversible manner, as required for the legal integrity of the contract (LGPD Art. 7 §V — contract execution — and Art. 16, I — compliance with legal obligation)."</blockquote>
+
+      <p>This means the signed PDF, the signature certificate, and the contract body snapshot — which contain the name, CNPJ, and other identifying data of the signatories — are <strong>retained indefinitely</strong> by the platform. Altering these documents would invalidate the electronic signature and undermine the legal validity of the contractual instrument. For more details, refer to §10 of our <strong>Privacy Policy</strong> at <a href="/legal/privacy/">/legal/privacy</a>.</p>
+
+      <h3>8.4 Status and available operations post-signature</h3>
+
+      <p>After signing, the only permitted operations on a contract are:</p>
+
+      <ul>
+        <li><strong>Status</strong> update by the Portal administrator (e.g., in progress, completed, terminated);</li>
+        <li><strong>Synchronization</strong> of status with Assinafy (via webhook endpoint or pull);</li>
+        <li><strong>Download</strong> of the signed PDF and the signature certificate;</li>
+        <li><strong>Mark as rejected</strong> by the administrator, with a reason on record.</li>
+      </ul>
+
+      <p>The signed document itself is not modified by any of these operations.</p>
+
+      <hr>
+
+      <h2>9. Limitation of Liability</h2>
+
+      <h3>9.1 Facilitator role</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; acts as a <strong>technology facilitator</strong> of corporate construction sourcing. The platform connects Clients and Contractors and provides the infrastructure for conducting the process, but <strong>is not a party to the contracts</strong> entered into between those parties and <strong>assumes no responsibility</strong> for the fulfillment or non-fulfillment of contractual obligations by either party.</p>
+
+      <h3>9.2 No liability for delays and contractual disputes</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; <strong>is not liable</strong> for:</p>
+
+      <ul>
+        <li>Delays in the execution of construction works or services contracted between Clients and Contractors;</li>
+        <li>Commercial, technical, or financial disputes between the contracting parties;</li>
+        <li>Quality, suitability, or technical conformity of services or materials delivered by Contractors;</li>
+        <li>Financial default by either party.</li>
+      </ul>
+
+      <h3>9.3 Liability cap</h3>
+
+      <p>To the maximum extent permitted by applicable Brazilian law, &lt;&lt;COMPANY_NAME&gt;&gt;'s total liability to a user, whether in contract, tort, or any other cause of action, is <strong>limited to the total fees paid by the user to &lt;&lt;COMPANY_NAME&gt;&gt; in the 12 (twelve) months preceding the event giving rise to the claim</strong>.</p>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; shall not be liable for indirect, incidental, special, punitive, or consequential damages, including lost profits, lost business opportunity, or reputational harm, even if it has been advised of the possibility of such damages.</p>
+
+      <h3>9.4 Force majeure</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; shall not be liable for total or partial non-performance of its obligations when such non-performance results from <strong>force majeure or unforeseeable circumstances</strong> (caso fortuito ou força maior), understood as unforeseeable or unavoidable events outside &lt;&lt;COMPANY_NAME&gt;&gt;'s reasonable control, including natural disasters, third-party infrastructure failures (e.g., cloud providers), governmental acts, war, pandemics, or systemic crises.</p>
+
+      <h3>9.5 Platform availability</h3>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; will use commercially reasonable efforts to keep the platform available but <strong>does not guarantee uninterrupted availability</strong>. Scheduled maintenance will be communicated with at least 24 hours' advance notice, except in cases of technical emergency.</p>
+
+      <hr>
+
+      <h2>10. Privacy</h2>
+
+      <p>The handling of your personal data by &lt;&lt;COMPANY_NAME&gt;&gt; is governed by our <strong>Privacy Policy</strong>, available at <a href="/legal/privacy/">/legal/privacy</a>, which forms an integral part of these Terms of Use.</p>
+
+      <p>The collection, use, sharing, and retention of your personal data are carried out in accordance with the <strong>Lei Geral de Proteção de Dados (LGPD — Law No. 13,709/2018)</strong> and the regulations of the Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+      <p>By accepting these Terms, you represent that you have read and understood the Privacy Policy and consent to the processing of your personal data as described therein, in the circumstances where consent is the applicable legal basis (LGPD Art. 7 §I).</p>
+
+      <hr>
+
+      <h2>11. Governing Law and Jurisdiction</h2>
+
+      <p>These Terms of Use are governed by and construed in accordance with the laws of the <strong>Federative Republic of Brazil</strong>.</p>
+
+      <p>To resolve any disputes arising out of or related to these Terms, the parties select the <strong>courts of &lt;&lt;JURISDICTION_CITY&gt;&gt;, Brazil</strong> as the exclusive forum, to the exclusion of any other, however privileged.</p>
+
+      <p>The choice of forum does not prevent either party from seeking urgent injunctive relief before any competent court when necessary to preserve rights.</p>
+
+      <hr>
+
+      <h2>12. Changes to Terms</h2>
+
+      <p>&lt;&lt;COMPANY_NAME&gt;&gt; reserves the right to amend these Terms of Use at any time for operational, legal, or regulatory reasons.</p>
+
+      <p><strong>Versioning:</strong> each published version receives a version number (e.g., 1.0.0) and an update date, recorded in the <code>terms_versions</code> table of the platform.</p>
+
+      <p><strong>Notice of changes:</strong> whenever a new version of these Terms is published, you will be notified by email and by a <strong>non-dismissible re-acceptance modal</strong> displayed the next time you access the platform. The modal will present the main changes and require <strong>explicit acceptance</strong> before allowing access to the platform. The modal has only two outcomes:</p>
+
+      <ul>
+        <li><strong>"Accept"</strong> — you accept the updated Terms and continue using the platform;</li>
+        <li><strong>"Don't accept and log out"</strong> — you do not accept the updated Terms. Your access will be terminated until you accept or cancel your account.</li>
+      </ul>
+
+      <p>Clicking outside the modal (backdrop) or pressing the Esc key <strong>does not dismiss</strong> the modal or bypass the acceptance requirement.</p>
+
+      <p><strong>Acceptance history:</strong> your previous acceptances are recorded with date, accepted version, IP address, and User Agent in the <code>terms_acceptances</code> table, for evidentiary purposes under LGPD Art. 8 §2. The previous version of these Terms remains available upon request to the DPO.</p>
+
+      <p>Continued use of the platform after accepting a new version constitutes confirmation of that acceptance.</p>
+
+      <hr>
+
+      <h2>13. Contact</h2>
+
+      <p>For questions about these Terms of Use, please contact:</p>
+
+      <table>
+        <thead><tr><th>Channel</th><th>Information</th></tr></thead>
+        <tbody>
+          <tr><td><strong>General support</strong></td><td>Available within the platform at <code>/dashboard/support</code> or via &lt;&lt;COMPANY_NAME&gt;&gt;'s support email</td></tr>
+          <tr><td><strong>Data Protection Officer (DPO) — data protection matters</strong></td><td>&lt;&lt;DPO_EMAIL&gt;&gt; (default: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>Address</strong></td><td>&lt;&lt;COMPANY_ADDRESS&gt;&gt;</td></tr>
+          <tr><td><strong>CNPJ</strong></td><td>&lt;&lt;COMPANY_CNPJ&gt;&gt;</td></tr>
+        </tbody>
+      </table>
+
+      <p>For questions specific to personal data protection and exercising your rights as a data subject under the LGPD, please contact the Data Protection Officer (DPO) directly at the email address indicated above.</p>
+
+      <p>We respond to support requests within <strong>2 (two) business days</strong> and to data protection rights requests within <strong>15 (fifteen) days</strong>, pursuant to LGPD Art. 19.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 mt-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+        <a href="/legal/privacy/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Privacidade</span>
+          <span class="en-content">Privacy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/terms/" class="font-medium text-portal-blue-primary">
+          <span class="pt_br-content">Termos de Uso</span>
+          <span class="en-content">Terms of Use</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/cookies/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Política de Cookies</span>
+          <span class="en-content">Cookie Policy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/subprocessors/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Subprocessadores</span>
+          <span class="en-content">Subprocessors</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <button type="button" id="manage-cookies-link" class="hover:text-slate-800 transition-colors cursor-pointer bg-transparent border-0 p-0 text-sm text-slate-500">
+          <span class="pt_br-content">Gerenciar cookies</span>
+          <span class="en-content">Manage cookies</span>
+        </button>
+        <a href="/" class="ml-auto hover:text-slate-800 transition-colors flex items-center gap-1">
+          <span>←</span>
+          <span class="pt_br-content">Voltar ao site</span>
+          <span class="en-content">Back to site</span>
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-slate-400">
+        <span class="pt_br-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — Todos os direitos reservados.</span>
+        <span class="en-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — All rights reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('manage-cookies-link').addEventListener('click', function() {
+      window.dispatchEvent(new CustomEvent('reopen-cookie-banner', { detail: { mode: 'customize' } }));
+    });
+  </script>
+
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      document.body.className = 'bg-white font-sans lang-' + lang;
+      document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+        if (btn.dataset.toggleLang === lang) {
+          btn.classList.add('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+        } else {
+          btn.classList.remove('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-600');
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.toggleLang));
+    });
+
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  </script>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="hidden fixed inset-x-0 bottom-0 z-50"></div>
+  <script src="/js/consent-store.js" defer></script>
+  <script src="/js/cookie-banner.js" defer></script>
+
+</body>
+</html>
