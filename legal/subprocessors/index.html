@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subprocessadores — Portal da Obra</title>
+  <meta name="description" content="Lista pública de subprocessadores de dados pessoais do Portal da Obra, conforme a LGPD (Lei nº 13.709/2018).">
+  <link rel="icon" type="image/png" href="/static/images/icon-p.svg">
+  <!-- Google Fonts - DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'portal': {
+              'blue-primary': '#0047AB',
+              'blue-light': '#C6D6F0',
+              'blue-dark': '#001D4A',
+              'blue-medium': '#5B8FDB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .lang-pt_br .en-content,
+    .lang-en .pt_br-content { display: none; }
+
+    .prose h1 { font-size: 2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: #001D4A; }
+    .prose h2 { font-size: 1.4rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: #001D4A; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.4rem; }
+    .prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #0047AB; }
+    .prose p { margin-top: 0.75rem; margin-bottom: 0.75rem; line-height: 1.75; color: #334155; }
+    .prose ul { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: disc; }
+    .prose ol { margin-left: 1.5rem; margin-top: 0.75rem; margin-bottom: 0.75rem; list-style-type: decimal; }
+    .prose li { margin-top: 0.35rem; margin-bottom: 0.35rem; line-height: 1.7; color: #334155; }
+    .prose blockquote { border-left: 4px solid #5B8FDB; padding-left: 1rem; margin: 1.25rem 0; font-style: italic; color: #475569; background: #f8fafc; padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; }
+    .prose table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+    .prose th { background: #001D4A; color: #fff; padding: 0.6rem 0.85rem; text-align: left; font-weight: 600; }
+    .prose td { border: 1px solid #e2e8f0; padding: 0.55rem 0.85rem; vertical-align: top; color: #334155; }
+    .prose tr:nth-child(even) td { background: #f8fafc; }
+    .prose code { background: #f1f5f9; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.875em; font-family: 'Courier New', monospace; color: #0047AB; }
+    .prose a { color: #0047AB; text-decoration: underline; }
+    .prose a:hover { color: #001D4A; }
+    .prose strong { font-weight: 600; color: #1e293b; }
+    .prose hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+
+    .lang-btn-active { background: #0047AB !important; color: #fff !important; }
+    .lang-btn { transition: all 0.2s; }
+
+    /* Cross-border badge */
+    .badge-cross { display: inline-block; background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A; border-radius: 4px; padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+    .badge-domestic { display: inline-block; background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; border-radius: 4px; padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+    .badge-pending { display: inline-block; background: #FEF9C3; color: #854D0E; border: 1px solid #FDE047; border-radius: 4px; padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600; }
+    .badge-signed { display: inline-block; background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0; border-radius: 4px; padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600; }
+    .badge-click { display: inline-block; background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; border-radius: 4px; padding: 0.1rem 0.45rem; font-size: 0.75rem; font-weight: 600; }
+  </style>
+  <!-- GTM Consent Mode v2 default-deny (D-18.0-3) — must run BEFORE any GTM tag could fire -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+    window.__gtmConsentInitialized = true;
+  </script>
+  <!-- GTM script itself is injected dynamically by js/gtm-gate.js after explicit analytics consent -->
+  <script src="/js/gtm-gate.js" defer></script>
+</head>
+<body class="bg-white font-sans lang-pt_br">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="/static/images/logo-portalobra.svg" alt="Portal da Obra" class="h-7">
+      </a>
+      <div class="flex items-center gap-2">
+        <button data-toggle-lang="pt_br" id="btn-pt_br"
+          class="lang-btn lang-btn-active px-3 py-1.5 rounded-full text-sm font-medium bg-portal-blue-primary text-white">
+          PT-BR
+        </button>
+        <button data-toggle-lang="en" id="btn-en"
+          class="lang-btn px-3 py-1.5 rounded-full text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200">
+          EN
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="bg-slate-50 border-b border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 text-sm text-slate-500">
+      <a href="/" class="hover:text-portal-blue-primary">Portal da Obra</a>
+      <span class="mx-2">›</span>
+      <span class="pt_br-content">Subprocessadores</span>
+      <span class="en-content">Subprocessors</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- PT-BR Content -->
+    <section class="pt_br-content prose max-w-none">
+      <h1>Lista de Subprocessadores</h1>
+
+      <p><strong>Atualizado em:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>Esta página lista todos os subprocessadores de dados pessoais utilizados por &lt;&lt;COMPANY_NAME&gt;&gt; na operação do Portal da Obra, conforme exigido pelo art. 37 da LGPD (Lei nº 13.709/2018) e pela política de transparência adotada pela empresa.</blockquote>
+
+      <hr>
+
+      <h2>1. Política de Adição de Subprocessadores</h2>
+
+      <p><strong>Aviso prévio de 30 dias (D-18.0-9):</strong> a adição de qualquer novo subprocessador que acesse dados pessoais de clientes da plataforma requer <strong>aviso prévio de 30 (trinta) dias</strong> a todos os administradores de conta, enviado por e-mail, antes da ativação do subprocessador. O aviso inclui:</p>
+
+      <ul>
+        <li>Nome e entidade legal do novo subprocessador;</li>
+        <li>Finalidade do tratamento e categorias de dados transferidos;</li>
+        <li>Região de processamento e, se aplicável, a base legal para transferência internacional (art. 33 da LGPD);</li>
+        <li>Data prevista de ativação (não inferior a 30 dias após o aviso).</li>
+      </ul>
+
+      <p>Administradores de conta que se opuserem à adição de um novo subprocessador podem entrar em contato com o DPO em &lt;&lt;DPO_EMAIL&gt;&gt; antes da data de ativação prevista.</p>
+
+      <h2>2. Dados atuais em &lt;&lt;EFFECTIVE_DATE&gt;&gt;</h2>
+
+      <p>Os dados abaixo refletem os subprocessadores ativos na data indicada. Para questões sobre esta lista ou para exercer direitos nos termos do art. 18 da LGPD, entre em contato com nosso DPO em <a href="mailto:&lt;&lt;DPO_EMAIL&gt;&gt;">&lt;&lt;DPO_EMAIL&gt;&gt;</a>.</p>
+
+      <h2>3. Tabela de Subprocessadores</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Subprocessador</th>
+            <th>Finalidade</th>
+            <th>Categorias de dados</th>
+            <th>Região</th>
+            <th>Base LGPD Art. 33</th>
+            <th>Status DPA</th>
+            <th>Política de privacidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AWS (RDS + S3 + Cognito)</strong><br><small>Amazon Web Services, Inc.</small></td>
+            <td>Banco de dados, armazenamento de arquivos, autenticação</td>
+            <td>Identificação, financeiro, KYC, texto livre, comportamental, técnico, evidência de consentimento</td>
+            <td><span class="badge-cross">Trans-fronteira</span><br>us-east-1 (EUA)</td>
+            <td>Art. 33 §II.b — cláusulas contratuais padrão (SCCs) sob AWS DPA</td>
+            <td><span class="badge-click">Pré-assinado (click-accept via AWS Artifact)</span></td>
+            <td><a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>AWS SES</strong><br><small>Amazon Web Services, Inc.</small></td>
+            <td>Entrega de e-mails (QA e produção)</td>
+            <td>Identificação (endereço de e-mail do destinatário), conteúdo da notificação</td>
+            <td><span class="badge-domestic">Doméstico</span><br>sa-east-1 (Brasil)</td>
+            <td>N/A — processamento doméstico</td>
+            <td><span class="badge-click">Pré-assinado via AWS DPA</span></td>
+            <td><a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Asaas</strong><br><small>Asaas Gestão Financeira Instituição de Pagamento S.A.</small></td>
+            <td>Pagamentos digitais e verificação de identidade (KYC)</td>
+            <td>Identificação, financeiro, KYC (documentos de identidade e dados biométricos/documentais)</td>
+            <td><span class="badge-domestic">Doméstico</span><br>Brasil</td>
+            <td>N/A — processamento doméstico</td>
+            <td><span class="badge-pending">Aditivo LGPD em negociação</span></td>
+            <td><a href="https://www.asaas.com/politica-de-privacidade" target="_blank" rel="noopener">asaas.com/politica-de-privacidade</a></td>
+          </tr>
+          <tr>
+            <td><strong>Assinafy</strong><br><small>Assinafy (entidade jurídica — CNPJ a confirmar)</small></td>
+            <td>Assinatura eletrônica de contratos</td>
+            <td>Identificação (nome, e-mail dos signatários), conteúdo do contrato, URLs de assinatura</td>
+            <td><span class="badge-domestic">Doméstico</span><br>Brasil</td>
+            <td>N/A — processamento doméstico</td>
+            <td><span class="badge-pending">Aditivo LGPD em negociação</span></td>
+            <td><a href="https://www.assinafy.com.br/politica-de-privacidade" target="_blank" rel="noopener">assinafy.com.br/politica-de-privacidade</a></td>
+          </tr>
+          <tr>
+            <td><strong>AgentMail</strong><br><small>AgentMail, Inc. (EUA)</small></td>
+            <td>Entrega de e-mails (ambiente local/dev exclusivamente)</td>
+            <td>Identificação (endereço de e-mail do destinatário), conteúdo do e-mail de desenvolvimento</td>
+            <td><span class="badge-cross">Trans-fronteira</span><br>EUA</td>
+            <td>Art. 33 §II.b — SCCs sob DPA (em formalização)</td>
+            <td><span class="badge-pending">Solicitação DPA enviada a privacy@agentmail.to — pendente</span></td>
+            <td><a href="https://agentmail.to/privacy" target="_blank" rel="noopener">agentmail.to/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sentry</strong><br><small>Functional Software, Inc. (dba Sentry)</small></td>
+            <td>Rastreamento de erros e monitoramento de desempenho (web + api)</td>
+            <td>Técnico (stack traces, User Agent, URL da requisição); pode incluir fragmentos de dados de usuário em mensagens de erro</td>
+            <td><span class="badge-cross">Trans-fronteira</span><br>EUA (ingest.sentry.io)</td>
+            <td>Art. 33 §II.b — SCCs sob DPA Sentry (assinatura pendente — D-18.0-16)</td>
+            <td><span class="badge-pending">Assinatura de DPA e configuração de DSN pendentes</span></td>
+            <td><a href="https://sentry.io/privacy/" target="_blank" rel="noopener">sentry.io/privacy</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>4. Transferências internacionais — Disclosure obrigatório</h2>
+
+      <h3>AWS us-east-1 (RDS + S3 + Cognito)</h3>
+      <blockquote>"Os dados pessoais armazenados em infraestrutura AWS são processados na região us-east-1 (Estados Unidos), constituindo transferência internacional regida pelo art. 33, §II, alínea 'b' da LGPD, mediante cláusulas contratuais padrão sob o Data Processing Agreement vigente com a Amazon Web Services, Inc."</blockquote>
+
+      <h3>AgentMail</h3>
+      <blockquote>"O endereço de e-mail e o conteúdo de e-mails enviados no ambiente local/dev são processados por AgentMail, Inc. nos Estados Unidos, constituindo transferência internacional regida pelo art. 33, §II, alínea 'b' da LGPD. A formalização do DPA com cláusulas contratuais padrão (SCCs) está em andamento junto a privacy@agentmail.to. O uso do AgentMail é restrito ao ambiente de desenvolvimento e não afeta dados pessoais de usuários em produção."</blockquote>
+
+      <h3>Sentry</h3>
+      <blockquote>"Dados técnicos (incluindo possíveis fragmentos de dados de usuário presentes em stack traces ou mensagens de erro) são transmitidos a Functional Software, Inc. (dba Sentry) nos Estados Unidos por meio do endpoint ingest.sentry.io, constituindo transferência internacional regida pelo art. 33, §II, alínea 'b' da LGPD. A assinatura do DPA Sentry com cláusulas contratuais padrão (SCCs) e a configuração do DSN estão pendentes (ação do operador D-18.0-16)."</blockquote>
+
+      <hr>
+
+      <h2>5. Não vendemos seus dados</h2>
+
+      <p>Não vendemos, alugamos nem cedemos seus dados pessoais a terceiros para fins publicitários ou de marketing de terceiros. Os subprocessadores listados acima recebem dados pessoais <strong>exclusivamente</strong> na medida necessária para as finalidades declaradas.</p>
+
+      <hr>
+
+      <h2>6. Contato</h2>
+
+      <p>Para questões sobre esta lista de subprocessadores, para registrar uma objeção à adição de um novo subprocessador, ou para exercer seus direitos nos termos do art. 18 da LGPD, entre em contato com nosso DPO:</p>
+
+      <table>
+        <thead><tr><th>Canal</th><th>Informação</th></tr></thead>
+        <tbody>
+          <tr><td><strong>E-mail do DPO</strong></td><td><a href="mailto:&lt;&lt;DPO_EMAIL&gt;&gt;">&lt;&lt;DPO_EMAIL&gt;&gt;</a> (padrão: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>ANPD</strong></td><td>Para reclamações perante a autoridade reguladora: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>Respondemos em até <strong>15 dias</strong> a partir do recebimento da solicitação, nos termos do art. 19 da LGPD.</p>
+    </section>
+
+    <!-- EN Content -->
+    <section class="en-content prose max-w-none">
+      <h1>Subprocessor List</h1>
+
+      <p><strong>Last updated:</strong> &lt;&lt;EFFECTIVE_DATE&gt;&gt;</p>
+
+      <blockquote>This page lists all personal data subprocessors used by &lt;&lt;COMPANY_NAME&gt;&gt; in the operation of Portal da Obra, as required by LGPD Art. 37 (Law No. 13,709/2018) and the transparency policy adopted by the company.</blockquote>
+
+      <hr>
+
+      <h2>1. Subprocessor Addition Policy</h2>
+
+      <p><strong>30-day prior notice (D-18.0-9):</strong> the addition of any new subprocessor that accesses platform customer personal data requires <strong>30 (thirty) days' prior notice</strong> to all account administrators, sent by email, before the subprocessor is activated. The notice includes:</p>
+
+      <ul>
+        <li>Name and legal entity of the new subprocessor;</li>
+        <li>Purpose of processing and categories of data transferred;</li>
+        <li>Processing region and, if applicable, the legal basis for international transfer (LGPD Art. 33);</li>
+        <li>Planned activation date (no less than 30 days after the notice).</li>
+      </ul>
+
+      <p>Account administrators who object to the addition of a new subprocessor may contact the DPO at &lt;&lt;DPO_EMAIL&gt;&gt; before the planned activation date.</p>
+
+      <h2>2. Current data as of &lt;&lt;EFFECTIVE_DATE&gt;&gt;</h2>
+
+      <p>The data below reflects active subprocessors as of the date indicated. For questions about this list or to exercise rights under LGPD Art. 18, please contact our DPO at <a href="mailto:&lt;&lt;DPO_EMAIL&gt;&gt;">&lt;&lt;DPO_EMAIL&gt;&gt;</a>.</p>
+
+      <h2>3. Subprocessor Table</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Subprocessor</th>
+            <th>Purpose</th>
+            <th>Data categories</th>
+            <th>Region</th>
+            <th>LGPD Art. 33 basis</th>
+            <th>DPA status</th>
+            <th>Privacy policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AWS (RDS + S3 + Cognito)</strong><br><small>Amazon Web Services, Inc.</small></td>
+            <td>Database, file storage, authentication</td>
+            <td>Identification, financial, KYC, free-text, behavioral, technical, consent evidence</td>
+            <td><span class="badge-cross">Cross-border</span><br>us-east-1 (USA)</td>
+            <td>Art. 33 §II.b — standard contractual clauses (SCCs) under AWS DPA</td>
+            <td><span class="badge-click">Pre-signed (click-accept via AWS Artifact)</span></td>
+            <td><a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>AWS SES</strong><br><small>Amazon Web Services, Inc.</small></td>
+            <td>Email delivery (QA and production)</td>
+            <td>Identification (recipient email address), notification content</td>
+            <td><span class="badge-domestic">Domestic</span><br>sa-east-1 (Brazil)</td>
+            <td>N/A — domestic processing</td>
+            <td><span class="badge-click">Pre-signed via AWS DPA</span></td>
+            <td><a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener">aws.amazon.com/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Asaas</strong><br><small>Asaas Gestão Financeira Instituição de Pagamento S.A.</small></td>
+            <td>Digital payments and identity verification (KYC)</td>
+            <td>Identification, financial, KYC (identity documents and biometric/documentary data)</td>
+            <td><span class="badge-domestic">Domestic</span><br>Brazil</td>
+            <td>N/A — domestic processing</td>
+            <td><span class="badge-pending">LGPD addendum under negotiation</span></td>
+            <td><a href="https://www.asaas.com/politica-de-privacidade" target="_blank" rel="noopener">asaas.com/politica-de-privacidade</a></td>
+          </tr>
+          <tr>
+            <td><strong>Assinafy</strong><br><small>Assinafy (legal entity — CNPJ TBC)</small></td>
+            <td>Electronic contract signing</td>
+            <td>Identification (name, email of signatories), contract content, signing URLs</td>
+            <td><span class="badge-domestic">Domestic</span><br>Brazil</td>
+            <td>N/A — domestic processing</td>
+            <td><span class="badge-pending">LGPD addendum under negotiation</span></td>
+            <td><a href="https://www.assinafy.com.br/politica-de-privacidade" target="_blank" rel="noopener">assinafy.com.br/politica-de-privacidade</a></td>
+          </tr>
+          <tr>
+            <td><strong>AgentMail</strong><br><small>AgentMail, Inc. (USA)</small></td>
+            <td>Email delivery (local/dev environment only)</td>
+            <td>Identification (recipient email address), development email content</td>
+            <td><span class="badge-cross">Cross-border</span><br>USA</td>
+            <td>Art. 33 §II.b — SCCs under DPA (pending formalization)</td>
+            <td><span class="badge-pending">DPA request sent to privacy@agentmail.to — pending</span></td>
+            <td><a href="https://agentmail.to/privacy" target="_blank" rel="noopener">agentmail.to/privacy</a></td>
+          </tr>
+          <tr>
+            <td><strong>Sentry</strong><br><small>Functional Software, Inc. (dba Sentry)</small></td>
+            <td>Error tracking and performance monitoring (web + api)</td>
+            <td>Technical (stack traces, User Agent, request URL); may include user data fragments in error messages</td>
+            <td><span class="badge-cross">Cross-border</span><br>USA (ingest.sentry.io)</td>
+            <td>Art. 33 §II.b — SCCs under Sentry DPA (signature pending — D-18.0-16)</td>
+            <td><span class="badge-pending">DPA signature and DSN configuration pending</span></td>
+            <td><a href="https://sentry.io/privacy/" target="_blank" rel="noopener">sentry.io/privacy</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h2>4. International transfers — Mandatory disclosure</h2>
+
+      <h3>AWS us-east-1 (RDS + S3 + Cognito)</h3>
+      <blockquote>"Personal data stored in AWS infrastructure is processed in the us-east-1 region (United States), constituting an international transfer governed by LGPD Article 33 §II.b, under standard contractual clauses pursuant to the Data Processing Agreement in effect with Amazon Web Services, Inc."</blockquote>
+
+      <h3>AgentMail</h3>
+      <blockquote>"The email address and email content sent in the local/dev environment are processed by AgentMail, Inc. in the United States, constituting an international transfer governed by LGPD Article 33 §II.b. The formalization of the DPA with standard contractual clauses (SCCs) is in progress with privacy@agentmail.to. AgentMail use is restricted to the development environment and does not affect personal data of production users."</blockquote>
+
+      <h3>Sentry</h3>
+      <blockquote>"Technical data (including possible user data fragments present in stack traces or error messages) is transmitted to Functional Software, Inc. (dba Sentry) in the United States via the ingest.sentry.io endpoint, constituting an international transfer governed by LGPD Article 33 §II.b. The signing of the Sentry DPA with standard contractual clauses (SCCs) and DSN configuration are pending (operator action D-18.0-16)."</blockquote>
+
+      <hr>
+
+      <h2>5. We do not sell your data</h2>
+
+      <p>We do not sell, rent, or share your personal data with third parties for advertising or third-party marketing purposes. The subprocessors listed above receive personal data <strong>solely</strong> to the extent necessary for the stated purposes.</p>
+
+      <hr>
+
+      <h2>6. Contact</h2>
+
+      <p>For questions about this subprocessor list, to register an objection to the addition of a new subprocessor, or to exercise your rights under LGPD Art. 18, please contact our DPO:</p>
+
+      <table>
+        <thead><tr><th>Channel</th><th>Information</th></tr></thead>
+        <tbody>
+          <tr><td><strong>DPO email</strong></td><td><a href="mailto:&lt;&lt;DPO_EMAIL&gt;&gt;">&lt;&lt;DPO_EMAIL&gt;&gt;</a> (default: dpo@portaldaobra.com.br)</td></tr>
+          <tr><td><strong>ANPD</strong></td><td>For complaints to the regulatory authority: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a></td></tr>
+        </tbody>
+      </table>
+
+      <p>We respond within <strong>15 days</strong> of receiving the request, pursuant to LGPD Art. 19.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 mt-12 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+        <a href="/legal/privacy/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Privacidade</span>
+          <span class="en-content">Privacy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/terms/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Termos de Uso</span>
+          <span class="en-content">Terms of Use</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/cookies/" class="hover:text-slate-800 transition-colors">
+          <span class="pt_br-content">Política de Cookies</span>
+          <span class="en-content">Cookie Policy</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <a href="/legal/subprocessors/" class="font-medium text-portal-blue-primary">
+          <span class="pt_br-content">Subprocessadores</span>
+          <span class="en-content">Subprocessors</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <button type="button" id="manage-cookies-link" class="hover:text-slate-800 transition-colors cursor-pointer bg-transparent border-0 p-0 text-sm text-slate-500">
+          <span class="pt_br-content">Gerenciar cookies</span>
+          <span class="en-content">Manage cookies</span>
+        </button>
+        <a href="/" class="ml-auto hover:text-slate-800 transition-colors flex items-center gap-1">
+          <span>←</span>
+          <span class="pt_br-content">Voltar ao site</span>
+          <span class="en-content">Back to site</span>
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-slate-400">
+        <span class="pt_br-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — Todos os direitos reservados.</span>
+        <span class="en-content">© &lt;&lt;COMPANY_NAME&gt;&gt; — All rights reserved.</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('manage-cookies-link').addEventListener('click', function() {
+      window.dispatchEvent(new CustomEvent('reopen-cookie-banner', { detail: { mode: 'customize' } }));
+    });
+  </script>
+
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      document.body.className = 'bg-white font-sans lang-' + lang;
+      // Update button styles
+      document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+        if (btn.dataset.toggleLang === lang) {
+          btn.classList.add('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.remove('bg-slate-100', 'text-slate-600');
+        } else {
+          btn.classList.remove('lang-btn-active', 'bg-portal-blue-primary', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-600');
+        }
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('[data-toggle-lang]').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.toggleLang));
+    });
+
+    // Apply saved choice on load
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en') setLang('en');
+  </script>
+
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="hidden fixed inset-x-0 bottom-0 z-50"></div>
+  <script src="/js/consent-store.js" defer></script>
+  <script src="/js/cookie-banner.js" defer></script>
+
+</body>
+</html>
