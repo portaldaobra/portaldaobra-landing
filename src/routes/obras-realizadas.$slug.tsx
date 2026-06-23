@@ -4,7 +4,7 @@ import { ArrowLeft, MapPin, Ruler, Tag, CheckCircle2, ClipboardList, Loader2 } f
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { getObraBySlug } from "@/lib/obras";
 import type { ObraRow } from "@/lib/cms";
 
 export const Route = createFileRoute("/obras-realizadas/$slug")({
@@ -22,16 +22,7 @@ function ObraCasePage() {
 
   const { data: obra, isLoading } = useQuery({
     queryKey: ["public", "obra", slug],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("obras")
-        .select("*")
-        .eq("slug", slug)
-        .eq("status", "published")
-        .maybeSingle();
-      if (error) throw error;
-      return data as ObraRow | null;
-    },
+    queryFn: (): Promise<ObraRow | null> => getObraBySlug(slug),
   });
 
   if (isLoading) {

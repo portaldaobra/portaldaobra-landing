@@ -1,19 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
 import type { BrandRow } from "@/lib/cms";
-import { StorageImage } from "@/components/admin/StorageImage";
 
 const ROW_1 = ["renato cariani", "shoulder", "fazenda churrascada", "overmith", "interfit"];
 const ROW_2 = ["selfit", "cinadis", "urbanize"];
 
 function matchOrder(brands: BrandRow[], order: string[]): BrandRow[] {
-  const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
   const result: BrandRow[] = [];
   for (const key of order) {
     const found = brands.find((b) => norm(b.name).includes(key));
     if (found && !result.includes(found)) result.push(found);
   }
   return result;
+}
+
+function BrandLogo({ brand }: { brand: BrandRow }) {
+  if (!brand.logo_url) {
+    return (
+      <span className="block h-10 w-32 bg-muted rounded" aria-label={brand.name} />
+    );
+  }
+  return (
+    <img
+      src={brand.logo_url}
+      alt={brand.name}
+      className="block object-contain object-center h-full w-auto max-w-[180px] opacity-80 hover:opacity-100 transition-opacity"
+    />
+  );
 }
 
 function MarqueeRow({
@@ -43,12 +57,7 @@ function MarqueeRow({
             title={b.name}
             className="shrink-0 flex items-center justify-center h-16 sm:h-20"
           >
-            <StorageImage
-              path={b.logo_url}
-              alt={b.name}
-              className="block object-contain object-center h-full w-auto max-w-[180px] opacity-80 hover:opacity-100 transition-opacity"
-              fallbackClassName="h-10 w-32"
-            />
+            <BrandLogo brand={b} />
           </div>
         ))}
       </div>
@@ -59,15 +68,12 @@ function MarqueeRow({
 export function Clients() {
   const { data: brands = [] } = useQuery({
     queryKey: ["public", "brands"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("brands")
-        .select("*")
-        .eq("status", "active")
-        .order("sort_order")
-        .order("name");
-      if (error) throw error;
-      return data as BrandRow[];
+    queryFn: async (): Promise<BrandRow[]> => {
+      try {
+        return await apiGet<BrandRow[]>("/landing/brands");
+      } catch {
+        return [];
+      }
     },
   });
 

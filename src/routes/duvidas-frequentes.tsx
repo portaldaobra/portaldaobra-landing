@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
+import type { FaqRow } from "@/lib/cms";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -55,15 +56,12 @@ function DuvidasFrequentes() {
 
   const { data: allFaqs } = useQuery({
     queryKey: ["public", "faqs"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("faqs")
-        .select("id,question,answer,profile,sort_order")
-        .eq("status", "active")
-        .order("profile")
-        .order("sort_order");
-      if (error) throw error;
-      return (data ?? []) as Array<{ id: string; question: string; answer: string; profile: "contratante" | "fornecedor"; sort_order: number }>;
+    queryFn: async (): Promise<FaqRow[]> => {
+      try {
+        return await apiGet<FaqRow[]>("/landing/faqs");
+      } catch {
+        return [];
+      }
     },
   });
 

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
 import type { TestimonialRow } from "@/lib/cms";
 
 
@@ -165,15 +165,14 @@ const earnings = [
 function Prestadores() {
   const { data: testimonials } = useQuery({
     queryKey: ["testimonials", "supplier"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("*")
-        .eq("audience", "supplier")
-        .eq("status", "active")
-        .order("sort_order");
-      if (error) throw error;
-      return data as TestimonialRow[];
+    queryFn: async (): Promise<TestimonialRow[]> => {
+      try {
+        return await apiGet<TestimonialRow[]>("/landing/testimonials", {
+          audience: "supplier",
+        });
+      } catch {
+        return [];
+      }
     },
   });
 

@@ -1,6 +1,6 @@
 import { Quote } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
 import type { TestimonialRow } from "@/lib/cms";
 
 const COBALT = "var(--primary)";
@@ -18,15 +18,14 @@ function initialsOf(name: string) {
 export function DepoimentosContratantes() {
   const { data: depoimentos } = useQuery({
     queryKey: ["testimonials", "contractor"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("*")
-        .eq("audience", "contractor")
-        .eq("status", "active")
-        .order("sort_order");
-      if (error) throw error;
-      return data as TestimonialRow[];
+    queryFn: async (): Promise<TestimonialRow[]> => {
+      try {
+        return await apiGet<TestimonialRow[]>("/landing/testimonials", {
+          audience: "contractor",
+        });
+      } catch {
+        return [];
+      }
     },
   });
 

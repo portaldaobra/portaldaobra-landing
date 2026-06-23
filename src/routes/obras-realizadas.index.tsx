@@ -5,7 +5,7 @@ import { MapPin, Ruler, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { obrasListQuery } from "@/lib/obras";
 import type { ObraRow } from "@/lib/cms";
 
 export const Route = createFileRoute("/obras-realizadas/")({
@@ -35,15 +35,7 @@ function ObrasRealizadasPage() {
 
   const { data: obras = [], isLoading } = useQuery({
     queryKey: ["public", "obras"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("obras")
-        .select("*")
-        .eq("status", "published")
-        .order("sort_order");
-      if (error) throw error;
-      return data as ObraRow[];
-    },
+    queryFn: (): Promise<ObraRow[]> => obrasListQuery(),
   });
 
   const list = active === "Todos" ? obras : obras.filter((o) => o.segment === active);

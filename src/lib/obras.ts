@@ -1,18 +1,22 @@
-export type Obra = {
+import { apiGet } from "@/lib/api";
+import type { ObraRow } from "@/lib/cms";
+
+export type { ObraRow };
+
+/** Static fallback used by the Bids homepage component (visual preview, not CMS data). */
+export const obras: Array<{
   slug: string;
   title: string;
-  segment: "Varejo" | "Corporativo" | "Logístico" | "Industrial";
+  segment: string;
   city: string;
   state: string;
   area: string;
-  status: "Concluída";
+  status: string;
   color: string;
   summary: string;
   scope: string[];
   results: string[];
-};
-
-export const obras: Obra[] = [
+}> = [
   {
     slug: "reforma-rede-farmacias",
     title: "Reforma Rede de Farmácias",
@@ -72,4 +76,26 @@ export const obras: Obra[] = [
   },
 ];
 
-export const getObraBySlug = (slug: string) => obras.find((o) => o.slug === slug);
+export async function obrasListQuery(): Promise<ObraRow[]> {
+  try {
+    return await apiGet<ObraRow[]>("/landing/obras");
+  } catch {
+    return [];
+  }
+}
+
+export async function getObraBySlug(slug: string): Promise<ObraRow | null> {
+  try {
+    return await apiGet<ObraRow>(`/landing/obras/${slug}`);
+  } catch (e) {
+    if (
+      e != null &&
+      typeof e === "object" &&
+      "status" in e &&
+      (e as { status: number }).status === 404
+    ) {
+      return null;
+    }
+    throw e;
+  }
+}

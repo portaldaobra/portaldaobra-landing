@@ -19,33 +19,13 @@ import { Route as DuvidasFrequentesRouteImport } from './routes/duvidas-frequent
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as BidsRouteImport } from './routes/bids'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ObrasRealizadasIndexRouteImport } from './routes/obras-realizadas.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BidsIndexRouteImport } from './routes/bids.index'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ObrasRealizadasSlugRouteImport } from './routes/obras-realizadas.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as BidsSlugRouteImport } from './routes/bids.$slug'
-import { Route as AdminTiposObraRouteImport } from './routes/admin.tipos-obra'
-import { Route as AdminSignupRouteImport } from './routes/admin.signup'
-import { Route as AdminSeoRouteImport } from './routes/admin.seo'
-import { Route as AdminRedesSociaisRouteImport } from './routes/admin.redes-sociais'
-import { Route as AdminObrasRouteImport } from './routes/admin.obras'
-import { Route as AdminMarcasRouteImport } from './routes/admin.marcas'
-import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as AdminFaqsRouteImport } from './routes/admin.faqs'
-import { Route as AdminDepoimentosRouteImport } from './routes/admin.depoimentos'
-import { Route as AdminConvitesRouteImport } from './routes/admin.convites'
-import { Route as AdminConfiguracoesRouteImport } from './routes/admin.configuracoes'
-import { Route as AdminBlogRouteImport } from './routes/admin.blog'
-import { Route as AdminAboutNumerosRouteImport } from './routes/admin.about-numeros'
-import { Route as AdminObrasIndexRouteImport } from './routes/admin.obras.index'
-import { Route as AdminBlogIndexRouteImport } from './routes/admin.blog.index'
-import { Route as AdminObrasIdRouteImport } from './routes/admin.obras.$id'
-import { Route as AdminBlogNovoRouteImport } from './routes/admin.blog.novo'
-import { Route as AdminBlogEditarIdRouteImport } from './routes/admin.blog.editar.$id'
 
 const SolucoesRoute = SolucoesRouteImport.update({
   id: '/solucoes',
@@ -97,11 +77,6 @@ const BidsRoute = BidsRouteImport.update({
   path: '/bids',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -122,11 +97,6 @@ const BidsIndexRoute = BidsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BidsRoute,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
 const ObrasRealizadasSlugRoute = ObrasRealizadasSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -142,100 +112,9 @@ const BidsSlugRoute = BidsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BidsRoute,
 } as any)
-const AdminTiposObraRoute = AdminTiposObraRouteImport.update({
-  id: '/tipos-obra',
-  path: '/tipos-obra',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminSignupRoute = AdminSignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminSeoRoute = AdminSeoRouteImport.update({
-  id: '/seo',
-  path: '/seo',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminRedesSociaisRoute = AdminRedesSociaisRouteImport.update({
-  id: '/redes-sociais',
-  path: '/redes-sociais',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminObrasRoute = AdminObrasRouteImport.update({
-  id: '/obras',
-  path: '/obras',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminMarcasRoute = AdminMarcasRouteImport.update({
-  id: '/marcas',
-  path: '/marcas',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminFaqsRoute = AdminFaqsRouteImport.update({
-  id: '/faqs',
-  path: '/faqs',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminDepoimentosRoute = AdminDepoimentosRouteImport.update({
-  id: '/depoimentos',
-  path: '/depoimentos',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminConvitesRoute = AdminConvitesRouteImport.update({
-  id: '/convites',
-  path: '/convites',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminConfiguracoesRoute = AdminConfiguracoesRouteImport.update({
-  id: '/configuracoes',
-  path: '/configuracoes',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminBlogRoute = AdminBlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAboutNumerosRoute = AdminAboutNumerosRouteImport.update({
-  id: '/about-numeros',
-  path: '/about-numeros',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminObrasIndexRoute = AdminObrasIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminObrasRoute,
-} as any)
-const AdminBlogIndexRoute = AdminBlogIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminBlogRoute,
-} as any)
-const AdminObrasIdRoute = AdminObrasIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => AdminObrasRoute,
-} as any)
-const AdminBlogNovoRoute = AdminBlogNovoRouteImport.update({
-  id: '/novo',
-  path: '/novo',
-  getParentRoute: () => AdminBlogRoute,
-} as any)
-const AdminBlogEditarIdRoute = AdminBlogEditarIdRouteImport.update({
-  id: '/editar/$id',
-  path: '/editar/$id',
-  getParentRoute: () => AdminBlogRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
   '/bids': typeof BidsRouteWithChildren
   '/blog': typeof BlogRouteWithChildren
   '/como-funciona': typeof ComoFuncionaRoute
@@ -246,31 +125,12 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/admin/about-numeros': typeof AdminAboutNumerosRoute
-  '/admin/blog': typeof AdminBlogRouteWithChildren
-  '/admin/configuracoes': typeof AdminConfiguracoesRoute
-  '/admin/convites': typeof AdminConvitesRoute
-  '/admin/depoimentos': typeof AdminDepoimentosRoute
-  '/admin/faqs': typeof AdminFaqsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/marcas': typeof AdminMarcasRoute
-  '/admin/obras': typeof AdminObrasRouteWithChildren
-  '/admin/redes-sociais': typeof AdminRedesSociaisRoute
-  '/admin/seo': typeof AdminSeoRoute
-  '/admin/signup': typeof AdminSignupRoute
-  '/admin/tipos-obra': typeof AdminTiposObraRoute
   '/bids/$slug': typeof BidsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/obras-realizadas/$slug': typeof ObrasRealizadasSlugRoute
-  '/admin/': typeof AdminIndexRoute
   '/bids/': typeof BidsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/obras-realizadas/': typeof ObrasRealizadasIndexRoute
-  '/admin/blog/novo': typeof AdminBlogNovoRoute
-  '/admin/obras/$id': typeof AdminObrasIdRoute
-  '/admin/blog/': typeof AdminBlogIndexRoute
-  '/admin/obras/': typeof AdminObrasIndexRoute
-  '/admin/blog/editar/$id': typeof AdminBlogEditarIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -281,34 +141,16 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/admin/about-numeros': typeof AdminAboutNumerosRoute
-  '/admin/configuracoes': typeof AdminConfiguracoesRoute
-  '/admin/convites': typeof AdminConvitesRoute
-  '/admin/depoimentos': typeof AdminDepoimentosRoute
-  '/admin/faqs': typeof AdminFaqsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/marcas': typeof AdminMarcasRoute
-  '/admin/redes-sociais': typeof AdminRedesSociaisRoute
-  '/admin/seo': typeof AdminSeoRoute
-  '/admin/signup': typeof AdminSignupRoute
-  '/admin/tipos-obra': typeof AdminTiposObraRoute
   '/bids/$slug': typeof BidsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/obras-realizadas/$slug': typeof ObrasRealizadasSlugRoute
-  '/admin': typeof AdminIndexRoute
   '/bids': typeof BidsIndexRoute
   '/blog': typeof BlogIndexRoute
   '/obras-realizadas': typeof ObrasRealizadasIndexRoute
-  '/admin/blog/novo': typeof AdminBlogNovoRoute
-  '/admin/obras/$id': typeof AdminObrasIdRoute
-  '/admin/blog': typeof AdminBlogIndexRoute
-  '/admin/obras': typeof AdminObrasIndexRoute
-  '/admin/blog/editar/$id': typeof AdminBlogEditarIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteWithChildren
   '/bids': typeof BidsRouteWithChildren
   '/blog': typeof BlogRouteWithChildren
   '/como-funciona': typeof ComoFuncionaRoute
@@ -319,37 +161,17 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/solucoes': typeof SolucoesRoute
-  '/admin/about-numeros': typeof AdminAboutNumerosRoute
-  '/admin/blog': typeof AdminBlogRouteWithChildren
-  '/admin/configuracoes': typeof AdminConfiguracoesRoute
-  '/admin/convites': typeof AdminConvitesRoute
-  '/admin/depoimentos': typeof AdminDepoimentosRoute
-  '/admin/faqs': typeof AdminFaqsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/marcas': typeof AdminMarcasRoute
-  '/admin/obras': typeof AdminObrasRouteWithChildren
-  '/admin/redes-sociais': typeof AdminRedesSociaisRoute
-  '/admin/seo': typeof AdminSeoRoute
-  '/admin/signup': typeof AdminSignupRoute
-  '/admin/tipos-obra': typeof AdminTiposObraRoute
   '/bids/$slug': typeof BidsSlugRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/obras-realizadas/$slug': typeof ObrasRealizadasSlugRoute
-  '/admin/': typeof AdminIndexRoute
   '/bids/': typeof BidsIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/obras-realizadas/': typeof ObrasRealizadasIndexRoute
-  '/admin/blog/novo': typeof AdminBlogNovoRoute
-  '/admin/obras/$id': typeof AdminObrasIdRoute
-  '/admin/blog/': typeof AdminBlogIndexRoute
-  '/admin/obras/': typeof AdminObrasIndexRoute
-  '/admin/blog/editar/$id': typeof AdminBlogEditarIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
     | '/bids'
     | '/blog'
     | '/como-funciona'
@@ -360,31 +182,12 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/solucoes'
-    | '/admin/about-numeros'
-    | '/admin/blog'
-    | '/admin/configuracoes'
-    | '/admin/convites'
-    | '/admin/depoimentos'
-    | '/admin/faqs'
-    | '/admin/login'
-    | '/admin/marcas'
-    | '/admin/obras'
-    | '/admin/redes-sociais'
-    | '/admin/seo'
-    | '/admin/signup'
-    | '/admin/tipos-obra'
     | '/bids/$slug'
     | '/blog/$slug'
     | '/obras-realizadas/$slug'
-    | '/admin/'
     | '/bids/'
     | '/blog/'
     | '/obras-realizadas/'
-    | '/admin/blog/novo'
-    | '/admin/obras/$id'
-    | '/admin/blog/'
-    | '/admin/obras/'
-    | '/admin/blog/editar/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -395,33 +198,15 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/solucoes'
-    | '/admin/about-numeros'
-    | '/admin/configuracoes'
-    | '/admin/convites'
-    | '/admin/depoimentos'
-    | '/admin/faqs'
-    | '/admin/login'
-    | '/admin/marcas'
-    | '/admin/redes-sociais'
-    | '/admin/seo'
-    | '/admin/signup'
-    | '/admin/tipos-obra'
     | '/bids/$slug'
     | '/blog/$slug'
     | '/obras-realizadas/$slug'
-    | '/admin'
     | '/bids'
     | '/blog'
     | '/obras-realizadas'
-    | '/admin/blog/novo'
-    | '/admin/obras/$id'
-    | '/admin/blog'
-    | '/admin/obras'
-    | '/admin/blog/editar/$id'
   id:
     | '__root__'
     | '/'
-    | '/admin'
     | '/bids'
     | '/blog'
     | '/como-funciona'
@@ -432,36 +217,16 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/sobre'
     | '/solucoes'
-    | '/admin/about-numeros'
-    | '/admin/blog'
-    | '/admin/configuracoes'
-    | '/admin/convites'
-    | '/admin/depoimentos'
-    | '/admin/faqs'
-    | '/admin/login'
-    | '/admin/marcas'
-    | '/admin/obras'
-    | '/admin/redes-sociais'
-    | '/admin/seo'
-    | '/admin/signup'
-    | '/admin/tipos-obra'
     | '/bids/$slug'
     | '/blog/$slug'
     | '/obras-realizadas/$slug'
-    | '/admin/'
     | '/bids/'
     | '/blog/'
     | '/obras-realizadas/'
-    | '/admin/blog/novo'
-    | '/admin/obras/$id'
-    | '/admin/blog/'
-    | '/admin/obras/'
-    | '/admin/blog/editar/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRouteWithChildren
   BidsRoute: typeof BidsRouteWithChildren
   BlogRoute: typeof BlogRouteWithChildren
   ComoFuncionaRoute: typeof ComoFuncionaRoute
@@ -546,13 +311,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BidsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -581,13 +339,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BidsIndexRouteImport
       parentRoute: typeof BidsRoute
     }
-    '/admin/': {
-      id: '/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRoute
-    }
     '/obras-realizadas/$slug': {
       id: '/obras-realizadas/$slug'
       path: '/$slug'
@@ -609,200 +360,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BidsSlugRouteImport
       parentRoute: typeof BidsRoute
     }
-    '/admin/tipos-obra': {
-      id: '/admin/tipos-obra'
-      path: '/tipos-obra'
-      fullPath: '/admin/tipos-obra'
-      preLoaderRoute: typeof AdminTiposObraRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/signup': {
-      id: '/admin/signup'
-      path: '/signup'
-      fullPath: '/admin/signup'
-      preLoaderRoute: typeof AdminSignupRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/seo': {
-      id: '/admin/seo'
-      path: '/seo'
-      fullPath: '/admin/seo'
-      preLoaderRoute: typeof AdminSeoRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/redes-sociais': {
-      id: '/admin/redes-sociais'
-      path: '/redes-sociais'
-      fullPath: '/admin/redes-sociais'
-      preLoaderRoute: typeof AdminRedesSociaisRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/obras': {
-      id: '/admin/obras'
-      path: '/obras'
-      fullPath: '/admin/obras'
-      preLoaderRoute: typeof AdminObrasRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/marcas': {
-      id: '/admin/marcas'
-      path: '/marcas'
-      fullPath: '/admin/marcas'
-      preLoaderRoute: typeof AdminMarcasRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/faqs': {
-      id: '/admin/faqs'
-      path: '/faqs'
-      fullPath: '/admin/faqs'
-      preLoaderRoute: typeof AdminFaqsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/depoimentos': {
-      id: '/admin/depoimentos'
-      path: '/depoimentos'
-      fullPath: '/admin/depoimentos'
-      preLoaderRoute: typeof AdminDepoimentosRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/convites': {
-      id: '/admin/convites'
-      path: '/convites'
-      fullPath: '/admin/convites'
-      preLoaderRoute: typeof AdminConvitesRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/configuracoes': {
-      id: '/admin/configuracoes'
-      path: '/configuracoes'
-      fullPath: '/admin/configuracoes'
-      preLoaderRoute: typeof AdminConfiguracoesRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/blog': {
-      id: '/admin/blog'
-      path: '/blog'
-      fullPath: '/admin/blog'
-      preLoaderRoute: typeof AdminBlogRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/about-numeros': {
-      id: '/admin/about-numeros'
-      path: '/about-numeros'
-      fullPath: '/admin/about-numeros'
-      preLoaderRoute: typeof AdminAboutNumerosRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/obras/': {
-      id: '/admin/obras/'
-      path: '/'
-      fullPath: '/admin/obras/'
-      preLoaderRoute: typeof AdminObrasIndexRouteImport
-      parentRoute: typeof AdminObrasRoute
-    }
-    '/admin/blog/': {
-      id: '/admin/blog/'
-      path: '/'
-      fullPath: '/admin/blog/'
-      preLoaderRoute: typeof AdminBlogIndexRouteImport
-      parentRoute: typeof AdminBlogRoute
-    }
-    '/admin/obras/$id': {
-      id: '/admin/obras/$id'
-      path: '/$id'
-      fullPath: '/admin/obras/$id'
-      preLoaderRoute: typeof AdminObrasIdRouteImport
-      parentRoute: typeof AdminObrasRoute
-    }
-    '/admin/blog/novo': {
-      id: '/admin/blog/novo'
-      path: '/novo'
-      fullPath: '/admin/blog/novo'
-      preLoaderRoute: typeof AdminBlogNovoRouteImport
-      parentRoute: typeof AdminBlogRoute
-    }
-    '/admin/blog/editar/$id': {
-      id: '/admin/blog/editar/$id'
-      path: '/editar/$id'
-      fullPath: '/admin/blog/editar/$id'
-      preLoaderRoute: typeof AdminBlogEditarIdRouteImport
-      parentRoute: typeof AdminBlogRoute
-    }
   }
 }
-
-interface AdminBlogRouteChildren {
-  AdminBlogNovoRoute: typeof AdminBlogNovoRoute
-  AdminBlogIndexRoute: typeof AdminBlogIndexRoute
-  AdminBlogEditarIdRoute: typeof AdminBlogEditarIdRoute
-}
-
-const AdminBlogRouteChildren: AdminBlogRouteChildren = {
-  AdminBlogNovoRoute: AdminBlogNovoRoute,
-  AdminBlogIndexRoute: AdminBlogIndexRoute,
-  AdminBlogEditarIdRoute: AdminBlogEditarIdRoute,
-}
-
-const AdminBlogRouteWithChildren = AdminBlogRoute._addFileChildren(
-  AdminBlogRouteChildren,
-)
-
-interface AdminObrasRouteChildren {
-  AdminObrasIdRoute: typeof AdminObrasIdRoute
-  AdminObrasIndexRoute: typeof AdminObrasIndexRoute
-}
-
-const AdminObrasRouteChildren: AdminObrasRouteChildren = {
-  AdminObrasIdRoute: AdminObrasIdRoute,
-  AdminObrasIndexRoute: AdminObrasIndexRoute,
-}
-
-const AdminObrasRouteWithChildren = AdminObrasRoute._addFileChildren(
-  AdminObrasRouteChildren,
-)
-
-interface AdminRouteChildren {
-  AdminAboutNumerosRoute: typeof AdminAboutNumerosRoute
-  AdminBlogRoute: typeof AdminBlogRouteWithChildren
-  AdminConfiguracoesRoute: typeof AdminConfiguracoesRoute
-  AdminConvitesRoute: typeof AdminConvitesRoute
-  AdminDepoimentosRoute: typeof AdminDepoimentosRoute
-  AdminFaqsRoute: typeof AdminFaqsRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  AdminMarcasRoute: typeof AdminMarcasRoute
-  AdminObrasRoute: typeof AdminObrasRouteWithChildren
-  AdminRedesSociaisRoute: typeof AdminRedesSociaisRoute
-  AdminSeoRoute: typeof AdminSeoRoute
-  AdminSignupRoute: typeof AdminSignupRoute
-  AdminTiposObraRoute: typeof AdminTiposObraRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminAboutNumerosRoute: AdminAboutNumerosRoute,
-  AdminBlogRoute: AdminBlogRouteWithChildren,
-  AdminConfiguracoesRoute: AdminConfiguracoesRoute,
-  AdminConvitesRoute: AdminConvitesRoute,
-  AdminDepoimentosRoute: AdminDepoimentosRoute,
-  AdminFaqsRoute: AdminFaqsRoute,
-  AdminLoginRoute: AdminLoginRoute,
-  AdminMarcasRoute: AdminMarcasRoute,
-  AdminObrasRoute: AdminObrasRouteWithChildren,
-  AdminRedesSociaisRoute: AdminRedesSociaisRoute,
-  AdminSeoRoute: AdminSeoRoute,
-  AdminSignupRoute: AdminSignupRoute,
-  AdminTiposObraRoute: AdminTiposObraRoute,
-  AdminIndexRoute: AdminIndexRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface BidsRouteChildren {
   BidsSlugRoute: typeof BidsSlugRoute
@@ -844,7 +403,6 @@ const ObrasRealizadasRouteWithChildren = ObrasRealizadasRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRouteWithChildren,
   BidsRoute: BidsRouteWithChildren,
   BlogRoute: BlogRouteWithChildren,
   ComoFuncionaRoute: ComoFuncionaRoute,
@@ -859,3 +417,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

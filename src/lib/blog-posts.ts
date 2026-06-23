@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
 import type { BlogRow } from "@/lib/cms";
 
 export type BlogPost = BlogRow & {
@@ -29,19 +29,12 @@ export const blogListQuery = (filter: BlogListFilter = {}) =>
   queryOptions({
     queryKey: ["blog", "list", filter],
     queryFn: async (): Promise<BlogPost[]> => {
-      let q = supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("status", "published")
-        .order("sort_order", { ascending: true })
-        .order("updated_at", { ascending: false });
-      if (filter.homeFeatured) q = q.eq("featured_home", true);
-      if (filter.audience === "contratantes") q = q.in("audience", ["contratantes", "ambos"]);
-      if (filter.audience === "fornecedores") q = q.in("audience", ["fornecedores", "ambos"]);
-      if (filter.limit) q = q.limit(filter.limit);
-      const { data, error } = await q;
-      if (error) throw error;
-      return (data as unknown as BlogRow[]).map(adapt);
+      const rows = await apiGet<BlogRow[]>("/landing/blog-posts", {
+        audience: filter.audience,
+        featured_home: filter.homeFeatured || undefined,
+        limit: filter.limit,
+      });
+      return rows.map(adapt);
     },
   });
 
@@ -49,13 +42,14 @@ export const blogPostQuery = (slug: string) =>
   queryOptions({
     queryKey: ["blog", "post", slug],
     queryFn: async (): Promise<BlogPost | null> => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("slug", slug)
-        .eq("status", "published")
-        .maybeSingle();
-      if (error) throw error;
-      return data ? adapt(data as unknown as BlogRow) : null;
+      try {
+        const row = await apiGet<BlogRow>(`/landing/blog-posts/${slug}`);
+        return adapt(row);
+      } catch (e) {
+        if (e != null && typeof e === "object" && "status" in e && (e as { status: number }).status === 404) {
+          return null;
+        }
+        throw e;
+      }
     },
   });

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube, MessageCircle, Music2, Globe } from "lucide-react";
 import logoAsset from "@/assets/logo-portalobra.svg.asset.json";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
 import type { SocialRow } from "@/lib/cms";
 
 const columns = [
@@ -70,15 +70,15 @@ function normalizeUrl(u: string | null | undefined): string | null {
 export function Footer() {
   const { data: socials = [] } = useQuery({
     queryKey: ["social_links"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("social_links")
-        .select("platform,url")
-        .order("platform");
-      if (error) throw error;
-      return (data as SocialRow[])
-        .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
-        .filter((s): s is { platform: string; url: string } => !!s.url);
+    queryFn: async (): Promise<{ platform: string; url: string }[]> => {
+      try {
+        const rows = await apiGet<SocialRow[]>("/landing/social-links");
+        return rows
+          .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
+          .filter((s): s is { platform: string; url: string } => !!s.url);
+      } catch {
+        return [];
+      }
     },
   });
 

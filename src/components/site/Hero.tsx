@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAudience } from "./AudienceContext";
+import { apiGet } from "@/lib/api";
 
 const audienceContent = {
   lojistas: {
@@ -49,50 +50,23 @@ export function Hero() {
 
   const { data: obraTypes } = useQuery({
     queryKey: ["obra_types"],
-    queryFn: async () => {
-      const { supabase } = await import("@/integrations/supabase/client");
-      const { data, error } = await supabase
-        .from("obra_types" as never)
-        .select("name,is_default,sort_order,status")
-        .eq("status", "active")
-        .order("sort_order")
-        .order("name");
-      if (error) throw error;
-      return (data as unknown) as Array<{ name: string; is_default: boolean }>;
-    },
+    queryFn: () =>
+      apiGet<Array<{ name: string; is_default: boolean }>>("/landing/obra-types"),
   });
   const tipoOptions = (obraTypes ?? []).map((t) => t.name);
   const tipoDefault = obraTypes?.find((t) => t.is_default)?.name;
 
   const { data: categorias } = useQuery({
     queryKey: ["form_categories"],
-    queryFn: async () => {
-      const { supabase } = await import("@/integrations/supabase/client");
-      const { data, error } = await supabase
-        .from("form_categories" as never)
-        .select("name,sort_order,status")
-        .eq("status", "active")
-        .order("sort_order")
-        .order("name");
-      if (error) throw error;
-      return (data as unknown) as Array<{ name: string }>;
-    },
+    queryFn: () =>
+      apiGet<Array<{ name: string }>>("/landing/form-categories"),
   });
   const categoriaOptions = (categorias ?? []).map((c) => c.name);
 
   const { data: localizacoes } = useQuery({
     queryKey: ["form_locations"],
-    queryFn: async () => {
-      const { supabase } = await import("@/integrations/supabase/client");
-      const { data, error } = await supabase
-        .from("form_locations" as never)
-        .select("name,sort_order,status")
-        .eq("status", "active")
-        .order("sort_order")
-        .order("name");
-      if (error) throw error;
-      return (data as unknown) as Array<{ name: string }>;
-    },
+    queryFn: () =>
+      apiGet<Array<{ name: string }>>("/landing/form-locations"),
   });
   const localizacaoOptions = (localizacoes ?? []).map((l) => l.name);
 

@@ -1,4 +1,5 @@
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
+import type { SettingRow } from "@/lib/cms";
 
 export type AboutIndicator = {
   title: string;
@@ -53,13 +54,15 @@ export function parseAboutNumeros(raw: string | null | undefined): AboutNumeros 
   if (!raw) return DEFAULT_ABOUT_NUMEROS;
   try {
     const parsed = JSON.parse(raw) as Partial<AboutNumeros>;
-    const indicators = Array.isArray(parsed.indicators) && parsed.indicators.length === 4
-      ? parsed.indicators.map((it, i) => ({
-          title: it?.title ?? DEFAULT_ABOUT_NUMEROS.indicators[i].title,
-          value: it?.value ?? DEFAULT_ABOUT_NUMEROS.indicators[i].value,
-          description: it?.description ?? DEFAULT_ABOUT_NUMEROS.indicators[i].description,
-        }))
-      : DEFAULT_ABOUT_NUMEROS.indicators;
+    const indicators =
+      Array.isArray(parsed.indicators) && parsed.indicators.length === 4
+        ? parsed.indicators.map((it, i) => ({
+            title: it?.title ?? DEFAULT_ABOUT_NUMEROS.indicators[i].title,
+            value: it?.value ?? DEFAULT_ABOUT_NUMEROS.indicators[i].value,
+            description:
+              it?.description ?? DEFAULT_ABOUT_NUMEROS.indicators[i].description,
+          }))
+        : DEFAULT_ABOUT_NUMEROS.indicators;
     const segments = Array.isArray(parsed.segments)
       ? parsed.segments
           .filter((s) => s && typeof s.label === "string" && s.label.trim().length > 0)
@@ -72,10 +75,11 @@ export function parseAboutNumeros(raw: string | null | undefined): AboutNumeros 
 }
 
 export async function fetchAboutNumeros(): Promise<AboutNumeros> {
-  const { data } = await supabase
-    .from("site_settings")
-    .select("value")
-    .eq("key", ABOUT_NUMEROS_KEY)
-    .maybeSingle();
-  return parseAboutNumeros(data?.value ?? null);
+  try {
+    const rows = await apiGet<SettingRow[]>("/landing/site-settings");
+    const raw = rows.find((r) => r.key === ABOUT_NUMEROS_KEY)?.value ?? null;
+    return parseAboutNumeros(raw);
+  } catch {
+    return DEFAULT_ABOUT_NUMEROS;
+  }
 }

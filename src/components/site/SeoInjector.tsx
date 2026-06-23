@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { apiGet } from "@/lib/api";
+import type { SettingRow } from "@/lib/cms";
 
 const SEO_KEYS = [
   "seo_default_description",
@@ -236,13 +237,12 @@ gtag('config', '${s.tracking_ga4_id}');`,
 export function SeoInjector() {
   const { data } = useQuery({
     queryKey: ["public", "seo_settings"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("site_settings")
-        .select("key,value")
-        .in("key", SEO_KEYS as unknown as string[]);
-      if (error) return [];
-      return data ?? [];
+    queryFn: async (): Promise<SettingRow[]> => {
+      try {
+        return await apiGet<SettingRow[]>("/landing/site-settings");
+      } catch {
+        return [];
+      }
     },
     staleTime: 5 * 60 * 1000,
   });
