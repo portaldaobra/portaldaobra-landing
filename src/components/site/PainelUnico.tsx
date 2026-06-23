@@ -1,3 +1,4 @@
+import React from "react";
 import {
   LayoutDashboard,
   FileText,
@@ -44,7 +45,7 @@ const data: Record<
     listTitle: string;
     listMeta: string;
     items: Item[];
-    sidebar: { label: string; icon: any; badge?: string }[];
+    sidebar: { label: string; icon: React.ComponentType<{ className?: string }>; badge?: string }[];
   }
 > = {
   contratante: {
@@ -62,11 +63,51 @@ const data: Record<
     listTitle: "BIDs em andamento",
     listMeta: "Mostrando 5 de 18",
     items: [
-      { code: "BID-2034", title: "Reforma Loja Iguatemi", city: "São Paulo", meta: "480 m² · Padrão A", count: 4, status: "Em análise", statusTone: "info" },
-      { code: "BID-2031", title: "Expansão Unidade Campinas", city: "Campinas", meta: "720 m² · Padrão A+", count: 6, status: "Em coleta", statusTone: "warn" },
-      { code: "BID-2029", title: "Nova Loja Belo Horizonte", city: "Belo Horizonte", meta: "220 m²", count: 5, status: "Contratada", statusTone: "success" },
-      { code: "BID-2025", title: "Retrofit Escritório Corporativo", city: "Rio de Janeiro", meta: "Andar 12 · 410 m²", count: 8, status: "Em análise", statusTone: "info" },
-      { code: "BID-2018", title: "MEP Centro de Distribuição", city: "Cajamar", meta: "4.200 m²", count: 3, status: "Rascunho", statusTone: "muted" },
+      {
+        code: "BID-2034",
+        title: "Reforma Loja Iguatemi",
+        city: "São Paulo",
+        meta: "480 m² · Padrão A",
+        count: 4,
+        status: "Em análise",
+        statusTone: "info",
+      },
+      {
+        code: "BID-2031",
+        title: "Expansão Unidade Campinas",
+        city: "Campinas",
+        meta: "720 m² · Padrão A+",
+        count: 6,
+        status: "Em coleta",
+        statusTone: "warn",
+      },
+      {
+        code: "BID-2029",
+        title: "Nova Loja Belo Horizonte",
+        city: "Belo Horizonte",
+        meta: "220 m²",
+        count: 5,
+        status: "Contratada",
+        statusTone: "success",
+      },
+      {
+        code: "BID-2025",
+        title: "Retrofit Escritório Corporativo",
+        city: "Rio de Janeiro",
+        meta: "Andar 12 · 410 m²",
+        count: 8,
+        status: "Em análise",
+        statusTone: "info",
+      },
+      {
+        code: "BID-2018",
+        title: "MEP Centro de Distribuição",
+        city: "Cajamar",
+        meta: "4.200 m²",
+        count: 3,
+        status: "Rascunho",
+        statusTone: "muted",
+      },
     ],
     sidebar: [
       { label: "Visão geral", icon: LayoutDashboard },
@@ -92,11 +133,51 @@ const data: Record<
     listTitle: "Oportunidades disponíveis",
     listMeta: "Mostrando 5 de 24",
     items: [
-      { code: "BID-1148", title: "Loja Varejo SP", city: "São Paulo", meta: "380 m² · Padrão A", count: 9, status: "Aberta", statusTone: "info" },
-      { code: "BID-1142", title: "Centro de Distribuição MG", city: "Betim", meta: "6.500 m²", count: 4, status: "Em coleta", statusTone: "warn" },
-      { code: "BID-1139", title: "Reforma Unidade RJ", city: "Rio de Janeiro", meta: "260 m²", count: 7, status: "Aberta", statusTone: "info" },
-      { code: "BID-1133", title: "Escritório Corporativo PR", city: "Curitiba", meta: "Andar 8 · 540 m²", count: 5, status: "Proposta enviada", statusTone: "success" },
-      { code: "BID-1127", title: "Roll-out Sul — 4 lojas", city: "Porto Alegre", meta: "Padrão A", count: 6, status: "Aberta", statusTone: "info" },
+      {
+        code: "BID-1148",
+        title: "Loja Varejo SP",
+        city: "São Paulo",
+        meta: "380 m² · Padrão A",
+        count: 9,
+        status: "Aberta",
+        statusTone: "info",
+      },
+      {
+        code: "BID-1142",
+        title: "Centro de Distribuição MG",
+        city: "Betim",
+        meta: "6.500 m²",
+        count: 4,
+        status: "Em coleta",
+        statusTone: "warn",
+      },
+      {
+        code: "BID-1139",
+        title: "Reforma Unidade RJ",
+        city: "Rio de Janeiro",
+        meta: "260 m²",
+        count: 7,
+        status: "Aberta",
+        statusTone: "info",
+      },
+      {
+        code: "BID-1133",
+        title: "Escritório Corporativo PR",
+        city: "Curitiba",
+        meta: "Andar 8 · 540 m²",
+        count: 5,
+        status: "Proposta enviada",
+        statusTone: "success",
+      },
+      {
+        code: "BID-1127",
+        title: "Roll-out Sul — 4 lojas",
+        city: "Porto Alegre",
+        meta: "Padrão A",
+        count: 6,
+        status: "Aberta",
+        statusTone: "info",
+      },
     ],
     sidebar: [
       { label: "Oportunidades", icon: LayoutDashboard },
@@ -154,7 +235,6 @@ export function PainelUnico({ variant = "contratante" }: { variant?: Variant } =
             </p>
           </div>
         </div>
-
 
         {/* Mockup */}
         <div className="rounded-2xl border border-border bg-card shadow-card overflow-hidden">
@@ -234,9 +314,7 @@ export function PainelUnico({ variant = "contratante" }: { variant?: Variant } =
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-navy">
                     {d.panelTitle}
                   </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                    {d.panelSubtitle}
-                  </p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">{d.panelSubtitle}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <button className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium px-3 h-9 rounded-full border border-border text-foreground/80 hover:bg-secondary transition-colors">
@@ -343,7 +421,9 @@ export function PainelUnico({ variant = "contratante" }: { variant?: Variant } =
                         </div>
                       </div>
                       <div className="hidden sm:block text-right shrink-0">
-                        <div className="text-base font-bold text-primary leading-none">{it.count}</div>
+                        <div className="text-base font-bold text-primary leading-none">
+                          {it.count}
+                        </div>
                         <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
                           propostas
                         </div>
