@@ -1,9 +1,14 @@
 name: Deploy Landing Page
 
+# v31.0: build-then-sync. The site is a TanStack Start app prerendered to static
+# HTML from a publish-time JSON snapshot (downloaded from S3). Triggered by the
+# API's POST /landing/publish via repository_dispatch, or manually.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [landing-publish]
 
 permissions:
   id-token: write
@@ -13,15 +18,24 @@ env:
   AWS_REGION: us-east-1
   S3_BUCKET: portaldaobra-landing
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+  # Full S3 URI of the published content snapshot the API uploads.
+  # Override via repo variable SNAPSHOT_S3_URI if the bucket/key differ.
+  SNAPSHOT_S3_URI: ${{ vars.SNAPSHOT_S3_URI || 's3://portaldaobra-landing-build/landing-snapshots/latest.json' }}
 
 jobs:
   deploy:
-    name: Deploy to S3 + CloudFront
+    name: Build + Deploy to S3 + CloudFront
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -29,19 +43,70 @@ jobs:
           role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Sync to S3
+      - name: Download published content snapshot
+        # Pull the real snapshot the API published. If it is not available yet
+        # (e.g. first-ever deploy before any Publish), fall back to the committed
+        # example so the build still produces a valid (seeded) site rather than
+        # failing or shipping empty HTML.
         run: |
-          aws s3 sync . s3://${{ env.S3_BUCKET }} \
-            --delete \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "README.md" \
-            --cache-control "public, max-age=3600" \
+          if aws s3 cp "${SNAPSHOT_S3_URI}" ./snapshot.json; then
+            echo "Using published snapshot from ${SNAPSHOT_S3_URI}"
+          else
+            echo "::warning::No published snapshot at ${SNAPSHOT_S3_URI} — falling back to snapshot.example.json"
+            cp snapshot.example.json snapshot.json
+          fi
 
-      - name: Set long cache for static assets
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build (static prerender from snapshot)
+        run: yarn build
+
+      - name: Guard — LGPD assets must be in the build output
+        # The static --delete sync below would wipe anything not in dist/client.
+        # Hard-fail before syncing if the v18.0 consent/legal layer is missing,
+        # so a broken build can never strip LGPD compliance from the live site.
         run: |
-          aws s3 sync static/ s3://${{ env.S3_BUCKET }}/static/ \
-            --cache-control "public, max-age=86400, immutable"
+          missing=0
+          for p in \
+            dist/client/index.html \
+            dist/client/js/consent-store.js \
+            dist/client/js/cookie-banner.js \
+            dist/client/js/gtm-gate.js \
+            dist/client/legal/privacy/index.html \
+            dist/client/legal/terms/index.html \
+            dist/client/legal/cookies/index.html \
+            dist/client/legal/subprocessors/index.html \
+            dist/client/sitemap.xml; do
+            if [ ! -e "$p" ]; then echo "MISSING: $p"; missing=1; fi
+          done
+          if ! grep -rq "consent','default'" dist/client/index.html; then
+            echo "MISSING: LGPD default-deny consent script in index.html"; missing=1
+          fi
+          if [ "$missing" != "0" ]; then
+            echo "LGPD/build guard failed — aborting deploy (no --delete sync will run)."
+            exit 1
+          fi
+          echo "LGPD + build-output guard passed."
+
+      - name: Sync HTML/dynamic to S3 (short cache)
+        run: |
+          aws s3 sync dist/client/ s3://${{ env.S3_BUCKET }} \
+            --delete \
+            --exclude "assets/*" \
+            --exclude "_build/*" \
+            --cache-control "public, max-age=300, must-revalidate"
+
+      - name: Sync hashed assets to S3 (immutable long cache)
+        run: |
+          if [ -d dist/client/assets ]; then
+            aws s3 sync dist/client/assets/ s3://${{ env.S3_BUCKET }}/assets/ \
+              --cache-control "public, max-age=31536000, immutable"
+          fi
+          if [ -d dist/client/_build ]; then
+            aws s3 sync dist/client/_build/ s3://${{ env.S3_BUCKET }}/_build/ \
+              --cache-control "public, max-age=31536000, immutable"
+          fi
 
       - name: Invalidate CloudFront cache
         run: |
