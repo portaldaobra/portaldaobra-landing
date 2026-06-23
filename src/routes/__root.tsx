@@ -87,6 +87,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Portal da Obra" },
       { name: "robots", content: "index, follow" },
+      // API base URL for consent-store.js (PUT /api/v1/consent); heuristic in the
+      // script handles localhost:8011 vs prod, but the meta provides an explicit override
+      // for the prerendered HTML. The value is intentionally blank so the heuristic
+      // kicks in — set a real URL here if the build-time env var is available.
+      { name: "api-base", content: "" },
       { property: "og:site_name", content: "Portal da Obra" },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:title", content: "Portal da Obra | Contratação de Obras Corporativas" },
@@ -114,6 +119,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
+      // Consent Mode v2: default-deny BEFORE any analytics tag fires.
+      // Must be the first script in <head> (before GTM or any analytics).
+      {
+        children:
+          "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied'});window.__gtmConsentInitialized=true;",
+      },
+      // GTM consent-gated loader (lazy-injects GTM only after analytics consent).
+      { src: "/js/gtm-gate.js", defer: true },
+      // Consent store + banner scripts (body-level; defer ensures DOM is ready).
+      { src: "/js/consent-store.js", defer: true },
+      { src: "/js/cookie-banner.js", defer: true },
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -152,6 +168,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        {/* LGPD cookie-banner mount point — cookie-banner.js attaches to this div */}
+        <div id="cookie-banner" className="hidden fixed inset-x-0 bottom-0 z-50" />
         <Scripts />
       </body>
     </html>

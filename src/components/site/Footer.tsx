@@ -11,6 +11,10 @@ const columns = [
     links: [
       { label: "Dúvidas Frequentes", to: "/duvidas-frequentes" },
       { label: "Privacidade e Contratos", to: "/privacidade-e-contratos" },
+      { label: "Política de Privacidade", to: "/legal/privacy/" },
+      { label: "Termos de Uso", to: "/legal/terms/" },
+      { label: "Política de Cookies", to: "/legal/cookies/" },
+      { label: "Subprocessadores", to: "/legal/subprocessors/" },
     ],
   },
   {
@@ -165,7 +169,19 @@ export function Footer() {
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-navy-foreground/60">
           <p>© 2026 Portal da Obra. Todos os direitos reservados.</p>
-          <p className="text-navy-foreground/50">Plataforma B2B de obras corporativas</p>
+          <div className="flex items-center gap-4">
+            {/* LGPD: "Gerenciar cookies" reopens the consent banner */}
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent("reopen-cookie-banner"))
+              }
+              className="underline-offset-2 hover:text-primary hover:underline transition-colors cursor-pointer text-navy-foreground/60"
+            >
+              Gerenciar cookies
+            </button>
+            <p className="text-navy-foreground/50">Plataforma B2B de obras corporativas</p>
+          </div>
         </div>
       </div>
     </footer>
