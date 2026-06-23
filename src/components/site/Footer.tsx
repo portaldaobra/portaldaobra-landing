@@ -1,6 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Facebook, Instagram, Linkedin, Twitter, Youtube, MessageCircle, Music2, Globe } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Youtube,
+  MessageCircle,
+  Music2,
+  Globe,
+} from "lucide-react";
 import logoAsset from "@/assets/logo-portalobra.svg.asset.json";
 import { apiGet } from "@/lib/api";
 import type { SocialRow } from "@/lib/cms";
@@ -71,7 +80,11 @@ function normalizeUrl(u: string | null | undefined): string | null {
   }
 }
 
-export function Footer() {
+export function Footer({
+  initialSocials,
+}: {
+  initialSocials?: SocialRow[];
+} = {}) {
   const { data: socials = [] } = useQuery({
     queryKey: ["social_links"],
     queryFn: async (): Promise<{ platform: string; url: string }[]> => {
@@ -84,6 +97,12 @@ export function Footer() {
         return [];
       }
     },
+    initialData: initialSocials
+      ? initialSocials
+          .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
+          .filter((s): s is { platform: string; url: string } => !!s.url)
+      : undefined,
+    enabled: !initialSocials || initialSocials.length === 0,
   });
 
   return (
@@ -102,8 +121,8 @@ export function Footer() {
               decoding="async"
             />
             <p className="text-sm text-navy-foreground/70 leading-relaxed max-w-sm">
-              Conectamos empresas a fornecedores qualificados por meio de uma plataforma
-              moderna, transparente e eficiente para a contratação de obras corporativas.
+              Conectamos empresas a fornecedores qualificados por meio de uma plataforma moderna,
+              transparente e eficiente para a contratação de obras corporativas.
             </p>
 
             {socials.length > 0 && (
@@ -151,9 +170,7 @@ export function Footer() {
                       ) : (
                         <a
                           href={l.to}
-                          {...(isExternal
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
+                          {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                           className="hover:text-primary transition-colors"
                         >
                           {l.label}
@@ -173,9 +190,7 @@ export function Footer() {
             {/* LGPD: "Gerenciar cookies" reopens the consent banner */}
             <button
               type="button"
-              onClick={() =>
-                window.dispatchEvent(new CustomEvent("reopen-cookie-banner"))
-              }
+              onClick={() => window.dispatchEvent(new CustomEvent("reopen-cookie-banner"))}
               className="underline-offset-2 hover:text-primary hover:underline transition-colors cursor-pointer text-navy-foreground/60"
             >
               Gerenciar cookies

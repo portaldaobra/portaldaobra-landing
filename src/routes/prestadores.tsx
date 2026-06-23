@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { apiGet } from "@/lib/api";
+import { getTestimonials, getBlogPosts } from "@/lib/content";
 import type { TestimonialRow } from "@/lib/cms";
-
 
 import {
   ArrowRight,
@@ -34,6 +34,12 @@ import { Contact } from "@/components/site/Contact";
 import heroImg from "@/assets/prestadores-hero.webp";
 
 export const Route = createFileRoute("/prestadores")({
+  loader: async () => {
+    return {
+      testimonials: getTestimonials("supplier"),
+      blogPosts: getBlogPosts({ limit: 3 }),
+    };
+  },
   head: () => ({
     meta: [
       { title: "Rede de Fornecedores Qualificados | Portal da Obra" },
@@ -135,9 +141,6 @@ const obras = [
   },
 ];
 
-
-
-
 const earnings = [
   {
     icon: MapPin,
@@ -161,8 +164,8 @@ const earnings = [
   },
 ];
 
-
 function Prestadores() {
+  const loaderData = Route.useLoaderData();
   const { data: testimonials } = useQuery({
     queryKey: ["testimonials", "supplier"],
     queryFn: async (): Promise<TestimonialRow[]> => {
@@ -174,11 +177,11 @@ function Prestadores() {
         return [];
       }
     },
+    initialData: loaderData.testimonials,
+    enabled: !loaderData.testimonials || loaderData.testimonials.length === 0,
   });
 
   return (
-
-
     <main className="min-h-screen bg-background">
       <Header />
 
@@ -226,9 +229,8 @@ function Prestadores() {
               Receba oportunidades de obras e aumente seus ganhos
             </h1>
             <p className="mt-6 text-lg text-white/80 leading-relaxed max-w-2xl">
-              O Portal da Obra conecta construtoras, empreiteiras e fornecedores
-              de serviços a empresas que precisam executar obras corporativas,
-              reformas e manutenções.
+              O Portal da Obra conecta construtoras, empreiteiras e fornecedores de serviços a
+              empresas que precisam executar obras corporativas, reformas e manutenções.
             </p>
 
             <ul className="mt-8 grid sm:grid-cols-2 gap-3 max-w-2xl">
@@ -286,12 +288,8 @@ function Prestadores() {
                       0{i + 1}
                     </span>
                   </div>
-                  <h3 className="mt-6 font-display text-xl font-bold text-navy">
-                    {a.title}
-                  </h3>
-                  <p className="mt-2 text-muted-foreground leading-relaxed">
-                    {a.desc}
-                  </p>
+                  <h3 className="mt-6 font-display text-xl font-bold text-navy">{a.title}</h3>
+                  <p className="mt-2 text-muted-foreground leading-relaxed">{a.desc}</p>
                 </article>
               );
             })}
@@ -326,16 +324,10 @@ function Prestadores() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="text-xs font-mono text-muted-foreground">
-                          0{i + 1}
-                        </span>
+                        <span className="text-xs font-mono text-muted-foreground">0{i + 1}</span>
                       </div>
-                      <h3 className="font-display text-2xl font-bold text-navy">
-                        {o.title}
-                      </h3>
-                      <p className="mt-1.5 text-muted-foreground leading-relaxed">
-                        {o.desc}
-                      </p>
+                      <h3 className="font-display text-2xl font-bold text-navy">{o.title}</h3>
+                      <p className="mt-1.5 text-muted-foreground leading-relaxed">{o.desc}</p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {o.tags.map((t) => (
                           <span
@@ -395,10 +387,7 @@ function Prestadores() {
                   </div>
                   <div className="flex gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-3.5 w-3.5 fill-primary text-primary"
-                      />
+                      <Star key={i} className="h-3.5 w-3.5 fill-primary text-primary" />
                     ))}
                   </div>
                 </div>
@@ -422,12 +411,10 @@ function Prestadores() {
             <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3">
               Ganhos
             </span>
-            <h2 className="h2-section">
-              Ganhos que se adaptam ao seu ritmo
-            </h2>
+            <h2 className="h2-section">Ganhos que se adaptam ao seu ritmo</h2>
             <p className="mt-5 text-white/70 leading-relaxed">
-              Participe de oportunidades conforme a capacidade da sua empresa,
-              sem comprometer sua operação atual.
+              Participe de oportunidades conforme a capacidade da sua empresa, sem comprometer sua
+              operação atual.
             </p>
             <div className="mt-8">
               <PrimaryCTA variant="dark" />
@@ -445,12 +432,8 @@ function Prestadores() {
                   <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/20 text-primary mb-4">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-display text-lg font-bold leading-snug">
-                    {e.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-white/70 leading-relaxed">
-                    {e.desc}
-                  </p>
+                  <h3 className="font-display text-lg font-bold leading-snug">{e.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{e.desc}</p>
                 </article>
               );
             })}
@@ -458,9 +441,8 @@ function Prestadores() {
         </div>
       </section>
 
-
       {/* INSIGHTS */}
-      <Blog limit={3} />
+      <Blog limit={3} initialPosts={loaderData.blogPosts} />
 
       {/* CONTATO */}
       <Contact />
@@ -527,7 +509,6 @@ const bidsPrestadores = [
   },
 ];
 
-
 const COBALT = "var(--primary)";
 const NAVY_HEX = "var(--navy)";
 
@@ -549,12 +530,11 @@ function BidsPrestadores() {
             className="font-display text-3xl sm:text-4xl lg:text-[2.5rem] font-bold leading-[1.1] text-balance"
             style={{ color: NAVY_HEX }}
           >
-            Oportunidades reais{" "}
-            <span style={{ color: COBALT }}>acontecendo agora.</span>
+            Oportunidades reais <span style={{ color: COBALT }}>acontecendo agora.</span>
           </h2>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-            Acompanhe exemplos de demandas publicadas na plataforma e descubra como sua empresa
-            pode participar de novas oportunidades de obras corporativas.
+            Acompanhe exemplos de demandas publicadas na plataforma e descubra como sua empresa pode
+            participar de novas oportunidades de obras corporativas.
           </p>
         </div>
 
@@ -617,11 +597,7 @@ function BidsPrestadores() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Button
-            asChild
-            variant="hero"
-            size="xl"
-          >
+          <Button asChild variant="hero" size="xl">
             <Link to="/bids">
               Ver Todos os Bids
               <ArrowRight className="ml-1.5 h-4 w-4" />

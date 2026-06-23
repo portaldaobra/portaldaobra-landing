@@ -17,9 +17,7 @@ function matchOrder(brands: BrandRow[], order: string[]): BrandRow[] {
 
 function BrandLogo({ brand }: { brand: BrandRow }) {
   if (!brand.logo_url) {
-    return (
-      <span className="block h-10 w-32 bg-muted rounded" aria-label={brand.name} />
-    );
+    return <span className="block h-10 w-32 bg-muted rounded" aria-label={brand.name} />;
   }
   return (
     <img
@@ -65,7 +63,11 @@ function MarqueeRow({
   );
 }
 
-export function Clients() {
+export function Clients({
+  initialBrands,
+}: {
+  initialBrands?: BrandRow[];
+} = {}) {
   const { data: brands = [] } = useQuery({
     queryKey: ["public", "brands"],
     queryFn: async (): Promise<BrandRow[]> => {
@@ -75,6 +77,8 @@ export function Clients() {
         return [];
       }
     },
+    initialData: initialBrands,
+    enabled: !initialBrands || initialBrands.length === 0,
   });
 
   if (!brands.length) return null;
@@ -101,11 +105,10 @@ export function Clients() {
       `}</style>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="h2-section text-navy">
-            Empresas que confiam no Portal da Obra
-          </h2>
+          <h2 className="h2-section text-navy">Empresas que confiam no Portal da Obra</h2>
           <p className="mt-3 text-muted-foreground">
-            Impulsionamos projetos de varejo, corporativo, logístico, industrial e demais operações que demandam obras e serviços especializados.
+            Impulsionamos projetos de varejo, corporativo, logístico, industrial e demais operações
+            que demandam obras e serviços especializados.
           </p>
         </div>
 
@@ -115,8 +118,7 @@ export function Clients() {
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            maskImage:
-              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
           <MarqueeRow brands={desktopRow1} direction="left" durationMs={45000} />
@@ -131,8 +133,7 @@ export function Clients() {
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            maskImage:
-              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           }}
         >
           <MarqueeRow

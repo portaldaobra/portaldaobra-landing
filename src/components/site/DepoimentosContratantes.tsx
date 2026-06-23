@@ -15,7 +15,11 @@ function initialsOf(name: string) {
     .join("");
 }
 
-export function DepoimentosContratantes() {
+export function DepoimentosContratantes({
+  initialTestimonials,
+}: {
+  initialTestimonials?: TestimonialRow[];
+} = {}) {
   const { data: depoimentos } = useQuery({
     queryKey: ["testimonials", "contractor"],
     queryFn: async (): Promise<TestimonialRow[]> => {
@@ -27,6 +31,8 @@ export function DepoimentosContratantes() {
         return [];
       }
     },
+    initialData: initialTestimonials,
+    enabled: !initialTestimonials || initialTestimonials.length === 0,
   });
 
   if (!depoimentos?.length) return null;
@@ -47,8 +53,8 @@ export function DepoimentosContratantes() {
             </h2>
           </div>
           <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
-            Gestores de expansão, facilities, engenharia, suprimentos e operações compartilham
-            como o Portal da Obra transformou seus processos de contratação.
+            Gestores de expansão, facilities, engenharia, suprimentos e operações compartilham como
+            o Portal da Obra transformou seus processos de contratação.
           </p>
         </div>
 

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { getBlogSlugs, getObraSlugs } from "@/lib/content";
 
 // TODO: replace with your project URL once a custom domain is set.
 const BASE_URL = "";
@@ -14,7 +15,8 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [
+        // Static pages always included
+        const staticEntries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/como-funciona", changefreq: "monthly", priority: "0.9" },
           { path: "/solucoes", changefreq: "monthly", priority: "0.9" },
@@ -26,6 +28,26 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/duvidas-frequentes", changefreq: "monthly", priority: "0.6" },
           { path: "/privacidade-e-contratos", changefreq: "yearly", priority: "0.3" },
         ];
+
+        // Dynamic entries from snapshot (enumerated at build time / SSR)
+        let blogEntries: SitemapEntry[] = [];
+        let obraEntries: SitemapEntry[] = [];
+        try {
+          blogEntries = getBlogSlugs().map((slug) => ({
+            path: `/blog/${slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+          }));
+          obraEntries = getObraSlugs().map((slug) => ({
+            path: `/obras-realizadas/${slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.7",
+          }));
+        } catch {
+          // Snapshot unavailable (e.g. runtime with no snapshot) — skip dynamic entries
+        }
+
+        const entries = [...staticEntries, ...blogEntries, ...obraEntries];
 
         const urls = entries.map((e) =>
           [

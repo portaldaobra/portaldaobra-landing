@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -12,26 +11,69 @@ import {
   Linkedin,
   Twitter,
   MessageCircle,
-  Loader2,
 } from "lucide-react";
-import { blogListQuery, blogPostQuery, type BlogPost } from "@/lib/blog-posts";
+import { getBlogPost, getBlogPosts } from "@/lib/content";
+import type { BlogRow } from "@/lib/cms";
+
+// Adapt BlogRow to the shape components expect (read/date aliases)
+function adapt(row: BlogRow) {
+  return { ...row, read: row.read_time ?? "", date: row.publish_date ?? "" };
+}
+type BlogPost = ReturnType<typeof adapt>;
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: async ({ params, context }) => {
-    const post = await context.queryClient.ensureQueryData(blogPostQuery(params.slug));
-    if (!post) throw notFound();
-    await context.queryClient.ensureQueryData(blogListQuery({}));
+  loader: async ({ params }) => {
+    const row = getBlogPost(params.slug);
+    if (!row) throw notFound();
+    const allRows = getBlogPosts({});
+    return {
+      post: adapt(row),
+      all: allRows.map(adapt),
+    };
   },
-  head: ({ params }) => {
+  head: ({ loaderData, params }) => {
+    const post = loaderData?.post;
     const url = `/blog/${params.slug}`;
-    const title = "Artigo — Portal da Obra";
+    const title = post ? `${post.title} — Portal da Obra` : "Artigo — Portal da Obra";
     return {
       meta: [
         { title },
+        {
+          name: "description",
+          content: post?.excerpt ?? "Artigo do blog do Portal da Obra.",
+        },
+        { property: "og:title", content: title },
+        {
+          property: "og:description",
+          content: post?.excerpt ?? "",
+        },
         { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: loaderData?.post
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                headline: loaderData.post.title,
+                description: loaderData.post.excerpt ?? "",
+                datePublished: loaderData.post.publish_date ?? "",
+                author: {
+                  "@type": "Organization",
+                  name: loaderData.post.author ?? "Portal da Obra",
+                },
+                publisher: {
+                  "@type": "Organization",
+                  name: "Portal da Obra",
+                  url: "/",
+                },
+              }),
+            },
+          ]
+        : [],
     };
   },
   errorComponent: ({ error }) => (
@@ -59,10 +101,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function ArticlePage() {
-  const { slug } = Route.useParams();
-  const { data: post } = useSuspenseQuery(blogPostQuery(slug));
-  const { data: all = [] } = useQuery(blogListQuery({}));
-  if (!post) return null;
+  const { post, all } = Route.useLoaderData();
 
   const idx = all.findIndex((p: BlogPost) => p.slug === post.slug);
   const prev = idx > 0 ? all[idx - 1] : null;
@@ -186,16 +225,33 @@ function ArticlePage() {
           {/* Share */}
           <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-border pt-8">
             <span className="text-sm font-semibold text-foreground">Compartilhar:</span>
-            <ShareButton label="LinkedIn" icon={Linkedin} href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareHref}`} />
-            <ShareButton label="Facebook" icon={Facebook} href={`https://www.facebook.com/sharer/sharer.php?u=${shareHref}`} />
-            <ShareButton label="X" icon={Twitter} href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareHref}`} />
-            <ShareButton label="WhatsApp" icon={MessageCircle} href={`https://api.whatsapp.com/send?text=${shareText}%20${shareHref}`} />
+            <ShareButton
+              label="LinkedIn"
+              icon={Linkedin}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareHref}`}
+            />
+            <ShareButton
+              label="Facebook"
+              icon={Facebook}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${shareHref}`}
+            />
+            <ShareButton
+              label="X"
+              icon={Twitter}
+              href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareHref}`}
+            />
+            <ShareButton
+              label="WhatsApp"
+              icon={MessageCircle}
+              href={`https://api.whatsapp.com/send?text=${shareText}%20${shareHref}`}
+            />
           </div>
 
           {/* CTA */}
           <div className="mt-12 rounded-2xl bg-gradient-to-r from-primary to-navy p-8 text-primary-foreground">
             <h3 className="font-display text-xl sm:text-2xl font-bold leading-snug text-balance">
-              Torne a contratação de obras mais eficiente, transparente e competitiva com o Portal da Obra.
+              Torne a contratação de obras mais eficiente, transparente e competitiva com o Portal
+              da Obra.
             </h3>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="secondary" className="font-semibold">
@@ -203,7 +259,12 @@ function ArticlePage() {
                   Solicitar Orçamento <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white"
+              >
                 <Link to="/blog">Ver mais artigos</Link>
               </Button>
             </div>
@@ -260,8 +321,13 @@ function ArticlePage() {
                   params={{ slug: r.slug }}
                   className="group block bg-card rounded-2xl overflow-hidden border border-border hover:shadow-elegant transition-all duration-300"
                 >
-                  <div className={`h-36 bg-gradient-to-br ${r.grad ?? "from-primary to-navy"} relative overflow-hidden`}>
-                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "var(--gradient-mesh)" }} />
+                  <div
+                    className={`h-36 bg-gradient-to-br ${r.grad ?? "from-primary to-navy"} relative overflow-hidden`}
+                  >
+                    <div
+                      className="absolute inset-0 opacity-30"
+                      style={{ backgroundImage: "var(--gradient-mesh)" }}
+                    />
                     {r.tag && (
                       <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
                         {r.tag}
@@ -273,7 +339,9 @@ function ArticlePage() {
                       {r.title}
                     </h3>
                     {r.excerpt && (
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{r.excerpt}</p>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                        {r.excerpt}
+                      </p>
                     )}
                   </div>
                 </Link>
@@ -309,6 +377,3 @@ function ShareButton({
     </a>
   );
 }
-
-// Keep Loader2 referenced to avoid unused import lint
-void Loader2;

@@ -3,15 +3,19 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Blog } from "@/components/site/Blog";
 import { ArrowLeft } from "lucide-react";
+import { getBlogPosts } from "@/lib/content";
 
 export const Route = createFileRoute("/blog/")({
+  loader: async () => {
+    const posts = getBlogPosts({});
+    return { posts };
+  },
   head: () => ({
     meta: [
       { title: "Blog — Portal da Obra" },
       {
         name: "description",
-        content:
-          "Conteúdos e insights sobre construção corporativa, varejo e gestão de obras.",
+        content: "Conteúdos e insights sobre construção corporativa, varejo e gestão de obras.",
       },
       { property: "og:title", content: "Blog — Portal da Obra" },
       { property: "og:description", content: "Insights de mercado para empresas em expansão." },
@@ -23,6 +27,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogPage() {
+  const { posts } = Route.useLoaderData();
   return (
     <main className="min-h-screen bg-background">
       <Header />
@@ -34,7 +39,7 @@ function BlogPage() {
           <ArrowLeft className="h-4 w-4" /> Voltar
         </Link>
       </div>
-      <Blog />
+      <Blog initialPosts={posts} />
       <Footer />
     </main>
   );
