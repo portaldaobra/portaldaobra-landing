@@ -17,6 +17,9 @@ dist-ssr
 *.local
 .env
 
+# Published snapshot (downloaded by CI before build; example is committed)
+snapshot.json
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars

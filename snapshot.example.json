@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-06-23T00:00:00Z",
+  "blog_posts": [
+    {
+      "id": "bp-001",
+      "slug": "como-contratar-obras-corporativas-com-seguranca",
+      "tag": "Gestão",
+      "title": "Como contratar obras corporativas com segurança e eficiência",
+      "excerpt": "Descubra as melhores práticas para contratação de obras corporativas: da seleção de fornecedores à gestão de contratos.",
+      "cover_image": null,
+      "grad": "from-primary/20 to-navy/20",
+      "read_time": "8 min",
+      "publish_date": "2026-06-10",
+      "author": "Equipe Portal da Obra",
+      "intro": [
+        "A contratação de obras corporativas é um processo crítico que envolve riscos financeiros, operacionais e de prazo. Empresas que não adotam um processo estruturado frequentemente enfrentam atrasos, sobrecustos e conflitos contratuais.",
+        "Neste artigo, exploramos as melhores práticas para garantir que sua empresa contrate obras corporativas com máxima segurança e eficiência."
+      ],
+      "sections": [
+        {
+          "heading": "1. Defina o escopo com precisão",
+          "paragraphs": [
+            "Um escopo mal definido é a principal causa de aditivos e disputas contratuais. Antes de solicitar propostas, documente detalhadamente o que precisa ser feito.",
+            "Inclua plantas, especificações técnicas, cronograma esperado e critérios de aceitação. Quanto mais detalhado o escopo, menor o risco de surpresas."
+          ],
+          "bullets": [
+            "Elabore memorial descritivo completo",
+            "Defina cronograma macro com marcos claros",
+            "Estabeleça critérios de aceitação mensuráveis"
+          ]
+        },
+        {
+          "heading": "2. Qualifique os fornecedores",
+          "paragraphs": [
+            "Não contrate o fornecedor mais barato sem verificar sua capacidade técnica e financeira. Um fornecedor que não entrega custa muito mais do que um fornecedor qualificado que cobra mais."
+          ],
+          "subsections": [
+            {
+              "heading": "Documentação mínima",
+              "body": "Certidões negativas, capacidade técnica comprovada, balanço financeiro e referências de obras similares são documentos mínimos para qualificar um fornecedor."
+            }
+          ]
+        }
+      ],
+      "conclusion": [
+        "A contratação de obras corporativas exige processo, método e ferramentas adequadas. O Portal da Obra oferece toda a infraestrutura necessária para que empresas contratem com segurança.",
+        "Plataforma BID, qualificação de fornecedores, contratos padronizados e gestão centralizada — tudo em um único lugar."
+      ],
+      "status": "published",
+      "sort_order": 1,
+      "audience": "contratantes",
+      "featured_home": true,
+      "featured_contratantes": true,
+      "featured_fornecedores": false,
+      "created_at": "2026-06-10T10:00:00Z",
+      "updated_at": "2026-06-10T10:00:00Z"
+    },
+    {
+      "id": "bp-002",
+      "slug": "5-estrategias-para-ampliar-carteira-de-clientes-corporativos",
+      "tag": "Crescimento",
+      "title": "5 estratégias para ampliar sua carteira de clientes corporativos",
+      "excerpt": "Fornecedores que dominam essas estratégias crescem consistentemente mesmo em mercados competitivos.",
+      "cover_image": null,
+      "grad": "from-success/20 to-primary/10",
+      "read_time": "6 min",
+      "publish_date": "2026-06-05",
+      "author": "Equipe Portal da Obra",
+      "intro": [
+        "O mercado de obras corporativas cresce a cada ano, mas a concorrência também aumenta. Fornecedores que não se diferenciam perdem espaço para quem investe em relacionamento e qualidade.",
+        "Listamos cinco estratégias comprovadas para ampliar sua carteira de clientes corporativos."
+      ],
+      "sections": [
+        {
+          "heading": "1. Especialização por segmento",
+          "paragraphs": [
+            "Fornecedores especializados em varejo, logístico ou industrial cobram mais e ganham mais clientes do que generalistas. A especialização cria autoridade e reduz o ciclo de vendas."
+          ]
+        },
+        {
+          "heading": "2. Portfólio documentado",
+          "paragraphs": [
+            "Um portfólio com fotos antes e depois, depoimentos de clientes e indicadores de resultado é a melhor ferramenta de vendas para obras corporativas."
+          ]
+        }
+      ],
+      "conclusion": [
+        "Fornecedores que combinam especialização, portfólio documentado e participação ativa em plataformas como o Portal da Obra crescem de forma consistente e previsível."
+      ],
+      "status": "published",
+      "sort_order": 2,
+      "audience": "fornecedores",
+      "featured_home": false,
+      "featured_contratantes": false,
+      "featured_fornecedores": true,
+      "created_at": "2026-06-05T10:00:00Z",
+      "updated_at": "2026-06-05T10:00:00Z"
+    }
+  ],
+  "obras": [
+    {
+      "id": "obra-001",
+      "slug": "reforma-rede-farmacias-sp",
+      "title": "Reforma Rede de Farmácias — São Paulo",
+      "segment": "Varejo",
+      "city": "São Paulo",
+      "state": "SP",
+      "area": "1.200 m²",
+      "obra_status": "Concluída",
+      "color": "from-primary/10 to-primary/5",
+      "summary": "Projeto de modernização e adequação de 12 unidades de uma rede de farmácias na Grande São Paulo, executado por fornecedores qualificados do Portal da Obra.",
+      "scope": ["Demolições", "Civil", "Elétrica", "Comunicação Visual", "Acabamentos", "HVAC"],
+      "results": [
+        "Obra entregue no prazo",
+        "Processo 100% auditável",
+        "Contratação centralizada",
+        "Gestão estruturada em plataforma"
+      ],
+      "cover_image": null,
+      "completion_date": "2026-03-15",
+      "status": "published",
+      "sort_order": 1
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-001",
+      "audience": "contractor",
+      "name": "Ricardo Oliveira",
+      "role": "Gerente de Expansão",
+      "company": "Rede Saúde Brasil",
+      "quote": "O Portal da Obra transformou nossa operação de contratação. O que antes levava meses agora leva semanas, com muito mais controle e transparência.",
+      "indicator": "3x mais rápido",
+      "avatar_url": null,
+      "status": "active",
+      "sort_order": 1
+    },
+    {
+      "id": "test-002",
+      "audience": "supplier",
+      "name": "Carlos Mendes",
+      "role": "Sócio-Diretor",
+      "company": "Mendes Construções",
+      "quote": "Desde que entramos no Portal da Obra, nossa carteira de clientes corporativos triplicou. Recebemos oportunidades qualificadas toda semana.",
+      "indicator": "3x mais clientes",
+      "avatar_url": null,
+      "status": "active",
+      "sort_order": 1
+    }
+  ],
+  "brands": [
+    {
+      "id": "brand-001",
+      "name": "Drogasil",
+      "logo_url": "/static/images/drogasil.svg",
+      "segment": "Varejo",
+      "website": "https://www.drogasil.com.br",
+      "status": "active",
+      "sort_order": 1
+    },
+    {
+      "id": "brand-002",
+      "name": "BK Brasil",
+      "logo_url": "/static/images/bk.svg",
+      "segment": "Varejo",
+      "website": "https://www.bk.com.br",
+      "status": "active",
+      "sort_order": 2
+    },
+    {
+      "id": "brand-003",
+      "name": "Drogaria São Paulo",
+      "logo_url": "/static/images/drogaria-sp.svg",
+      "segment": "Varejo",
+      "website": null,
+      "status": "active",
+      "sort_order": 3
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-001",
+      "question": "Como funciona o processo de contratação de obras no Portal da Obra?",
+      "answer": "O processo começa com a publicação de um BID (pedido de proposta) pela empresa contratante. Fornecedores qualificados recebem o convite, elaboram suas propostas e as submetem pela plataforma. A empresa analisa, equaliza as propostas e seleciona o fornecedor. O contrato é gerado e gerenciado digitalmente.",
+      "profile": "contratante",
+      "sort_order": 1
+    },
+    {
+      "id": "faq-002",
+      "question": "Qual é o custo para utilizar o Portal da Obra como empresa contratante?",
+      "answer": "O Portal da Obra opera com diferentes planos conforme o volume de obras e necessidades da empresa. Entre em contato com nossa equipe para receber uma proposta personalizada.",
+      "profile": "contratante",
+      "sort_order": 2
+    },
+    {
+      "id": "faq-003",
+      "question": "Como me cadastro como fornecedor no Portal da Obra?",
+      "answer": "O cadastro é feito diretamente na plataforma. Você preenche os dados da empresa, especialidades, regiões de atuação e sobe a documentação de qualificação. Nossa equipe analisa e aprova seu cadastro em até 48 horas.",
+      "profile": "fornecedor",
+      "sort_order": 1
+    },
+    {
+      "id": "faq-004",
+      "question": "Como recebo oportunidades de obras como fornecedor?",
+      "answer": "Após o cadastro aprovado, você recebe notificações de BIDs compatíveis com seu perfil — especialidade, região e capacidade. Você escolhe em quais deseja participar e submete sua proposta pela plataforma.",
+      "profile": "fornecedor",
+      "sort_order": 2
+    }
+  ],
+  "obra_types": [
+    { "name": "Reforma Comercial", "is_default": true },
+    { "name": "Retrofit Corporativo", "is_default": false },
+    { "name": "Adequação Industrial", "is_default": false },
+    { "name": "Obra Nova", "is_default": false },
+    { "name": "Manutenção Predial", "is_default": false }
+  ],
+  "form_categories": [
+    { "name": "Civil" },
+    { "name": "Elétrica" },
+    { "name": "Hidráulica" },
+    { "name": "HVAC" },
+    { "name": "Comunicação Visual" },
+    { "name": "Acabamentos" }
+  ],
+  "form_locations": [
+    { "name": "São Paulo / SP" },
+    { "name": "Rio de Janeiro / RJ" },
+    { "name": "Belo Horizonte / MG" },
+    { "name": "Curitiba / PR" },
+    { "name": "Porto Alegre / RS" },
+    { "name": "Brasília / DF" },
+    { "name": "Salvador / BA" },
+    { "name": "Recife / PE" },
+    { "name": "Fortaleza / CE" },
+    { "name": "Goiânia / GO" }
+  ],
+  "social_links": [
+    { "platform": "linkedin", "url": "https://www.linkedin.com/company/portaldaobra" },
+    { "platform": "instagram", "url": "https://www.instagram.com/portaldaobra" }
+  ],
+  "site_settings": [
+    {
+      "key": "about_numeros",
+      "value": "{\"indicators\":[{\"title\":\"Obras intermediadas\",\"value\":\"+100\",\"description\":\"Projetos corporativos conduzidos através da plataforma.\"},{\"title\":\"Fornecedores cadastrados\",\"value\":\"+500\",\"description\":\"Rede qualificada de empresas e fornecedores.\"},{\"title\":\"Área reformada\",\"value\":\"50 mil m²\",\"description\":\"Metros quadrados de obras corporativas contratadas pela plataforma.\"},{\"title\":\"Volume total de obras\",\"value\":\"R$ 80 Mi\",\"description\":\"Valor total movimentado através da plataforma.\"}],\"segments\":[{\"label\":\"Varejo\",\"active\":true},{\"label\":\"Logístico\",\"active\":true},{\"label\":\"Corporativo\",\"active\":true},{\"label\":\"Industrial\",\"active\":true}]}"
+    },
+    {
+      "key": "seo_default_description",
+      "value": "Conectamos empresas a fornecedores qualificados para contratação de obras corporativas com mais transparência, segurança e eficiência."
+    },
+    {
+      "key": "seo_keywords",
+      "value": "obras corporativas, contratação de obras, fornecedores de obras, reforma comercial, retrofit, BID obras"
+    }
+  ],
+  "showcase_bids": []
+}

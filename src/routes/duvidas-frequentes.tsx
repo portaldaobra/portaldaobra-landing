@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
+import { useMemo, useState } from "react";
 import type { FaqRow } from "@/lib/cms";
+import { getFaqs } from "@/lib/content";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -13,14 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  ArrowRight,
-  Building2,
-  HardHat,
-  Search,
-  MessageSquare,
-  HelpCircle,
-} from "lucide-react";
+import { ArrowRight, Building2, HardHat, Search, MessageSquare, HelpCircle } from "lucide-react";
 
 const COBALT = "var(--primary)";
 const NAVY = "var(--navy)";
@@ -29,89 +21,77 @@ type Perfil = "contratante" | "prestador";
 type FaqItem = { id: string; q: string; a: string };
 
 export const Route = createFileRoute("/duvidas-frequentes")({
-  head: () => ({
-    meta: [
-      { title: "Dúvidas Frequentes — Portal da Obra" },
-      {
-        name: "description",
-        content:
-          "Central de ajuda do Portal da Obra. Encontre respostas sobre a plataforma, contratação de obras e participação em oportunidades.",
-      },
-      { property: "og:title", content: "Dúvidas Frequentes — Portal da Obra" },
-      {
-        property: "og:description",
-        content:
-          "Tire suas dúvidas sobre contratação de obras corporativas e participação como fornecedor no Portal da Obra.",
-      },
-      { property: "og:url", content: "/duvidas-frequentes" },
-    ],
-    links: [{ rel: "canonical", href: "/duvidas-frequentes" }],
-  }),
+  loader: async () => {
+    const allFaqs = getFaqs();
+    return { allFaqs };
+  },
+  head: ({ loaderData }) => {
+    const allFaqs: FaqRow[] = loaderData?.allFaqs ?? [];
+    return {
+      meta: [
+        { title: "Dúvidas Frequentes — Portal da Obra" },
+        {
+          name: "description",
+          content:
+            "Central de ajuda do Portal da Obra. Encontre respostas sobre a plataforma, contratação de obras e participação em oportunidades.",
+        },
+        { property: "og:title", content: "Dúvidas Frequentes — Portal da Obra" },
+        {
+          property: "og:description",
+          content:
+            "Tire suas dúvidas sobre contratação de obras corporativas e participação como fornecedor no Portal da Obra.",
+        },
+        { property: "og:url", content: "/duvidas-frequentes" },
+      ],
+      links: [{ rel: "canonical", href: "/duvidas-frequentes" }],
+      scripts:
+        allFaqs.length > 0
+          ? [
+              {
+                type: "application/ld+json",
+                children: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: allFaqs.map((i) => ({
+                    "@type": "Question",
+                    name: i.question,
+                    acceptedAnswer: { "@type": "Answer", text: i.answer },
+                  })),
+                }),
+              },
+            ]
+          : [],
+    };
+  },
   component: DuvidasFrequentes,
 });
 
 function DuvidasFrequentes() {
+  const { allFaqs } = Route.useLoaderData();
   const [perfil, setPerfil] = useState<Perfil | null>(null);
   const [query, setQuery] = useState("");
 
-  const { data: allFaqs } = useQuery({
-    queryKey: ["public", "faqs"],
-    queryFn: async (): Promise<FaqRow[]> => {
-      try {
-        return await apiGet<FaqRow[]>("/landing/faqs");
-      } catch {
-        return [];
-      }
-    },
-  });
-
   const faqContratantes: FaqItem[] = useMemo(
     () =>
-      (allFaqs ?? [])
+      allFaqs
         .filter((r) => r.profile === "contratante")
         .map((r) => ({ id: r.id, q: r.question, a: r.answer })),
     [allFaqs],
   );
   const faqPrestadores: FaqItem[] = useMemo(
     () =>
-      (allFaqs ?? [])
+      allFaqs
         .filter((r) => r.profile === "fornecedor")
         .map((r) => ({ id: r.id, q: r.question, a: r.answer })),
     [allFaqs],
   );
 
-  // Inject FAQ JSON-LD schema dynamically from active DB faqs
-  useEffect(() => {
-    if (!allFaqs?.length) return;
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: allFaqs.map((i) => ({
-        "@type": "Question",
-        name: i.question,
-        acceptedAnswer: { "@type": "Answer", text: i.answer },
-      })),
-    };
-    const el = document.createElement("script");
-    el.type = "application/ld+json";
-    el.dataset.faqSchema = "true";
-    el.textContent = JSON.stringify(schema);
-    document.head.appendChild(el);
-    return () => {
-      el.remove();
-    };
-  }, [allFaqs]);
-
   const lista = perfil === "contratante" ? faqContratantes : faqPrestadores;
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return lista;
-    return lista.filter(
-      (i) => i.q.toLowerCase().includes(q) || i.a.toLowerCase().includes(q),
-    );
+    return lista.filter((i) => i.q.toLowerCase().includes(q) || i.a.toLowerCase().includes(q));
   }, [lista, query]);
-
-
 
   return (
     <main className="min-h-screen bg-background">
@@ -119,7 +99,10 @@ function DuvidasFrequentes() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-secondary">
-        <div className="absolute inset-0 -z-10" style={{ backgroundImage: "var(--gradient-mesh)" }} />
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ backgroundImage: "var(--gradient-mesh)" }}
+        />
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-success/10 blur-3xl" />
 
@@ -135,8 +118,8 @@ function DuvidasFrequentes() {
             Como podemos <span style={{ color: COBALT }}>ajudar?</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Encontre respostas rápidas sobre a plataforma, processos de contratação,
-            participação em oportunidades e funcionamento do Portal da Obra.
+            Encontre respostas rápidas sobre a plataforma, processos de contratação, participação em
+            oportunidades e funcionamento do Portal da Obra.
           </p>
         </div>
       </section>
@@ -235,11 +218,7 @@ function DuvidasFrequentes() {
                       type="button"
                       onClick={() => setPerfil(p)}
                       className="px-5 py-2 rounded-full text-sm font-semibold transition-colors"
-                      style={
-                        active
-                          ? { backgroundColor: COBALT, color: "#fff" }
-                          : { color: NAVY }
-                      }
+                      style={active ? { backgroundColor: COBALT, color: "#fff" } : { color: NAVY }}
                     >
                       {p === "contratante" ? "Contratantes" : "Fornecedores"}
                     </button>
@@ -317,11 +296,7 @@ function DuvidasFrequentes() {
           <p className="text-base text-muted-foreground leading-relaxed mb-7 max-w-xl mx-auto">
             Nossa equipe está pronta para esclarecer qualquer dúvida.
           </p>
-          <Button
-            asChild
-            variant="hero"
-            size="xl"
-          >
+          <Button asChild variant="hero" size="xl">
             <Link to="/" hash="contato">
               Falar com Especialista
               <ArrowRight className="h-4 w-4" />

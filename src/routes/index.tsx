@@ -14,8 +14,30 @@ import { Contact } from "@/components/site/Contact";
 import { DepoimentosContratantes } from "@/components/site/DepoimentosContratantes";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  getBlogPosts,
+  getBrands,
+  getTestimonials,
+  getSocialLinks,
+  getObraTypes,
+  getFormCategories,
+  getFormLocations,
+  getSiteSettings,
+} from "@/lib/content";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    return {
+      blogPosts: getBlogPosts({ limit: 3, homeFeatured: true }),
+      brands: getBrands(),
+      testimonials: getTestimonials("contractor"),
+      socialLinks: getSocialLinks(),
+      obraTypes: getObraTypes(),
+      formCategories: getFormCategories(),
+      formLocations: getFormLocations(),
+      siteSettings: getSiteSettings(),
+    };
+  },
   head: () => ({
     meta: [
       { title: "Portal da Obra | Contratação de Obras Corporativas" },
@@ -54,21 +76,26 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const loaderData = Route.useLoaderData();
+
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <Hero />
-      <Clients />
+      <Hero
+        initialObraTypes={loaderData.obraTypes}
+        initialFormCategories={loaderData.formCategories}
+        initialFormLocations={loaderData.formLocations}
+      />
+      <Clients initialBrands={loaderData.brands} />
       <Comparativo />
-      
       <RedeQualificada />
       <PainelUnico />
       <Bids />
-      <DepoimentosContratantes />
+      <DepoimentosContratantes initialTestimonials={loaderData.testimonials} />
       <CtaSeguranca />
-      <Blog limit={3} homeFeatured />
+      <Blog limit={3} homeFeatured initialPosts={loaderData.blogPosts} />
       <Contact />
-      <Footer />
+      <Footer initialSocials={loaderData.socialLinks} />
       <Toaster richColors position="top-right" />
     </main>
   );

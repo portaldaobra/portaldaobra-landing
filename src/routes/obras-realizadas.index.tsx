@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { MapPin, Ruler, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
+import { MapPin, Ruler, CheckCircle2, ArrowRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
-import { obrasListQuery } from "@/lib/obras";
+import { getObras } from "@/lib/content";
 import type { ObraRow } from "@/lib/cms";
 
 export const Route = createFileRoute("/obras-realizadas/")({
+  loader: async () => {
+    const obras = getObras();
+    return { obras };
+  },
   head: () => ({
     meta: [
       { title: "Obras Realizadas — Portal da Obra" },
@@ -31,14 +34,10 @@ export const Route = createFileRoute("/obras-realizadas/")({
 const filters = ["Todos", "Varejo", "Corporativo", "Logístico", "Industrial"] as const;
 
 function ObrasRealizadasPage() {
+  const { obras } = Route.useLoaderData();
   const [active, setActive] = useState<(typeof filters)[number]>("Todos");
 
-  const { data: obras = [], isLoading } = useQuery({
-    queryKey: ["public", "obras"],
-    queryFn: (): Promise<ObraRow[]> => obrasListQuery(),
-  });
-
-  const list = active === "Todos" ? obras : obras.filter((o) => o.segment === active);
+  const list = active === "Todos" ? obras : obras.filter((o: ObraRow) => o.segment === active);
 
   return (
     <main className="min-h-screen bg-background">
@@ -50,13 +49,11 @@ function ObrasRealizadasPage() {
             Obras intermediadas
           </span>
           <h1 className="font-display text-4xl sm:text-5xl font-bold text-navy text-balance max-w-3xl">
-            Projetos realizados através do{" "}
-            <span className="text-primary">Portal da Obra</span>.
+            Projetos realizados através do <span className="text-primary">Portal da Obra</span>.
           </h1>
           <p className="mt-4 text-muted-foreground max-w-2xl">
-            Portfólio de obras corporativas executadas pela nossa rede qualificada de
-            fornecedores — prova da experiência, capacidade operacional e credibilidade da
-            plataforma.
+            Portfólio de obras corporativas executadas pela nossa rede qualificada de fornecedores —
+            prova da experiência, capacidade operacional e credibilidade da plataforma.
           </p>
         </div>
       </section>
@@ -79,15 +76,11 @@ function ObrasRealizadasPage() {
             ))}
           </div>
 
-          {isLoading ? (
-            <div className="py-10 grid place-items-center">
-              <Loader2 className="h-6 w-6 animate-spin text-primary" />
-            </div>
-          ) : list.length === 0 ? (
+          {list.length === 0 ? (
             <p className="text-muted-foreground">Nenhuma obra encontrada neste segmento.</p>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {list.map((o) => (
+              {list.map((o: ObraRow) => (
                 <article
                   key={o.slug}
                   className={`group relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${o.color ?? "from-primary/10 to-primary/5"} p-6 hover:shadow-elegant hover:-translate-y-1 hover:border-primary transition-all duration-300`}
@@ -129,8 +122,18 @@ function ObrasRealizadasPage() {
           )}
 
           <div className="mt-16 text-center">
-            <Button asChild size="lg" className="bg-gradient-to-r from-primary to-navy text-primary-foreground shadow-elegant">
-              <a href="https://web.portaldaobra.com.br/register" target="_blank" rel="noopener noreferrer">Comece a Construir</a>
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-primary to-navy text-primary-foreground shadow-elegant"
+            >
+              <a
+                href="https://web.portaldaobra.com.br/register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Comece a Construir
+              </a>
             </Button>
           </div>
         </div>

@@ -2,12 +2,19 @@ import { Check, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAudience } from "./AudienceContext";
 import { apiGet } from "@/lib/api";
+import type { ObraTypeRow, FormCategoryRow, FormLocationRow } from "@/lib/content";
 
 const audienceContent = {
   lojistas: {
@@ -42,31 +49,40 @@ const audienceContent = {
   },
 } as const;
 
-
-
-export function Hero() {
+export function Hero({
+  initialObraTypes,
+  initialFormCategories,
+  initialFormLocations,
+}: {
+  initialObraTypes?: ObraTypeRow[];
+  initialFormCategories?: FormCategoryRow[];
+  initialFormLocations?: FormLocationRow[];
+} = {}) {
   const { audience } = useAudience();
   const content = audienceContent[audience];
 
   const { data: obraTypes } = useQuery({
     queryKey: ["obra_types"],
-    queryFn: () =>
-      apiGet<Array<{ name: string; is_default: boolean }>>("/landing/obra-types"),
+    queryFn: () => apiGet<Array<{ name: string; is_default: boolean }>>("/landing/obra-types"),
+    initialData: initialObraTypes,
+    enabled: !initialObraTypes || initialObraTypes.length === 0,
   });
   const tipoOptions = (obraTypes ?? []).map((t) => t.name);
   const tipoDefault = obraTypes?.find((t) => t.is_default)?.name;
 
   const { data: categorias } = useQuery({
     queryKey: ["form_categories"],
-    queryFn: () =>
-      apiGet<Array<{ name: string }>>("/landing/form-categories"),
+    queryFn: () => apiGet<Array<{ name: string }>>("/landing/form-categories"),
+    initialData: initialFormCategories,
+    enabled: !initialFormCategories || initialFormCategories.length === 0,
   });
   const categoriaOptions = (categorias ?? []).map((c) => c.name);
 
   const { data: localizacoes } = useQuery({
     queryKey: ["form_locations"],
-    queryFn: () =>
-      apiGet<Array<{ name: string }>>("/landing/form-locations"),
+    queryFn: () => apiGet<Array<{ name: string }>>("/landing/form-locations"),
+    initialData: initialFormLocations,
+    enabled: !initialFormLocations || initialFormLocations.length === 0,
   });
   const localizacaoOptions = (localizacoes ?? []).map((l) => l.name);
 
@@ -92,7 +108,9 @@ export function Hero() {
               </div>
 
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-balance text-navy">
-                {content.headlinePrefix} <span className="text-primary">{content.headlineHighlight}</span> {content.headlineSuffix}
+                {content.headlinePrefix}{" "}
+                <span className="text-primary">{content.headlineHighlight}</span>{" "}
+                {content.headlineSuffix}
               </h1>
 
               <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed text-balance">
@@ -101,7 +119,10 @@ export function Hero() {
 
               <ul className="mt-8 space-y-3.5">
                 {content.benefits.map((b) => (
-                  <li key={b} className="flex items-center gap-3 text-base font-medium text-foreground">
+                  <li
+                    key={b}
+                    className="flex items-center gap-3 text-base font-medium text-foreground"
+                  >
                     <span className="grid place-items-center h-6 w-6 rounded-full bg-success/15 text-success shrink-0">
                       <Check className="h-3.5 w-3.5" />
                     </span>
@@ -131,11 +152,17 @@ export function Hero() {
                   </Row>
 
                   <Row label="Estado">
-                    <SelectField placeholder="Selecione" options={["SP", "RJ", "MG", "PR", "RS", "BA", "PE", "CE", "DF"]} />
+                    <SelectField
+                      placeholder="Selecione"
+                      options={["SP", "RJ", "MG", "PR", "RS", "BA", "PE", "CE", "DF"]}
+                    />
                   </Row>
 
                   <Row label="Cidade">
-                    <Input placeholder="Digite a cidade" className="h-10 rounded-full bg-background border-border" />
+                    <Input
+                      placeholder="Digite a cidade"
+                      className="h-10 rounded-full bg-background border-border"
+                    />
                   </Row>
 
                   <Row label="Tipo">
@@ -154,12 +181,7 @@ export function Hero() {
                     <SelectField placeholder="Selecione" options={localizacaoOptions} />
                   </Row>
 
-                  <Button
-                    type="submit"
-                    variant="hero"
-                    size="lg"
-                    className="w-full"
-                  >
+                  <Button type="submit" variant="hero" size="lg" className="w-full">
                     <Search className="h-4 w-4" />
                     {content.cta}
                     <ArrowRight className="h-4 w-4" />
