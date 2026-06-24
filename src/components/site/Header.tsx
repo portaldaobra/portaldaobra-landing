@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import logoAsset from "@/assets/logo-portalobra.svg.asset.json";
 import { TopBar } from "./TopBar";
 
 const nav = [
@@ -22,7 +21,7 @@ export function Header() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center group" aria-label="Portal da Obra">
             <img
-              src={logoAsset.url}
+              src="/static/images/logo-portalobra.svg"
               alt="Portal da Obra"
               className="h-7 sm:h-8 w-auto"
               width={354}

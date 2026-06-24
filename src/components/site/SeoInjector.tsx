@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
+import { getSiteSettings } from "@/lib/content";
 import type { SettingRow } from "@/lib/cms";
 
 const SEO_KEYS = [
@@ -235,26 +234,15 @@ gtag('config', '${s.tracking_ga4_id}');`,
 }
 
 export function SeoInjector() {
-  const { data } = useQuery({
-    queryKey: ["public", "seo_settings"],
-    queryFn: async (): Promise<SettingRow[]> => {
-      try {
-        return await apiGet<SettingRow[]>("/landing/site-settings");
-      } catch {
-        return [];
-      }
-    },
-    staleTime: 5 * 60 * 1000,
-  });
-
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const rows: SettingRow[] = getSiteSettings();
     const map: SettingsMap = {};
-    for (const r of data ?? []) {
+    for (const r of rows) {
       if (r.value) (map as Record<string, string>)[r.key] = r.value as string;
     }
     applySettings(map);
-  }, [data]);
+  }, []);
 
   return null;
 }

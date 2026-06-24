@@ -1,5 +1,4 @@
-import { apiGet } from "@/lib/api";
-import type { SettingRow } from "@/lib/cms";
+import { getAboutNumeros } from "@/lib/content";
 
 export type AboutIndicator = {
   title: string;
@@ -74,12 +73,10 @@ export function parseAboutNumeros(raw: string | null | undefined): AboutNumeros 
   }
 }
 
-export async function fetchAboutNumeros(): Promise<AboutNumeros> {
-  try {
-    const rows = await apiGet<SettingRow[]>("/landing/site-settings");
-    const raw = rows.find((r) => r.key === ABOUT_NUMEROS_KEY)?.value ?? null;
-    return parseAboutNumeros(raw);
-  } catch {
-    return DEFAULT_ABOUT_NUMEROS;
-  }
+/**
+ * Returns about numeros from the build-time snapshot (no network fetch).
+ * Replaces the old async fetchAboutNumeros that hit the API.
+ */
+export function fetchAboutNumeros(): AboutNumeros {
+  return getAboutNumeros();
 }

@@ -1,4 +1,4 @@
-import { apiGet } from "@/lib/api";
+import { getObras, getObra } from "@/lib/content";
 import type { ObraRow } from "@/lib/cms";
 
 export type { ObraRow };
@@ -76,26 +76,10 @@ export const obras: Array<{
   },
 ];
 
-export async function obrasListQuery(): Promise<ObraRow[]> {
-  try {
-    return await apiGet<ObraRow[]>("/landing/obras");
-  } catch {
-    return [];
-  }
+export function obrasListQuery(): ObraRow[] {
+  return getObras();
 }
 
-export async function getObraBySlug(slug: string): Promise<ObraRow | null> {
-  try {
-    return await apiGet<ObraRow>(`/landing/obras/${slug}`);
-  } catch (e) {
-    if (
-      e != null &&
-      typeof e === "object" &&
-      "status" in e &&
-      (e as { status: number }).status === 404
-    ) {
-      return null;
-    }
-    throw e;
-  }
+export function getObraBySlug(slug: string): ObraRow | null {
+  return getObra(slug);
 }

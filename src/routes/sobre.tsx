@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
-import { fetchAboutNumeros, DEFAULT_ABOUT_NUMEROS } from "@/lib/about-numeros";
+import { getAboutNumeros } from "@/lib/content";
+import { DEFAULT_ABOUT_NUMEROS } from "@/lib/about-numeros";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -20,14 +20,8 @@ import {
 const COBALT = "var(--primary)";
 const NAVY = "var(--navy)";
 
-export const aboutNumerosQuery = queryOptions({
-  queryKey: ["about_numeros"],
-  queryFn: fetchAboutNumeros,
-  staleTime: 30_000,
-});
-
 export const Route = createFileRoute("/sobre")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(aboutNumerosQuery),
+  loader: () => ({ aboutNumeros: getAboutNumeros() }),
   head: () => ({
     meta: [
       { title: "Sobre o Portal da Obra" },
@@ -281,7 +275,8 @@ function Sobre() {
 }
 
 function NumerosGrid() {
-  const { data } = useSuspenseQuery(aboutNumerosQuery);
+  const loaderData = Route.useLoaderData();
+  const data = loaderData.aboutNumeros;
   const indicators = data?.indicators ?? DEFAULT_ABOUT_NUMEROS.indicators;
   const segments = (data?.segments ?? DEFAULT_ABOUT_NUMEROS.segments).filter((s) => s.active);
   const [i0, i1, i2, i3] = indicators;

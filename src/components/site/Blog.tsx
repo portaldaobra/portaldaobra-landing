@@ -1,8 +1,8 @@
 import { ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { blogListQuery, type BlogAudience } from "@/lib/blog-posts";
+import { getBlogPosts } from "@/lib/content";
+import type { BlogAudience } from "@/lib/content";
 
 export function Blog({
   limit,
@@ -11,7 +11,7 @@ export function Blog({
   homeFeatured = false,
   /**
    * Preloaded posts from a route loader (used in prerendered pages so content
-   * is baked into HTML). If provided, skips the client-side React Query fetch.
+   * is baked into HTML). If provided, skips the snapshot accessor fallback.
    */
   initialPosts,
 }: {
@@ -29,12 +29,9 @@ export function Blog({
     read?: string;
   }>;
 } = {}) {
-  const { data: list = initialPosts ?? [], isLoading } = useQuery({
-    ...blogListQuery({ limit, audience, homeFeatured }),
-    // Skip network fetch when initial data is already provided by a route loader
-    enabled: !initialPosts || initialPosts.length === 0,
-    initialData: initialPosts,
-  });
+  const list = initialPosts && initialPosts.length > 0
+    ? initialPosts
+    : getBlogPosts({ limit, audience, homeFeatured });
 
   return (
     <section className="section-y bg-secondary">
@@ -46,11 +43,7 @@ export function Blog({
           <h2 className="h2-section text-navy">Novidades do Mercado</h2>
         </div>
 
-        {isLoading && !initialPosts ? (
-          <div className="py-12 grid place-items-center">
-            <div className="h-6 w-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-          </div>
-        ) : list.length === 0 ? (
+        {list.length === 0 ? (
           <p className="text-center text-muted-foreground">Nenhum artigo publicado.</p>
         ) : (
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
