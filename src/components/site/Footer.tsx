@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
 import {
   Facebook,
   Instagram,
@@ -10,8 +9,7 @@ import {
   Music2,
   Globe,
 } from "lucide-react";
-import logoAsset from "@/assets/logo-portalobra.svg.asset.json";
-import { apiGet } from "@/lib/api";
+import { getSocialLinks } from "@/lib/content";
 import type { SocialRow } from "@/lib/cms";
 
 const columns = [
@@ -85,25 +83,13 @@ export function Footer({
 }: {
   initialSocials?: SocialRow[];
 } = {}) {
-  const { data: socials = [] } = useQuery({
-    queryKey: ["social_links"],
-    queryFn: async (): Promise<{ platform: string; url: string }[]> => {
-      try {
-        const rows = await apiGet<SocialRow[]>("/landing/social-links");
-        return rows
-          .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
-          .filter((s): s is { platform: string; url: string } => !!s.url);
-      } catch {
-        return [];
-      }
-    },
-    initialData: initialSocials
-      ? initialSocials
-          .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
-          .filter((s): s is { platform: string; url: string } => !!s.url)
-      : undefined,
-    enabled: !initialSocials || initialSocials.length === 0,
-  });
+  const rawRows = initialSocials && initialSocials.length > 0
+    ? initialSocials
+    : getSocialLinks();
+
+  const socials = rawRows
+    .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
+    .filter((s): s is { platform: string; url: string } => !!s.url);
 
   return (
     <footer className="bg-navy text-navy-foreground">
@@ -112,7 +98,7 @@ export function Footer({
           {/* Brand column */}
           <div className="lg:col-span-4">
             <img
-              src={logoAsset.url}
+              src="/static/images/logo-portalobra.svg"
               alt="Portal da Obra"
               className="h-8 w-auto mb-6 brightness-0 invert"
               width={354}

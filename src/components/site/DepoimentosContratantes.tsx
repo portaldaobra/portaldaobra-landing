@@ -1,6 +1,5 @@
 import { Quote } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
+import { getTestimonials } from "@/lib/content";
 import type { TestimonialRow } from "@/lib/cms";
 
 const COBALT = "var(--primary)";
@@ -20,20 +19,9 @@ export function DepoimentosContratantes({
 }: {
   initialTestimonials?: TestimonialRow[];
 } = {}) {
-  const { data: depoimentos } = useQuery({
-    queryKey: ["testimonials", "contractor"],
-    queryFn: async (): Promise<TestimonialRow[]> => {
-      try {
-        return await apiGet<TestimonialRow[]>("/landing/testimonials", {
-          audience: "contractor",
-        });
-      } catch {
-        return [];
-      }
-    },
-    initialData: initialTestimonials,
-    enabled: !initialTestimonials || initialTestimonials.length === 0,
-  });
+  const depoimentos = initialTestimonials && initialTestimonials.length > 0
+    ? initialTestimonials
+    : getTestimonials("contractor");
 
   if (!depoimentos?.length) return null;
 

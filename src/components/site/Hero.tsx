@@ -10,10 +10,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useAudience } from "./AudienceContext";
-import { apiGet } from "@/lib/api";
+import { getObraTypes, getFormCategories, getFormLocations } from "@/lib/content";
 import type { ObraTypeRow, FormCategoryRow, FormLocationRow } from "@/lib/content";
 
 const audienceContent = {
@@ -61,30 +60,21 @@ export function Hero({
   const { audience } = useAudience();
   const content = audienceContent[audience];
 
-  const { data: obraTypes } = useQuery({
-    queryKey: ["obra_types"],
-    queryFn: () => apiGet<Array<{ name: string; is_default: boolean }>>("/landing/obra-types"),
-    initialData: initialObraTypes,
-    enabled: !initialObraTypes || initialObraTypes.length === 0,
-  });
-  const tipoOptions = (obraTypes ?? []).map((t) => t.name);
-  const tipoDefault = obraTypes?.find((t) => t.is_default)?.name;
+  const obraTypes = initialObraTypes && initialObraTypes.length > 0
+    ? initialObraTypes
+    : getObraTypes();
+  const tipoOptions = obraTypes.map((t) => t.name);
+  const tipoDefault = obraTypes.find((t) => t.is_default)?.name;
 
-  const { data: categorias } = useQuery({
-    queryKey: ["form_categories"],
-    queryFn: () => apiGet<Array<{ name: string }>>("/landing/form-categories"),
-    initialData: initialFormCategories,
-    enabled: !initialFormCategories || initialFormCategories.length === 0,
-  });
-  const categoriaOptions = (categorias ?? []).map((c) => c.name);
+  const categorias = initialFormCategories && initialFormCategories.length > 0
+    ? initialFormCategories
+    : getFormCategories();
+  const categoriaOptions = categorias.map((c) => c.name);
 
-  const { data: localizacoes } = useQuery({
-    queryKey: ["form_locations"],
-    queryFn: () => apiGet<Array<{ name: string }>>("/landing/form-locations"),
-    initialData: initialFormLocations,
-    enabled: !initialFormLocations || initialFormLocations.length === 0,
-  });
-  const localizacaoOptions = (localizacoes ?? []).map((l) => l.name);
+  const localizacoes = initialFormLocations && initialFormLocations.length > 0
+    ? initialFormLocations
+    : getFormLocations();
+  const localizacaoOptions = localizacoes.map((l) => l.name);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

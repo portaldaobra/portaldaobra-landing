@@ -1,11 +1,10 @@
-import { queryOptions } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
+import { getBlogPosts, getBlogPost } from "@/lib/content";
 import type { BlogRow } from "@/lib/cms";
 
 export type BlogPost = BlogRow & {
-  /** Alias para o tempo de leitura (compatibilidade com componentes antigos). */
+  /** Alias for read_time (backward compat). */
   read: string;
-  /** Alias para a data de publicação. */
+  /** Alias for publish_date (backward compat). */
   date: string;
 };
 
@@ -25,31 +24,11 @@ export type BlogListFilter = {
   limit?: number;
 };
 
-export const blogListQuery = (filter: BlogListFilter = {}) =>
-  queryOptions({
-    queryKey: ["blog", "list", filter],
-    queryFn: async (): Promise<BlogPost[]> => {
-      const rows = await apiGet<BlogRow[]>("/landing/blog-posts", {
-        audience: filter.audience,
-        featured_home: filter.homeFeatured || undefined,
-        limit: filter.limit,
-      });
-      return rows.map(adapt);
-    },
-  });
+export function getBlogPostList(filter: BlogListFilter = {}): BlogPost[] {
+  return getBlogPosts(filter).map(adapt);
+}
 
-export const blogPostQuery = (slug: string) =>
-  queryOptions({
-    queryKey: ["blog", "post", slug],
-    queryFn: async (): Promise<BlogPost | null> => {
-      try {
-        const row = await apiGet<BlogRow>(`/landing/blog-posts/${slug}`);
-        return adapt(row);
-      } catch (e) {
-        if (e != null && typeof e === "object" && "status" in e && (e as { status: number }).status === 404) {
-          return null;
-        }
-        throw e;
-      }
-    },
-  });
+export function getBlogPostBySlug(slug: string): BlogPost | null {
+  const row = getBlogPost(slug);
+  return row ? adapt(row) : null;
+}

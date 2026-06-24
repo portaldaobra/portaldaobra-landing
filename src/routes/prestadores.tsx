@@ -1,6 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
 import { getTestimonials, getBlogPosts } from "@/lib/content";
 import type { TestimonialRow } from "@/lib/cms";
 
@@ -166,20 +164,9 @@ const earnings = [
 
 function Prestadores() {
   const loaderData = Route.useLoaderData();
-  const { data: testimonials } = useQuery({
-    queryKey: ["testimonials", "supplier"],
-    queryFn: async (): Promise<TestimonialRow[]> => {
-      try {
-        return await apiGet<TestimonialRow[]>("/landing/testimonials", {
-          audience: "supplier",
-        });
-      } catch {
-        return [];
-      }
-    },
-    initialData: loaderData.testimonials,
-    enabled: !loaderData.testimonials || loaderData.testimonials.length === 0,
-  });
+  const testimonials: TestimonialRow[] = loaderData.testimonials && loaderData.testimonials.length > 0
+    ? loaderData.testimonials
+    : getTestimonials("supplier");
 
   return (
     <main className="min-h-screen bg-background">

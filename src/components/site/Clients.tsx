@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import { apiGet } from "@/lib/api";
+import { getBrands } from "@/lib/content";
 import type { BrandRow } from "@/lib/cms";
 
 const ROW_1 = ["renato cariani", "shoulder", "fazenda churrascada", "overmith", "interfit"];
@@ -17,7 +16,11 @@ function matchOrder(brands: BrandRow[], order: string[]): BrandRow[] {
 
 function BrandLogo({ brand }: { brand: BrandRow }) {
   if (!brand.logo_url) {
-    return <span className="block h-10 w-32 bg-muted rounded" aria-label={brand.name} />;
+    return (
+      <span className="flex items-center justify-center h-10 px-4 min-w-[96px] rounded-md bg-muted/60 text-sm font-semibold text-muted-foreground tracking-wide">
+        {brand.name}
+      </span>
+    );
   }
   return (
     <img
@@ -68,18 +71,9 @@ export function Clients({
 }: {
   initialBrands?: BrandRow[];
 } = {}) {
-  const { data: brands = [] } = useQuery({
-    queryKey: ["public", "brands"],
-    queryFn: async (): Promise<BrandRow[]> => {
-      try {
-        return await apiGet<BrandRow[]>("/landing/brands");
-      } catch {
-        return [];
-      }
-    },
-    initialData: initialBrands,
-    enabled: !initialBrands || initialBrands.length === 0,
-  });
+  const brands = initialBrands && initialBrands.length > 0
+    ? initialBrands
+    : getBrands();
 
   if (!brands.length) return null;
 
