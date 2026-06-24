@@ -1,0 +1,207 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --font-sans: "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--primary) 25%, transparent);
+  --shadow-card: 0 8px 30px -12px oklch(0.2 0.04 265 / 0.18);
+  --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--primary) 40%, transparent);
+  --gradient-hero: linear-gradient(135deg, oklch(0.208 0.042 265.755) 0%, oklch(0.32 0.13 264) 60%, oklch(0.42 0.18 262) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, color-mix(in oklab, var(--primary) 70%, var(--success)) 100%);
+  --gradient-mesh: radial-gradient(at 20% 10%, color-mix(in oklab, var(--primary) 25%, transparent) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, color-mix(in oklab, var(--success) 18%, transparent) 0px, transparent 50%),
+    radial-gradient(at 0% 80%, color-mix(in oklab, var(--navy) 35%, transparent) 0px, transparent 50%);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.04 265);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 265);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 265);
+
+  /* === Azul Cobalto — paleta oficial Portal da Obra === */
+  /* Azul Principal #0047AB */
+  --primary: oklch(0.42 0.20 263);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* Escala derivada */
+  --primary-100: oklch(0.96 0.025 263);
+  --primary-300: oklch(0.82 0.10 263);
+  --primary-500: oklch(0.55 0.20 263);
+  --primary-700: oklch(0.42 0.20 263); /* base */
+  --primary-900: oklch(0.30 0.16 263); /* Azul Escuro — hover/títulos */
+
+  /* Azul Muito Escuro — header/rodapé/fundos institucionais */
+  --navy: oklch(0.20 0.10 263);
+  --navy-foreground: oklch(0.99 0 0);
+
+  /* Cinzas oficiais */
+  --secondary: oklch(0.975 0.012 263);
+  --secondary-foreground: oklch(0.22 0.04 263);
+
+  --muted: oklch(0.965 0.012 263);
+  --muted-foreground: oklch(0.50 0.03 263);
+
+  --accent: oklch(0.94 0.04 263);
+  --accent-foreground: oklch(0.30 0.16 263);
+
+  /* "success" token reaproveitado como Azul Escuro para manter consistência
+     de marca em gradientes/destaques herdados */
+  --success: oklch(0.30 0.16 263);
+  --success-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.6 0.24 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.92 0.015 263);
+  --input: oklch(0.92 0.015 263);
+  --ring: oklch(0.42 0.20 263);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklab, white 70%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 60%, transparent);
+}
+
+@utility glass-dark {
+  background: color-mix(in oklab, oklch(0.21 0.04 265) 60%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@utility animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* === Design system — section spacing tokens === */
+/* Padrão: seções internas */
+@utility section-y {
+  padding-top: calc(var(--spacing) * 20);
+  padding-bottom: calc(var(--spacing) * 20);
+}
+@media (min-width: 1024px) {
+  .section-y {
+    padding-top: calc(var(--spacing) * 24);
+    padding-bottom: calc(var(--spacing) * 24);
+  }
+}
+
+/* Hero / CTA grandes */
+@utility section-y-lg {
+  padding-top: calc(var(--spacing) * 20);
+  padding-bottom: calc(var(--spacing) * 20);
+}
+@media (min-width: 1024px) {
+  .section-y-lg {
+    padding-top: calc(var(--spacing) * 28);
+    padding-bottom: calc(var(--spacing) * 28);
+  }
+}
+
+/* === Design system — escala tipográfica === */
+@utility h1-hero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.25rem;        /* 36px */
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+@media (min-width: 640px) {
+  .h1-hero { font-size: 3rem; }      /* 48px */
+}
+@media (min-width: 1024px) {
+  .h1-hero { font-size: 3.75rem; }   /* 60px */
+}
+
+@utility h2-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.875rem;       /* 30px */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+@media (min-width: 640px) {
+  .h2-section { font-size: 2.25rem; } /* 36px */
+}
+
+@utility h3-card {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;        /* 20px */
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
