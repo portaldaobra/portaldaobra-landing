@@ -772,40 +772,13 @@
       "sort_order": 2
     },
     {
-      "id": "2e42141e-319c-420c-8817-6c51a40dc0c1",
-      "name": "Overmith",
-      "logo_url": "/static/brands/1781562433884-g4l57jzan2.png",
-      "segment": "Academia",
-      "website": null,
-      "status": "active",
-      "sort_order": 3
-    },
-    {
       "id": "fe3c7589-3102-46f0-be66-3a877c70e0c5",
       "name": "InterFit",
       "logo_url": "/static/brands/1781556831896-c8q5lroyghl.png",
       "segment": "Academia",
       "website": "https://interfitacademias.com.br/",
       "status": "active",
-      "sort_order": 4
-    },
-    {
-      "id": "344a6108-1535-4463-b576-f6fa84f17fd8",
-      "name": "Selfit",
-      "logo_url": "/static/brands/1781556844255-dliidjdlxno.png",
-      "segment": "Academia",
-      "website": "https://www.selfitacademias.com.br/",
-      "status": "active",
-      "sort_order": 5
-    },
-    {
-      "id": "64afb3fb-a8e0-49fb-bf4e-e3bd3c512709",
-      "name": "Rede Cinadis",
-      "logo_url": "/static/brands/1781556853604-licusf4ekh8.png",
-      "segment": "Posto de Combustível",
-      "website": "https://www.redecinadis.com.br/",
-      "status": "active",
-      "sort_order": 6
+      "sort_order": 3
     },
     {
       "id": "13f8e497-79f4-4a84-b5e9-1b04a7bc7381",
@@ -814,7 +787,7 @@
       "segment": "Vestuário Feminino",
       "website": null,
       "status": "active",
-      "sort_order": 7
+      "sort_order": 4
     },
     {
       "id": "59deebd5-a75f-43e1-9385-2b1e4af8a2a0",
@@ -823,7 +796,7 @@
       "segment": "Centros Comerciais",
       "website": "https://urbanize.com.br/",
       "status": "active",
-      "sort_order": 8
+      "sort_order": 5
     }
   ],
   "faqs": [
