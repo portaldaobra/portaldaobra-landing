@@ -754,22 +754,13 @@
   ],
   "brands": [
     {
-      "id": "9be98b7c-6c14-41ab-867b-a29685939cca",
-      "name": "CTRC",
-      "logo_url": "/static/brands/1781562495798-06u4nynubdd.png",
-      "segment": "Academia",
-      "website": "https://redectrc.com.br/",
-      "status": "active",
-      "sort_order": 1
-    },
-    {
       "id": "6963cce4-171c-4474-bc30-ed22975a3f18",
       "name": "Fazenda Churrascada",
       "logo_url": "/static/brands/1781571229146-q6zwrrxvzqk.jpg",
       "segment": "Restaurante",
       "website": "https://www.fazendachurrascada.com.br/",
       "status": "active",
-      "sort_order": 2
+      "sort_order": 1
     },
     {
       "id": "fe3c7589-3102-46f0-be66-3a877c70e0c5",
@@ -778,7 +769,7 @@
       "segment": "Academia",
       "website": "https://interfitacademias.com.br/",
       "status": "active",
-      "sort_order": 3
+      "sort_order": 2
     },
     {
       "id": "13f8e497-79f4-4a84-b5e9-1b04a7bc7381",
@@ -787,7 +778,7 @@
       "segment": "Vestuário Feminino",
       "website": null,
       "status": "active",
-      "sort_order": 4
+      "sort_order": 3
     },
     {
       "id": "59deebd5-a75f-43e1-9385-2b1e4af8a2a0",
@@ -796,7 +787,7 @@
       "segment": "Centros Comerciais",
       "website": "https://urbanize.com.br/",
       "status": "active",
-      "sort_order": 5
+      "sort_order": 4
     }
   ],
   "faqs": [

@@ -1,7 +1,7 @@
 import { getBrands } from "@/lib/content";
 import type { BrandRow } from "@/lib/cms";
 
-const ROW_1 = ["renato cariani", "shoulder", "fazenda churrascada", "interfit"];
+const ROW_1 = ["shoulder", "fazenda churrascada", "interfit"];
 const ROW_2 = ["urbanize"];
 
 function matchOrder(brands: BrandRow[], order: string[]): BrandRow[] {
