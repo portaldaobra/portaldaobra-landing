@@ -763,22 +763,13 @@
       "sort_order": 1
     },
     {
-      "id": "fe3c7589-3102-46f0-be66-3a877c70e0c5",
-      "name": "InterFit",
-      "logo_url": "/static/brands/1781556831896-c8q5lroyghl.png",
-      "segment": "Academia",
-      "website": "https://interfitacademias.com.br/",
-      "status": "active",
-      "sort_order": 2
-    },
-    {
       "id": "13f8e497-79f4-4a84-b5e9-1b04a7bc7381",
       "name": "Sholulder",
       "logo_url": "/static/brands/1781810865214-akijb8ixaw.svg",
       "segment": "Vestuário Feminino",
       "website": null,
       "status": "active",
-      "sort_order": 3
+      "sort_order": 2
     },
     {
       "id": "59deebd5-a75f-43e1-9385-2b1e4af8a2a0",
@@ -787,7 +778,7 @@
       "segment": "Centros Comerciais",
       "website": "https://urbanize.com.br/",
       "status": "active",
-      "sort_order": 4
+      "sort_order": 3
     }
   ],
   "faqs": [
