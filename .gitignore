@@ -20,6 +20,12 @@ dist-ssr
 # Published snapshot (downloaded by CI before build; example is committed)
 snapshot.json
 
+# Playwright
+test-results
+playwright-report
+blob-report
+playwright/.cache
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
