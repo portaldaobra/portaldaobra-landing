@@ -1,8 +1,8 @@
 import { getBrands } from "@/lib/content";
 import type { BrandRow } from "@/lib/cms";
 
-const ROW_1 = ["shoulder", "fazenda churrascada", "overmith", "interfit"];
-const ROW_2 = ["urbanize"];
+const ROW_1 = ["shoulder", "fazenda churrascada", "overmith", "interfit", "urbanize"];
+const ROW_2: string[] = [];
 
 function matchOrder(brands: BrandRow[], order: string[]): BrandRow[] {
   const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
