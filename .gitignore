@@ -30,6 +30,10 @@ playwright/.cache
 .wrangler/
 .dev.vars
 
+# Raw operator photography dropped for scripts/prepare-blog-covers.mjs;
+# only the generated public/static/blog/ derivatives are committed.
+/blog-covers-incoming/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

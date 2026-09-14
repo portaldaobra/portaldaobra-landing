@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { getBlogPost, getBlogPosts } from "@/lib/content";
 import type { BlogRow } from "@/lib/cms";
+import { CoverImage } from "@/components/site/CoverImage";
 
 // Adapt BlogRow to the shape components expect (read/date aliases)
 function adapt(row: BlogRow) {
@@ -148,14 +149,14 @@ function ArticlePage() {
             )}
           </div>
 
-          <div
-            className={`mt-8 h-64 sm:h-80 rounded-2xl bg-gradient-to-br ${post.grad ?? "from-primary to-navy"} relative overflow-hidden`}
-          >
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{ backgroundImage: "var(--gradient-mesh)" }}
-            />
-          </div>
+          <CoverImage
+            src={post.cover_image}
+            alt={post.title}
+            gradientClassName={post.grad}
+            className="mt-8 h-64 sm:h-80 rounded-2xl"
+            sizes="(min-width: 640px) 768px, 100vw"
+            priority
+          />
 
           {/* Intro */}
           <div className="mt-10 space-y-4">
@@ -321,19 +322,18 @@ function ArticlePage() {
                   params={{ slug: r.slug }}
                   className="group block bg-card rounded-2xl overflow-hidden border border-border hover:shadow-elegant transition-all duration-300"
                 >
-                  <div
-                    className={`h-36 bg-gradient-to-br ${r.grad ?? "from-primary to-navy"} relative overflow-hidden`}
+                  <CoverImage
+                    src={r.cover_image}
+                    alt={r.title}
+                    gradientClassName={r.grad}
+                    className="h-36"
                   >
-                    <div
-                      className="absolute inset-0 opacity-30"
-                      style={{ backgroundImage: "var(--gradient-mesh)" }}
-                    />
                     {r.tag && (
                       <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
                         {r.tag}
                       </span>
                     )}
-                  </div>
+                  </CoverImage>
                   <div className="p-5">
                     <h3 className="font-display text-base font-bold text-navy leading-snug group-hover:text-primary transition-colors">
                       {r.title}
