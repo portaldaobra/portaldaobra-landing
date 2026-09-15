@@ -2,9 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { isBlogEnabled } from "@/lib/content";
 import { TopBar } from "./TopBar";
 
-const nav = [
+const baseNav = [
   { label: "Como Funciona", to: "/como-funciona" },
   { label: "Soluções", to: "/solucoes" },
   { label: "Sobre Nós", to: "/sobre" },
@@ -13,11 +14,11 @@ const nav = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const nav = isBlogEnabled() ? baseNav : baseNav.filter((n) => n.to !== "/blog");
   return (
     <header className="sticky top-0 z-50 w-full">
       <TopBar />
       <div className="glass border-b border-border/60">
-
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center group" aria-label="Portal da Obra">
             <img
@@ -45,10 +46,26 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-3">
             <Button asChild variant="ghost" size="sm">
-              <a href="https://web.portaldaobra.com.br/register" target="_blank" rel="noopener noreferrer">Criar Conta</a>
+              <a
+                href="https://web.portaldaobra.com.br/register"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Criar Conta
+              </a>
             </Button>
-            <Button asChild size="sm" className="bg-gradient-to-r from-primary to-navy text-primary-foreground hover:opacity-95 shadow-elegant">
-              <a href="https://web.portaldaobra.com.br/auth/login" target="_blank" rel="noopener noreferrer">Entrar</a>
+            <Button
+              asChild
+              size="sm"
+              className="bg-gradient-to-r from-primary to-navy text-primary-foreground hover:opacity-95 shadow-elegant"
+            >
+              <a
+                href="https://web.portaldaobra.com.br/auth/login"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Entrar
+              </a>
             </Button>
           </div>
 
@@ -75,10 +92,22 @@ export function Header() {
             ))}
             <div className="flex gap-2 pt-2">
               <Button asChild variant="outline" size="sm" className="flex-1">
-                <a href="https://web.portaldaobra.com.br/auth/login" target="_blank" rel="noopener noreferrer">Entrar</a>
+                <a
+                  href="https://web.portaldaobra.com.br/auth/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Entrar
+                </a>
               </Button>
               <Button asChild size="sm" className="flex-1 bg-primary text-primary-foreground">
-                <a href="https://web.portaldaobra.com.br/register" target="_blank" rel="noopener noreferrer">Criar Conta</a>
+                <a
+                  href="https://web.portaldaobra.com.br/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Criar Conta
+                </a>
               </Button>
             </div>
           </div>

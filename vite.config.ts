@@ -8,6 +8,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import type { Plugin } from "vite";
+import { parseBlogEnabled, BLOG_ENABLED_SETTING_KEY } from "./src/lib/blog-settings";
 
 // ---------------------------------------------------------------------------
 // Load the full snapshot at config-time (Node context, synchronous).
@@ -30,11 +31,16 @@ interface SnapshotRaw {
   form_categories?: unknown[];
   form_locations?: unknown[];
   social_links?: unknown[];
-  site_settings?: unknown[];
+  site_settings?: Array<{ key: string; value: string | null }>;
   showcase_bids?: unknown[];
 }
 
-function loadSnapshot(): { raw: SnapshotRaw; blogSlugs: string[]; obraSlugs: string[] } {
+function loadSnapshot(): {
+  raw: SnapshotRaw;
+  blogSlugs: string[];
+  obraSlugs: string[];
+  blogEnabled: boolean;
+} {
   const candidates = [
     resolve(__dirname, "snapshot.json"),
     resolve(__dirname, "snapshot.example.json"),
@@ -43,13 +49,17 @@ function loadSnapshot(): { raw: SnapshotRaw; blogSlugs: string[]; obraSlugs: str
     if (!existsSync(p)) continue;
     try {
       const raw = JSON.parse(readFileSync(p, "utf-8")) as SnapshotRaw;
-      const blogSlugs = (raw.blog_posts ?? [])
-        .filter((b) => b.status === "published")
-        .map((b) => b.slug);
+      const blogEnabled = parseBlogEnabled(
+        raw.site_settings?.find((s) => s.key === BLOG_ENABLED_SETTING_KEY)?.value,
+      );
+      // Blog off ⇒ the /blog pages simply aren't in the prerender page list.
+      const blogSlugs = blogEnabled
+        ? (raw.blog_posts ?? []).filter((b) => b.status === "published").map((b) => b.slug)
+        : [];
       const obraSlugs = (raw.obras ?? [])
         .filter((o) => o.status === "published")
         .map((o) => o.slug);
-      return { raw, blogSlugs, obraSlugs };
+      return { raw, blogSlugs, obraSlugs, blogEnabled };
     } catch {
       // try next
     }
@@ -58,10 +68,10 @@ function loadSnapshot(): { raw: SnapshotRaw; blogSlugs: string[]; obraSlugs: str
     "[vite.config.ts] No snapshot found — dynamic routes will not be prerendered. " +
       "Place snapshot.json (or snapshot.example.json) at the repo root before building.",
   );
-  return { raw: {}, blogSlugs: [], obraSlugs: [] };
+  return { raw: {}, blogSlugs: [], obraSlugs: [], blogEnabled: true };
 }
 
-const { raw: snapshotRaw, blogSlugs, obraSlugs } = loadSnapshot();
+const { raw: snapshotRaw, blogSlugs, obraSlugs, blogEnabled } = loadSnapshot();
 
 // Static routes that are always prerendered
 const staticRoutes = [
@@ -72,7 +82,7 @@ const staticRoutes = [
   "/sobre",
   "/bids",
   "/obras-realizadas",
-  "/blog",
+  ...(blogEnabled ? ["/blog"] : []),
   "/duvidas-frequentes",
   "/privacidade-e-contratos",
 ];
@@ -140,6 +150,13 @@ export default defineConfig({
       enabled: true,
       crawlLinks: false,
       failOnError: false,
+      // TanStack Start's autoStaticPathsDiscovery auto-discovers every
+      // static (param-free) route from the file-based route tree — e.g.
+      // "/blog" and "/blog/" would still be prerendered even when omitted
+      // from `pages` above, since discovery happens independently of that
+      // list. Explicitly exclude the blog surface here when disabled.
+      filter: (page: { path: string }) =>
+        blogEnabled || (page.path !== "/blog" && !page.path.startsWith("/blog/")),
     },
     pages: allPages,
   },

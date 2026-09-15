@@ -9,10 +9,10 @@ import {
   Music2,
   Globe,
 } from "lucide-react";
-import { getSocialLinks } from "@/lib/content";
+import { getSocialLinks, isBlogEnabled } from "@/lib/content";
 import type { SocialRow } from "@/lib/cms";
 
-const columns = [
+const baseColumns = [
   {
     title: "Links Úteis",
     links: [
@@ -83,13 +83,19 @@ export function Footer({
 }: {
   initialSocials?: SocialRow[];
 } = {}) {
-  const rawRows = initialSocials && initialSocials.length > 0
-    ? initialSocials
-    : getSocialLinks();
+  const rawRows = initialSocials && initialSocials.length > 0 ? initialSocials : getSocialLinks();
 
   const socials = rawRows
     .map((s) => ({ platform: s.platform, url: normalizeUrl(s.url) }))
     .filter((s): s is { platform: string; url: string } => !!s.url);
+
+  const columns = isBlogEnabled()
+    ? baseColumns
+    : baseColumns.map((col) =>
+        col.title === "Institucional"
+          ? { ...col, links: col.links.filter((l) => l.to !== "/blog") }
+          : col,
+      );
 
   return (
     <footer className="bg-navy text-navy-foreground">
