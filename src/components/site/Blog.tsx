@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { getBlogPosts } from "@/lib/content";
 import type { BlogAudience } from "@/lib/content";
 import { CoverImage } from "@/components/site/CoverImage";
+import { TagChips } from "@/components/site/TagChips";
 
 export function Blog({
   limit,
@@ -63,11 +64,12 @@ export function Blog({
                   gradientClassName={p.grad}
                   className="h-48"
                 >
-                  {p.tag && (
-                    <span className="absolute top-4 left-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
-                      {p.tag}
-                    </span>
-                  )}
+                  <TagChips
+                    post={p}
+                    max={2}
+                    variant="overlay"
+                    className="absolute top-4 left-4"
+                  />
                 </CoverImage>
                 <div className="p-6">
                   {(p.read_time ?? p.read) && (

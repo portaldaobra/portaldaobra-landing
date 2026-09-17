@@ -15,6 +15,7 @@ import {
 import { getBlogPost, getBlogPosts, isBlogEnabled } from "@/lib/content";
 import type { BlogRow } from "@/lib/cms";
 import { CoverImage } from "@/components/site/CoverImage";
+import { TagChips } from "@/components/site/TagChips";
 
 // Adapt BlogRow to the shape components expect (read/date aliases)
 function adapt(row: BlogRow) {
@@ -148,11 +149,10 @@ function ArticlePage() {
             <ArrowLeft className="h-4 w-4" /> Voltar para o Blog
           </Link>
 
-          {post.tag && (
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-4">
-              {post.tag}
-            </span>
-          )}
+          {/* Own row. The old markup was an inline <span> immediately after the
+              inline-flex back-link, so it shared that line and read as part of
+              "Voltar para o Blog" instead of as a tag. */}
+          <TagChips post={post} className="mb-4" />
 
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
             {post.title}
@@ -350,11 +350,12 @@ function ArticlePage() {
                     gradientClassName={r.grad}
                     className="h-36"
                   >
-                    {r.tag && (
-                      <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
-                        {r.tag}
-                      </span>
-                    )}
+                    <TagChips
+                      post={r}
+                      max={2}
+                      variant="overlay"
+                      className="absolute top-3 left-3"
+                    />
                   </CoverImage>
                   <div className="p-5">
                     <h3 className="font-display text-base font-bold text-navy leading-snug group-hover:text-primary transition-colors">

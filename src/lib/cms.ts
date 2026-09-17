@@ -5,6 +5,12 @@ export type BlogRow = {
   id: string;
   slug: string;
   tag: string | null;
+  /**
+   * Multiple tags (phase 185). `tag` is kept in sync by the API as tags[0] for
+   * anything still reading the single value, so this may be absent on older
+   * snapshots — always read it through postTags().
+   */
+  tags?: string[] | null;
   title: string;
   excerpt: string | null;
   cover_image: string | null;
