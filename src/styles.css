@@ -209,61 +209,54 @@
 /* ---------------------------------------------------------------------------
  * Blog tag stickers.
  *
- * A tag should read as something stuck onto the page, not as a kicker line above
- * the headline — which is how the old bare <span> read. The tilt plus the lift
- * shadow plus the folded corner give that, cheaply and without an image.
- * Alternating the tilt stops a row of tags looking mechanically aligned.
+ * A tag should read as something applied to the page rather than as a kicker
+ * line above the headline — which is how the old bare <span> read. That comes
+ * from the lift shadow and the folded corner, NOT from a tilt: an angled label
+ * reads playful, and this is a B2B construction audience. Everything stays
+ * square to the grid.
  * ------------------------------------------------------------------------ */
 .tag-peel {
   position: relative;
-  transform: rotate(-1.2deg);
   box-shadow:
     0 1px 1px color-mix(in oklab, var(--navy) 10%, transparent),
-    0 6px 10px -6px color-mix(in oklab, var(--navy) 28%, transparent);
-  transition: transform 150ms ease, box-shadow 150ms ease;
-}
-
-.tag-peel:nth-child(even) {
-  transform: rotate(1deg);
+    0 4px 8px -5px color-mix(in oklab, var(--navy) 26%, transparent);
+  transition: box-shadow 150ms ease, transform 150ms ease;
 }
 
 /* The curled corner: a darker triangle tucked into the bottom-right, as if the
-   sticker is lifting away from the page. */
+   label is lifting slightly away from the page. Kept small and low-contrast so
+   it reads as a detail, not a gimmick. */
 .tag-peel::after {
   content: "";
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.45rem;
+  height: 0.45rem;
   border-bottom-right-radius: 0.25rem;
   background: linear-gradient(
     135deg,
     transparent 50%,
-    color-mix(in oklab, var(--navy) 20%, transparent) 50%
+    color-mix(in oklab, var(--navy) 16%, transparent) 50%
   );
   pointer-events: none;
 }
 
+/* Straight lift on hover — no rotation. */
 .tag-peel:hover {
-  transform: rotate(0deg) translateY(-1px);
+  transform: translateY(-1px);
   box-shadow:
     0 1px 1px color-mix(in oklab, var(--navy) 12%, transparent),
-    0 10px 16px -8px color-mix(in oklab, var(--navy) 34%, transparent);
+    0 8px 14px -7px color-mix(in oklab, var(--navy) 32%, transparent);
 }
 
-/* The "+N" overflow chip is a counter, not a tag — no curl, no tilt. */
-.tag-peel-flat,
-.tag-peel-flat:nth-child(even) {
-  transform: none;
-}
+/* The "+N" overflow chip is a counter, not a tag — no curl. */
 .tag-peel-flat::after {
   content: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .tag-peel,
-  .tag-peel:nth-child(even),
   .tag-peel:hover {
     transform: none;
     transition: none;
