@@ -14,6 +14,11 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AudienceProvider } from "@/components/site/AudienceContext";
 import { SeoInjector } from "@/components/site/SeoInjector";
 
+// Declare the build-time constant injected by vite.config.ts.
+// SITE_NOINDEX=true at build time flips this to "noindex, nofollow" so a QA
+// build of the site can never be indexed (see vite.config.ts).
+declare const __SITE_NOINDEX__: boolean;
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -86,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Conectamos empresas a fornecedores qualificados para contratação de obras corporativas com mais transparência, segurança e eficiência.",
       },
       { name: "author", content: "Portal da Obra" },
-      { name: "robots", content: "index, follow" },
+      { name: "robots", content: __SITE_NOINDEX__ ? "noindex, nofollow" : "index, follow" },
       // API base URL for consent-store.js (PUT /api/v1/consent); heuristic in the
       // script handles localhost:8011 vs prod, but the meta provides an explicit override
       // for the prerendered HTML. The value is intentionally blank so the heuristic

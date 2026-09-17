@@ -23,6 +23,7 @@ import {
   getFormCategories,
   getFormLocations,
   getSiteSettings,
+  isBlogEnabled,
 } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
@@ -93,7 +94,7 @@ function Index() {
       <Bids />
       <DepoimentosContratantes initialTestimonials={loaderData.testimonials} />
       <CtaSeguranca />
-      <Blog limit={3} homeFeatured initialPosts={loaderData.blogPosts} />
+      {isBlogEnabled() && <Blog limit={3} homeFeatured initialPosts={loaderData.blogPosts} />}
       <Contact />
       <Footer initialSocials={loaderData.socialLinks} />
       <Toaster richColors position="top-right" />

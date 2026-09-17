@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { getBlogPosts } from "@/lib/content";
 import type { BlogAudience } from "@/lib/content";
+import { CoverImage } from "@/components/site/CoverImage";
+import { TagChips } from "@/components/site/TagChips";
 
 export function Blog({
   limit,
@@ -25,13 +27,15 @@ export function Blog({
     excerpt?: string | null;
     tag?: string | null;
     grad?: string | null;
+    cover_image?: string | null;
     read_time?: string | null;
     read?: string;
   }>;
 } = {}) {
-  const list = initialPosts && initialPosts.length > 0
-    ? initialPosts
-    : getBlogPosts({ limit, audience, homeFeatured });
+  const list =
+    initialPosts && initialPosts.length > 0
+      ? initialPosts
+      : getBlogPosts({ limit, audience, homeFeatured });
 
   return (
     <section className="section-y bg-secondary">
@@ -54,19 +58,19 @@ export function Blog({
                 params={{ slug: p.slug }}
                 className="group block bg-card rounded-2xl overflow-hidden border border-border hover:shadow-elegant transition-all duration-300"
               >
-                <div
-                  className={`h-48 bg-gradient-to-br ${p.grad ?? "from-primary to-navy"} relative overflow-hidden`}
+                <CoverImage
+                  src={p.cover_image}
+                  alt={p.title}
+                  gradientClassName={p.grad}
+                  className="h-48"
                 >
-                  <div
-                    className="absolute inset-0 opacity-30"
-                    style={{ backgroundImage: "var(--gradient-mesh)" }}
+                  <TagChips
+                    post={p}
+                    max={2}
+                    variant="overlay"
+                    className="absolute top-4 left-4"
                   />
-                  {p.tag && (
-                    <span className="absolute top-4 left-4 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
-                      {p.tag}
-                    </span>
-                  )}
-                </div>
+                </CoverImage>
                 <div className="p-6">
                   {(p.read_time ?? p.read) && (
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">

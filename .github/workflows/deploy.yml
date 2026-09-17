@@ -56,6 +56,32 @@ jobs:
             cp snapshot.example.json snapshot.json
           fi
 
+      - name: Guard — snapshot content floor vs committed example
+        # A syntactically valid but thin snapshot.json (a partial/stale publish)
+        # builds and syncs successfully — the brand strip, testimonials, FAQs
+        # and obras listing each just `return null`, and the `--delete` sync
+        # below then removes the de-listed pages. Hard-fail here, before any
+        # install/build work runs, if a published entity has fewer rows than
+        # the committed snapshot.example.json floor.
+        run: |
+          shrunk=0
+          for entity in $(jq -r 'to_entries[] | select(.value | type == "array") | .key' snapshot.example.json); do
+            if [ "$entity" = "showcase_bids" ]; then
+              continue # legitimately 0 today — excluded from the floor
+            fi
+            floor=$(jq "(.\"$entity\" // []) | length" snapshot.example.json)
+            actual=$(jq "(.\"$entity\" // []) | length" snapshot.json)
+            if [ "$actual" -lt "$floor" ]; then
+              echo "SHRUNK: $entity has $actual row(s), below the committed floor of $floor (missing $((floor - actual)))"
+              shrunk=1
+            fi
+          done
+          if [ "$shrunk" != "0" ]; then
+            echo "Content-floor guard failed — published snapshot is thinner than snapshot.example.json (aborting deploy)."
+            exit 1
+          fi
+          echo "Content-floor guard passed — every entity meets or exceeds the committed example's row counts."
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 

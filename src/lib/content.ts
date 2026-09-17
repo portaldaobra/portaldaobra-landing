@@ -26,6 +26,7 @@ import type {
   FaqRow,
 } from "@/lib/cms";
 import { parseAboutNumeros, ABOUT_NUMEROS_KEY, type AboutNumeros } from "@/lib/about-numeros";
+import { parseBlogEnabled, BLOG_ENABLED_SETTING_KEY } from "@/lib/blog-settings";
 
 // ─── Snapshot shape ───────────────────────────────────────────────────────────
 
@@ -202,6 +203,16 @@ export function getAboutNumeros(): AboutNumeros {
   const settings = getSiteSettings();
   const raw = settings.find((s) => s.key === ABOUT_NUMEROS_KEY)?.value ?? null;
   return parseAboutNumeros(raw);
+}
+
+/**
+ * Whether the public blog surface (nav links, homepage section, /blog
+ * routes, sitemap entries) should be shown. See parseBlogEnabled for the
+ * default-on semantics.
+ */
+export function isBlogEnabled(): boolean {
+  const raw = getSiteSettings().find((s) => s.key === BLOG_ENABLED_SETTING_KEY)?.value;
+  return parseBlogEnabled(raw);
 }
 
 /** All blog slugs for sitemap / prerender page enumeration. */

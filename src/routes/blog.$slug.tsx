@@ -12,8 +12,10 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
-import { getBlogPost, getBlogPosts } from "@/lib/content";
+import { getBlogPost, getBlogPosts, isBlogEnabled } from "@/lib/content";
 import type { BlogRow } from "@/lib/cms";
+import { CoverImage } from "@/components/site/CoverImage";
+import { TagChips } from "@/components/site/TagChips";
 
 // Adapt BlogRow to the shape components expect (read/date aliases)
 function adapt(row: BlogRow) {
@@ -103,6 +105,28 @@ export const Route = createFileRoute("/blog/$slug")({
 function ArticlePage() {
   const { post, all } = Route.useLoaderData();
 
+  // The blog is excluded from the prerender list when blog_enabled is off
+  // (see vite.config.ts), so a normal build never ships this page — but a
+  // direct hit in dev mode, or a stale bookmark/link, must not crash.
+  if (!isBlogEnabled()) {
+    return (
+      <main className="min-h-screen bg-background">
+        <Header />
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-24 text-center">
+          <h1 className="font-display text-2xl font-bold text-navy">Blog indisponível</h1>
+          <p className="mt-3 text-muted-foreground">Esta seção não está disponível no momento.</p>
+          <Link
+            to="/"
+            className="mt-6 inline-block text-sm font-semibold text-primary hover:underline"
+          >
+            Voltar para a página inicial
+          </Link>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
+
   const idx = all.findIndex((p: BlogPost) => p.slug === post.slug);
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
@@ -125,11 +149,10 @@ function ArticlePage() {
             <ArrowLeft className="h-4 w-4" /> Voltar para o Blog
           </Link>
 
-          {post.tag && (
-            <span className="inline-block text-xs font-semibold uppercase tracking-wider text-primary mb-4">
-              {post.tag}
-            </span>
-          )}
+          {/* Own row. The old markup was an inline <span> immediately after the
+              inline-flex back-link, so it shared that line and read as part of
+              "Voltar para o Blog" instead of as a tag. */}
+          <TagChips post={post} className="mb-4" />
 
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
             {post.title}
@@ -148,14 +171,14 @@ function ArticlePage() {
             )}
           </div>
 
-          <div
-            className={`mt-8 h-64 sm:h-80 rounded-2xl bg-gradient-to-br ${post.grad ?? "from-primary to-navy"} relative overflow-hidden`}
-          >
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{ backgroundImage: "var(--gradient-mesh)" }}
-            />
-          </div>
+          <CoverImage
+            src={post.cover_image}
+            alt={post.title}
+            gradientClassName={post.grad}
+            className="mt-8 h-64 sm:h-80 rounded-2xl"
+            sizes="(min-width: 640px) 768px, 100vw"
+            priority
+          />
 
           {/* Intro */}
           <div className="mt-10 space-y-4">
@@ -321,19 +344,19 @@ function ArticlePage() {
                   params={{ slug: r.slug }}
                   className="group block bg-card rounded-2xl overflow-hidden border border-border hover:shadow-elegant transition-all duration-300"
                 >
-                  <div
-                    className={`h-36 bg-gradient-to-br ${r.grad ?? "from-primary to-navy"} relative overflow-hidden`}
+                  <CoverImage
+                    src={r.cover_image}
+                    alt={r.title}
+                    gradientClassName={r.grad}
+                    className="h-36"
                   >
-                    <div
-                      className="absolute inset-0 opacity-30"
-                      style={{ backgroundImage: "var(--gradient-mesh)" }}
+                    <TagChips
+                      post={r}
+                      max={2}
+                      variant="overlay"
+                      className="absolute top-3 left-3"
                     />
-                    {r.tag && (
-                      <span className="absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-navy">
-                        {r.tag}
-                      </span>
-                    )}
-                  </div>
+                  </CoverImage>
                   <div className="p-5">
                     <h3 className="font-display text-base font-bold text-navy leading-snug group-hover:text-primary transition-colors">
                       {r.title}

@@ -205,3 +205,60 @@
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
+
+/* ---------------------------------------------------------------------------
+ * Blog tag stickers.
+ *
+ * A tag should read as something applied to the page rather than as a kicker
+ * line above the headline — which is how the old bare <span> read. That comes
+ * from the lift shadow and the folded corner, NOT from a tilt: an angled label
+ * reads playful, and this is a B2B construction audience. Everything stays
+ * square to the grid.
+ * ------------------------------------------------------------------------ */
+.tag-peel {
+  position: relative;
+  box-shadow:
+    0 1px 1px color-mix(in oklab, var(--navy) 10%, transparent),
+    0 4px 8px -5px color-mix(in oklab, var(--navy) 26%, transparent);
+  transition: box-shadow 150ms ease, transform 150ms ease;
+}
+
+/* The curled corner: a darker triangle tucked into the bottom-right, as if the
+   label is lifting slightly away from the page. Kept small and low-contrast so
+   it reads as a detail, not a gimmick. */
+.tag-peel::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-bottom-right-radius: 0.25rem;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    color-mix(in oklab, var(--navy) 16%, transparent) 50%
+  );
+  pointer-events: none;
+}
+
+/* Straight lift on hover — no rotation. */
+.tag-peel:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 1px color-mix(in oklab, var(--navy) 12%, transparent),
+    0 8px 14px -7px color-mix(in oklab, var(--navy) 32%, transparent);
+}
+
+/* The "+N" overflow chip is a counter, not a tag — no curl. */
+.tag-peel-flat::after {
+  content: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag-peel,
+  .tag-peel:hover {
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { getBlogSlugs, getObraSlugs } from "@/lib/content";
+import { getBlogSlugs, getObraSlugs, isBlogEnabled } from "@/lib/content";
 
 // TODO: replace with your project URL once a custom domain is set.
 const BASE_URL = "";
@@ -15,6 +15,8 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const blogEnabled = isBlogEnabled();
+
         // Static pages always included
         const staticEntries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
@@ -24,7 +26,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/sobre", changefreq: "monthly", priority: "0.7" },
           { path: "/bids", changefreq: "daily", priority: "0.8" },
           { path: "/obras-realizadas", changefreq: "weekly", priority: "0.8" },
-          { path: "/blog", changefreq: "weekly", priority: "0.8" },
+          ...(blogEnabled
+            ? [{ path: "/blog", changefreq: "weekly" as const, priority: "0.8" }]
+            : []),
           { path: "/duvidas-frequentes", changefreq: "monthly", priority: "0.6" },
           { path: "/privacidade-e-contratos", changefreq: "yearly", priority: "0.3" },
         ];
@@ -33,11 +37,13 @@ export const Route = createFileRoute("/sitemap.xml")({
         let blogEntries: SitemapEntry[] = [];
         let obraEntries: SitemapEntry[] = [];
         try {
-          blogEntries = getBlogSlugs().map((slug) => ({
-            path: `/blog/${slug}`,
-            changefreq: "monthly" as const,
-            priority: "0.7",
-          }));
+          blogEntries = blogEnabled
+            ? getBlogSlugs().map((slug) => ({
+                path: `/blog/${slug}`,
+                changefreq: "monthly" as const,
+                priority: "0.7",
+              }))
+            : [];
           obraEntries = getObraSlugs().map((slug) => ({
             path: `/obras-realizadas/${slug}`,
             changefreq: "monthly" as const,
