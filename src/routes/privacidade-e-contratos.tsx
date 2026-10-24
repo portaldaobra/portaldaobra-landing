@@ -3,6 +3,11 @@ import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { ShieldCheck, ChevronDown } from "lucide-react";
+// The owner's legal texts, verbatim from the signed .docx sources (trusted,
+// committed static HTML — never user input).
+import avisoDePrivacidadeHtml from "@/content/legal/aviso-de-privacidade.html?raw";
+import politicaProtecaoDadosHtml from "@/content/legal/politica-protecao-dados.html?raw";
+import termosECondicoesHtml from "@/content/legal/termos-e-condicoes.html?raw";
 
 const COBALT = "var(--primary)";
 const NAVY = "var(--navy)";
@@ -35,6 +40,10 @@ type Section = {
   intro: string;
   blocks: { heading: string; body: string }[];
   updatedAt: string;
+  /** Document version as the owner names it (e.g. "2026.04.01"). */
+  version?: string;
+  /** Full legal text; when present it replaces intro + blocks. */
+  html?: string;
 };
 
 const intro: Section = {
@@ -55,69 +64,29 @@ const sections: Section[] = [
   {
     id: "aviso-de-privacidade",
     title: "Aviso de Privacidade",
-    intro:
-      "Este aviso explica como o Portal da Obra coleta, utiliza, armazena e protege os dados pessoais de contratantes, fornecedores e visitantes da plataforma.",
-    blocks: [
-      {
-        heading: "Dados coletados",
-        body: "Coletamos dados cadastrais, de contato, dados profissionais e informações relacionadas às obras e oportunidades publicadas, sempre com finalidade definida e base legal apropriada.",
-      },
-      {
-        heading: "Finalidade do tratamento",
-        body: "Os dados são utilizados para viabilizar o cadastro, a qualificação, a participação em BIDs, a contratação de obras e o cumprimento de obrigações legais e contratuais.",
-      },
-      {
-        heading: "Compartilhamento",
-        body: "Compartilhamos dados apenas quando necessário para a execução dos serviços, por exigência legal ou mediante autorização do titular.",
-      },
-      {
-        heading: "Direitos do titular",
-        body: "Você pode solicitar a confirmação, o acesso, a correção, a portabilidade e a eliminação de seus dados, nos termos da LGPD.",
-      },
-    ],
-    updatedAt: "13/06/2026",
+    intro: "",
+    blocks: [],
+    updatedAt: "24/10/2026",
+    version: "2026.04.01",
+    html: avisoDePrivacidadeHtml,
   },
   {
     id: "politica-de-protecao-de-dados",
     title: "Política de Proteção de Dados",
-    intro:
-      "Define os princípios e práticas adotados pelo Portal da Obra para garantir o tratamento adequado e seguro de dados pessoais.",
-    blocks: [
-      {
-        heading: "Princípios",
-        body: "Adotamos os princípios de finalidade, adequação, necessidade, transparência, segurança e prestação de contas em todas as atividades de tratamento de dados.",
-      },
-      {
-        heading: "Medidas de segurança",
-        body: "Aplicamos controles técnicos e administrativos para proteger os dados contra acessos não autorizados, perda, alteração ou divulgação indevida.",
-      },
-      {
-        heading: "Retenção e descarte",
-        body: "Os dados são mantidos pelo período necessário ao cumprimento das finalidades para as quais foram coletados, observadas obrigações legais e regulatórias.",
-      },
-    ],
-    updatedAt: "13/06/2026",
+    intro: "",
+    blocks: [],
+    updatedAt: "24/10/2026",
+    version: "2026.04.01",
+    html: politicaProtecaoDadosHtml,
   },
   {
     id: "termos-e-condicoes-de-uso",
     title: "Termos e Condições de Uso",
-    intro:
-      "Regulam o uso da plataforma Portal da Obra por contratantes, fornecedores e demais usuários.",
-    blocks: [
-      {
-        heading: "Aceitação",
-        body: "Ao utilizar a plataforma, o usuário declara estar de acordo com estes termos e com as demais políticas aplicáveis.",
-      },
-      {
-        heading: "Obrigações do usuário",
-        body: "O usuário compromete-se a fornecer informações verdadeiras, a manter seu cadastro atualizado e a utilizar a plataforma de forma ética e em conformidade com a legislação.",
-      },
-      {
-        heading: "Limitação de responsabilidade",
-        body: "O Portal da Obra atua como plataforma de conexão entre contratantes e fornecedores, não sendo parte das relações contratuais firmadas entre eles.",
-      },
-    ],
-    updatedAt: "13/06/2026",
+    intro: "",
+    blocks: [],
+    updatedAt: "24/10/2026",
+    version: "2026.08.01",
+    html: termosECondicoesHtml,
   },
   {
     id: "codigo-de-etica",
@@ -261,13 +230,12 @@ function PrivacidadeContratos() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const current =
-    activeId === intro.id ? intro : sections.find((s) => s.id === activeId) ?? intro;
+    activeId === intro.id ? intro : (sections.find((s) => s.id === activeId) ?? intro);
 
   const activeLabel =
     activeId === intro.id
       ? "Visão Geral"
-      : groups.flatMap((g) => g.items).find((i) => i.id === activeId)?.label ??
-        "Visão Geral";
+      : (groups.flatMap((g) => g.items).find((i) => i.id === activeId)?.label ?? "Visão Geral");
 
   return (
     <main className="min-h-screen bg-background">
@@ -294,8 +262,7 @@ function PrivacidadeContratos() {
             Privacidade e <span style={{ color: COBALT }}>Contratos</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Nossas regras, políticas e compromissos com segurança, transparência e
-            compliance.
+            Nossas regras, políticas e compromissos com segurança, transparência e compliance.
           </p>
         </div>
       </section>
@@ -327,10 +294,7 @@ function PrivacidadeContratos() {
                 className={`bg-card border border-border rounded-2xl p-6 shadow-card lg:sticky lg:top-24 ${mobileOpen ? "block" : "hidden lg:block"}`}
                 aria-label="Privacidade e Contratos"
               >
-                <h2
-                  className="font-display text-lg font-bold mb-5"
-                  style={{ color: NAVY }}
-                >
+                <h2 className="font-display text-lg font-bold mb-5" style={{ color: NAVY }}>
                   Privacidade e Contratos
                 </h2>
 
@@ -380,12 +344,16 @@ function PrivacidadeContratos() {
                                   fontWeight: active ? 600 : 500,
                                 }}
                                 onMouseEnter={(e) => {
-                                  const indicator = e.currentTarget.previousElementSibling as HTMLElement;
-                                  if (indicator && !active) indicator.style.backgroundColor = "rgba(26,66,175,0.5)";
+                                  const indicator = e.currentTarget
+                                    .previousElementSibling as HTMLElement;
+                                  if (indicator && !active)
+                                    indicator.style.backgroundColor = "rgba(26,66,175,0.5)";
                                 }}
                                 onMouseLeave={(e) => {
-                                  const indicator = e.currentTarget.previousElementSibling as HTMLElement;
-                                  if (indicator && !active) indicator.style.backgroundColor = "transparent";
+                                  const indicator = e.currentTarget
+                                    .previousElementSibling as HTMLElement;
+                                  if (indicator && !active)
+                                    indicator.style.backgroundColor = "transparent";
                                 }}
                               >
                                 {item.label}
@@ -411,35 +379,44 @@ function PrivacidadeContratos() {
                 </h2>
 
                 <p className="mt-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                  {current.version && <>Versão {current.version} · </>}
                   Última atualização: {current.updatedAt}
                 </p>
 
-                <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/80">
-                  {current.intro}
-                </p>
+                {current.html ? (
+                  <div
+                    className="legal-doc mt-8"
+                    dangerouslySetInnerHTML={{ __html: current.html }}
+                  />
+                ) : (
+                  <>
+                    <p className="mt-6 text-base sm:text-lg leading-relaxed text-foreground/80">
+                      {current.intro}
+                    </p>
 
-                <div className="mt-10 space-y-10">
-                  {current.blocks.map((block) => (
-                    <div key={block.heading}>
-                      <h3
-                        className="font-display text-xl font-bold mb-3"
-                        style={{ color: NAVY }}
-                      >
-                        {block.heading}
-                      </h3>
-                      <p className="text-base leading-relaxed text-muted-foreground">
-                        {block.body}
-                      </p>
-                      <div className="mt-8 h-px bg-border/70" />
+                    <div className="mt-10 space-y-10">
+                      {current.blocks.map((block) => (
+                        <div key={block.heading}>
+                          <h3
+                            className="font-display text-xl font-bold mb-3"
+                            style={{ color: NAVY }}
+                          >
+                            {block.heading}
+                          </h3>
+                          <p className="text-base leading-relaxed text-muted-foreground">
+                            {block.body}
+                          </p>
+                          <div className="mt-8 h-px bg-border/70" />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </>
+                )}
 
                 <div className="mt-10 rounded-2xl border border-border bg-secondary/40 px-6 py-5">
                   <p className="text-sm text-muted-foreground">
-                    Este conteúdo poderá ser atualizado periodicamente. Recomendamos
-                    consultar esta página com regularidade para acompanhar eventuais
-                    revisões.
+                    Este conteúdo poderá ser atualizado periodicamente. Recomendamos consultar esta
+                    página com regularidade para acompanhar eventuais revisões.
                   </p>
                 </div>
               </div>
