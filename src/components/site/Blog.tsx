@@ -1,11 +1,14 @@
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { getBlogPosts } from "@/lib/content";
 import type { BlogAudience } from "@/lib/content";
-import { CoverImage } from "@/components/site/CoverImage";
-import { TagChips } from "@/components/site/TagChips";
+import { BlogPostCard, type BlogCardPost } from "@/components/site/BlogPostCard";
 
+/**
+ * The "Novidades do Mercado" teaser section (home, prestadores). The full
+ * listing with search and filters is BlogIndex, on /blog.
+ */
 export function Blog({
   limit,
   showCta = true,
@@ -18,21 +21,13 @@ export function Blog({
   initialPosts,
 }: {
   limit?: number;
+  /** "Ver Todos os Artigos" — a link to the /blog listing. */
   showCta?: boolean;
   audience?: BlogAudience;
   homeFeatured?: boolean;
-  initialPosts?: Array<{
-    slug: string;
-    title: string;
-    excerpt?: string | null;
-    tag?: string | null;
-    grad?: string | null;
-    cover_image?: string | null;
-    read_time?: string | null;
-    read?: string;
-  }>;
+  initialPosts?: BlogCardPost[];
 } = {}) {
-  const list =
+  const list: BlogCardPost[] =
     initialPosts && initialPosts.length > 0
       ? initialPosts
       : getBlogPosts({ limit, audience, homeFeatured });
@@ -52,44 +47,7 @@ export function Blog({
         ) : (
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
             {list.map((p) => (
-              <Link
-                key={p.slug}
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                className="group block bg-card rounded-2xl overflow-hidden border border-border hover:shadow-elegant transition-all duration-300"
-              >
-                <CoverImage
-                  src={p.cover_image}
-                  alt={p.title}
-                  gradientClassName={p.grad}
-                  className="h-48"
-                >
-                  <TagChips
-                    post={p}
-                    max={2}
-                    variant="overlay"
-                    className="absolute top-4 left-4"
-                  />
-                </CoverImage>
-                <div className="p-6">
-                  {(p.read_time ?? p.read) && (
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
-                      <Clock className="h-3 w-3" /> {p.read_time ?? p.read} de leitura
-                    </div>
-                  )}
-                  <h3 className="font-display text-lg font-bold text-navy leading-snug group-hover:text-primary transition-colors">
-                    {p.title}
-                  </h3>
-                  {p.excerpt && (
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                      {p.excerpt}
-                    </p>
-                  )}
-                  <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                    Ler artigo <ArrowRight className="h-3.5 w-3.5" />
-                  </div>
-                </div>
-              </Link>
+              <BlogPostCard key={p.slug} post={p} />
             ))}
           </div>
         )}

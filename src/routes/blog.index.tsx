@@ -1,11 +1,19 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useCallback } from "react";
+import { createFileRoute, Link, useHydrated, useNavigate } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { Blog } from "@/components/site/Blog";
-import { ArrowLeft } from "lucide-react";
+import { BlogIndex, type BlogSearchUpdate } from "@/components/site/BlogIndex";
 import { getBlogPosts, isBlogEnabled } from "@/lib/content";
+import { parseBlogListingSearch, type BlogListingSearch } from "@/lib/blog-listing";
+
+const NO_FILTERS: BlogListingSearch = {};
 
 export const Route = createFileRoute("/blog/")({
+  // ?q=&tag=&sort=&audience= — see src/lib/blog-listing.ts. Filtering runs
+  // client-side over the posts below, so the prerendered page stays the full
+  // list and any filtered URL is shareable.
+  validateSearch: (search: Record<string, unknown>): BlogListingSearch =>
+    parseBlogListingSearch(search),
   loader: async () => {
     const posts = getBlogPosts({});
     return { posts };
@@ -28,6 +36,22 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogPage() {
   const { posts } = Route.useLoaderData();
+  const urlSearch = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
+  // The HTML was prerendered with no search params; render that same state
+  // until hydration so React adopts the markup, then apply the URL's filters.
+  const hydrated = useHydrated();
+
+  const onSearchChange = useCallback(
+    (update: BlogSearchUpdate, options?: { replace?: boolean }) => {
+      void navigate({
+        search: (prev) => parseBlogListingSearch({ ...update(prev) }),
+        replace: options?.replace,
+        resetScroll: false,
+      });
+    },
+    [navigate],
+  );
 
   // The blog is excluded from the prerender list when blog_enabled is off
   // (see vite.config.ts), so a normal build never ships this page — but a
@@ -54,15 +78,12 @@ function BlogPage() {
   return (
     <main className="min-h-screen bg-background">
       <Header />
-      <div className="pt-12 pb-4 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary"
-        >
-          <ArrowLeft className="h-4 w-4" /> Voltar
-        </Link>
-      </div>
-      <Blog initialPosts={posts} />
+      <BlogIndex
+        posts={posts}
+        search={hydrated ? urlSearch : NO_FILTERS}
+        hydrated={hydrated}
+        onSearchChange={onSearchChange}
+      />
       <Footer />
     </main>
   );
