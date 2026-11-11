@@ -262,3 +262,86 @@
     transition: none;
   }
 }
+
+/* Full legal documents on /privacidade-e-contratos (owner's texts rendered
+   from committed static HTML). Tailwind preflight strips list and heading
+   styling, so the document's own structure is restored here. */
+.legal-doc {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.legal-doc > * + * {
+  margin-top: 1rem;
+}
+.legal-doc h3,
+.legal-doc h4,
+.legal-doc h5,
+.legal-doc h6 {
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2rem;
+}
+/* The document's own title (the page already names the section above it). */
+.legal-doc h3 {
+  font-size: 1.25rem;
+  margin-top: 0;
+}
+.legal-doc h4 {
+  font-size: 1.125rem;
+}
+.legal-doc h5,
+.legal-doc h6 {
+  font-size: 1rem;
+}
+.legal-doc strong,
+.legal-doc b {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.legal-doc ol,
+.legal-doc ul {
+  padding-left: 1.5rem;
+}
+.legal-doc ol {
+  list-style: decimal;
+}
+.legal-doc ul {
+  list-style: disc;
+}
+.legal-doc li + li,
+.legal-doc li > * + * {
+  margin-top: 0.5rem;
+}
+.legal-doc a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+.legal-doc .box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: color-mix(in oklab, var(--secondary) 40%, transparent);
+  padding: 1rem 1.25rem;
+}
+.legal-doc .box > * + * {
+  margin-top: 0.5rem;
+}
+.legal-doc blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+}
+.legal-doc table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.legal-doc td,
+.legal-doc th {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
