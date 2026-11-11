@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { postTags } from "@/lib/post-tags";
 
 /**
@@ -14,6 +15,7 @@ export function TagChips({
   max,
   className = "",
   variant = "default",
+  linkToListing = false,
 }: {
   post: { tags?: string[] | null; tag?: string | null };
   /** Cap for tight slots such as a card overlay. Extra tags collapse to "+N". */
@@ -21,6 +23,11 @@ export function TagChips({
   className?: string;
   /** "overlay" sits on top of cover art and needs an opaque backing. */
   variant?: "default" | "overlay";
+  /**
+   * Each tag links to the /blog listing filtered by it (?tag=). Only where the
+   * chips are not already inside a link — never on a card.
+   */
+  linkToListing?: boolean;
 }) {
   const all = postTags(post);
   if (all.length === 0) return null;
@@ -37,11 +44,24 @@ export function TagChips({
 
   return (
     <ul className={`flex flex-wrap items-center gap-2 ${className}`}>
-      {shown.map((t) => (
-        <li key={t} className={`${base} ${skin}`}>
-          {t}
-        </li>
-      ))}
+      {shown.map((t) =>
+        linkToListing ? (
+          <li key={t}>
+            <Link
+              to="/blog"
+              search={{ tag: t }}
+              title={`Ver artigos de ${t}`}
+              className={`${base} ${skin} hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`}
+            >
+              {t}
+            </Link>
+          </li>
+        ) : (
+          <li key={t} className={`${base} ${skin}`}>
+            {t}
+          </li>
+        ),
+      )}
       {hidden > 0 && (
         <li className={`${base} ${skin} tag-peel-flat`} aria-label={`mais ${hidden} tags`}>
           +{hidden}

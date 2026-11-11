@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useHydrated, useLocation } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -104,6 +104,12 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function ArticlePage() {
   const { post, all } = Route.useLoaderData();
+  // Opened from a filtered /blog listing? Go back to that same list. History
+  // state is browser-only, so it is read after hydration to keep the
+  // prerendered link and the first client render identical.
+  const hydrated = useHydrated();
+  const cameFromListing = useLocation({ select: (l) => l.state?.blogListingSearch });
+  const backToListing = (hydrated && cameFromListing) || {};
 
   // The blog is excluded from the prerender list when blog_enabled is off
   // (see vite.config.ts), so a normal build never ships this page — but a
@@ -144,6 +150,7 @@ function ArticlePage() {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
             to="/blog"
+            search={backToListing}
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary mb-8"
           >
             <ArrowLeft className="h-4 w-4" /> Voltar para o Blog
@@ -152,7 +159,7 @@ function ArticlePage() {
           {/* Own row. The old markup was an inline <span> immediately after the
               inline-flex back-link, so it shared that line and read as part of
               "Voltar para o Blog" instead of as a tag. */}
-          <TagChips post={post} className="mb-4" />
+          <TagChips post={post} className="mb-4" linkToListing />
 
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight text-balance">
             {post.title}
