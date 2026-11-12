@@ -92,6 +92,9 @@ jobs:
         # The static --delete sync below would wipe anything not in dist/client.
         # Hard-fail before syncing if the v18.0 consent/legal layer is missing,
         # so a broken build can never strip LGPD compliance from the live site.
+        # logo-email.png is the header logo of every transactional e-mail the
+        # API sends (https://www.portaldaobra.com.br/logo-email.png): it must
+        # never be synced away either.
         run: |
           missing=0
           for p in \
@@ -103,6 +106,7 @@ jobs:
             dist/client/legal/terms/index.html \
             dist/client/legal/cookies/index.html \
             dist/client/legal/subprocessors/index.html \
+            dist/client/logo-email.png \
             dist/client/sitemap.xml; do
             if [ ! -e "$p" ]; then echo "MISSING: $p"; missing=1; fi
           done
