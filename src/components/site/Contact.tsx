@@ -27,36 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { TurnstileWidget } from "@/components/site/TurnstileWidget";
 import { submitLead, type LeadData, type LeadErrorCode } from "@/lib/api";
 import { getTurnstileSiteKey, TURNSTILE_STUB_TOKEN } from "@/lib/turnstile";
-
-const UF_OPTIONS = [
-  "AC",
-  "AL",
-  "AP",
-  "AM",
-  "BA",
-  "CE",
-  "DF",
-  "ES",
-  "GO",
-  "MA",
-  "MT",
-  "MS",
-  "MG",
-  "PA",
-  "PB",
-  "PR",
-  "PE",
-  "PI",
-  "RJ",
-  "RN",
-  "RS",
-  "RO",
-  "RR",
-  "SC",
-  "SP",
-  "SE",
-  "TO",
-] as const;
+import { UF_OPTIONS } from "@/lib/uf-options";
 
 // Validation lives here and ONLY here — the form is rendered with `noValidate`
 // so the browser never races react-hook-form + zod for the first error.
