@@ -56,7 +56,7 @@ const data: Record<
     metrics: [
       { label: "Obras Ativas", value: "18", delta: "+3 vs trimestre", trend: "up" },
       { label: "BIDs Abertos", value: "7", delta: "-2 vs semana", trend: "down" },
-      { label: "Tempo Médio Cotação", value: "11 dias", delta: "-42%", trend: "up" },
+      { label: "Tempo Médio Cotação", value: "11 dias", delta: "-60%", trend: "up" },
       { label: "Capex Contratado", value: "R$ 12,4M", delta: "+8,2%", trend: "up" },
     ],
     chartTitle: "Propostas recebidas — últimos 12 meses",
