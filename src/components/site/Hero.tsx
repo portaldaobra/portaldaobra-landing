@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useAudience } from "./AudienceContext";
 import { getObraTypes, getFormCategories, getFormLocations } from "@/lib/content";
 import type { ObraTypeRow, FormCategoryRow, FormLocationRow } from "@/lib/content";
+import { UF_OPTIONS } from "@/lib/uf-options";
 
 const audienceContent = {
   lojistas: {
@@ -63,8 +64,8 @@ export function Hero({
   const obraTypes = initialObraTypes && initialObraTypes.length > 0
     ? initialObraTypes
     : getObraTypes();
+  // No preselected type: the field starts on "Selecione" like the others.
   const tipoOptions = obraTypes.map((t) => t.name);
-  const tipoDefault = obraTypes.find((t) => t.is_default)?.name;
 
   const categorias = initialFormCategories && initialFormCategories.length > 0
     ? initialFormCategories
@@ -137,15 +138,12 @@ export function Hero({
                 <div className="h-px bg-border" />
 
                 <form onSubmit={onSubmit} className="mt-6 space-y-3.5">
-                  <Row label="Data">
+                  <Row label="Previsão de início da obra">
                     <Input type="date" className="h-10 rounded-full bg-background border-border" />
                   </Row>
 
                   <Row label="Estado">
-                    <SelectField
-                      placeholder="Selecione"
-                      options={["SP", "RJ", "MG", "PR", "RS", "BA", "PE", "CE", "DF"]}
-                    />
+                    <SelectField placeholder="Selecione" options={[...UF_OPTIONS]} />
                   </Row>
 
                   <Row label="Cidade">
@@ -156,11 +154,7 @@ export function Hero({
                   </Row>
 
                   <Row label="Tipo">
-                    <SelectField
-                      placeholder="Selecione"
-                      options={tipoOptions}
-                      defaultValue={tipoDefault}
-                    />
+                    <SelectField placeholder="Selecione" options={tipoOptions} />
                   </Row>
 
                   <Row label="Categoria">
